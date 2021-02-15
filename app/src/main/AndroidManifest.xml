@@ -9,7 +9,10 @@
         android:roundIcon="@drawable/kip_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.KHPI_in_phone">
-
+        <activity
+            android:name=".Main_screen"
+            android:label="@string/title_activity_main_screen"
+            android:theme="@style/Theme.KHPI_in_phone.NoActionBar"></activity>
         <activity
             android:name=".Group_activity"
             android:label="@string/title_activity_group_activity"
@@ -20,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".main_window" />
         <activity android:name=".Autorization" />
         <activity android:name=".KIP_start" />
