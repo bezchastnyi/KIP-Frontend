@@ -9,7 +9,13 @@
         android:roundIcon="@drawable/kip_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.KHPI_in_phone">
-        <activity android:name=".Plan_edit"></activity>
+        <activity android:name=".Schedule_swipe_2">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Plan_edit" />
         <activity
             android:name=".Main_screen"
             android:label="@string/title_activity_main_screen"
@@ -28,6 +34,13 @@
         <activity android:name=".Autorization" />
         <activity android:name=".KIP_start" />
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Schedule_swipe">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

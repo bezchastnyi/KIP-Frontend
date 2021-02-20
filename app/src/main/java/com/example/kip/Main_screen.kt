@@ -20,6 +20,12 @@ class Main_screen : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val button2 = findViewById<Button>(R.id.button_schedule)
+
+        button2.setOnClickListener {
+            val intent = Intent(this, Schedule_swipe::class.java)
+            startActivity(intent)
+        }
         //setSupportActionBar(findViewById(R.id.toolbar))
 
         //findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
