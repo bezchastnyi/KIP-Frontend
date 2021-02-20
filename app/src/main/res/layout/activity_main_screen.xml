@@ -81,7 +81,7 @@
             app:layout_constraintHorizontal_bias="0.027"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/TestFace" />
+            app:srcCompat="@drawable/testface" />
 
         <TextView
             android:id="@+id/editTextTextPersonName"
