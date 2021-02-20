@@ -9,10 +9,11 @@
         android:roundIcon="@drawable/kip_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.KHPI_in_phone">
+        <activity android:name=".Plan_edit"></activity>
         <activity
             android:name=".Main_screen"
             android:label="@string/title_activity_main_screen"
-            android:theme="@style/Theme.KHPI_in_phone.NoActionBar"></activity>
+            android:theme="@style/Theme.KHPI_in_phone.NoActionBar" />
         <activity
             android:name=".Group_activity"
             android:label="@string/title_activity_group_activity"

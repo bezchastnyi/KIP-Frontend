@@ -81,7 +81,7 @@
             app:layout_constraintHorizontal_bias="0.027"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/testface" />
+            app:srcCompat="@drawable/TestFace" />
 
         <TextView
             android:id="@+id/editTextTextPersonName"
@@ -143,6 +143,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginRight="4dp"
+                android:background="#D84D4D8F"
                 android:editable="false"
                 android:ems="10"
                 android:inputType="textPersonName"
@@ -161,6 +162,7 @@
                 android:layout_marginEnd="4dp"
                 android:layout_marginRight="4dp"
                 android:autoText="true"
+                android:background="#D84D4D8F"
                 android:editable="false"
                 android:ems="10"
                 android:inputType="textPersonName"
@@ -172,7 +174,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName11" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/Button_plan_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
