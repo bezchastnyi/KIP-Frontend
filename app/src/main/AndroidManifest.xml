@@ -9,9 +9,12 @@
         android:roundIcon="@drawable/kip_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.KHPI_in_phone">
+        <activity android:name=".lecture_schedule"></activity>
+        <activity android:name=".Class_schedule" />
         <activity android:name=".Schedule_swipe_2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
