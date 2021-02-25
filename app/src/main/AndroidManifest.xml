@@ -9,7 +9,18 @@
         android:roundIcon="@drawable/kip_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.KHPI_in_phone">
-        <activity android:name=".lecture_schedule"></activity>
+        <activity
+            android:name=".Group_activity"
+            android:label="@string/title_activity_group_activity"
+            android:theme="@style/Theme.KHPI_in_phone.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Lecture_schedule_selected"></activity>
+        <activity android:name=".lecture_schedule" />
         <activity android:name=".Class_schedule" />
         <activity android:name=".Schedule_swipe_2">
             <intent-filter>
@@ -23,16 +34,7 @@
             android:name=".Main_screen"
             android:label="@string/title_activity_main_screen"
             android:theme="@style/Theme.KHPI_in_phone.NoActionBar" />
-        <activity
-            android:name=".Group_activity"
-            android:label="@string/title_activity_group_activity"
-            android:theme="@style/Theme.KHPI_in_phone.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".main_window" />
         <activity android:name=".Autorization" />
         <activity android:name=".KIP_start" />
