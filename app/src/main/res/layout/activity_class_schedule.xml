@@ -54,7 +54,7 @@
             android:text="TEST"/>
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip10"
+                android:id="@+id/chipMonday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autoText="false"
@@ -64,7 +64,7 @@
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip5"
+                android:id="@+id/chipThuesday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autoText="false"
@@ -74,7 +74,7 @@
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip6"
+                android:id="@+id/chipWednesday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autoText="false"
@@ -84,7 +84,7 @@
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip7"
+                android:id="@+id/chipThursday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autoText="false"
@@ -94,7 +94,7 @@
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip8"
+                android:id="@+id/chipFriday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autoText="false"
@@ -104,7 +104,7 @@
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip9"
+                android:id="@+id/chipSaturday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autoText="false"
@@ -132,7 +132,7 @@
                 android:textSize="36sp" />
 
             <Switch
-                android:id="@+id/switch1"
+                android:id="@+id/switchWeek"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -167,7 +167,7 @@
                 android:minHeight="30dp" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/textViewD1"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -178,7 +178,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/textViewD2"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -189,7 +189,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/textViewD3"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -200,7 +200,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/textViewD4"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -211,7 +211,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/textViewD5"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

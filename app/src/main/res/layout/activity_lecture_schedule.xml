@@ -8,6 +8,7 @@
     tools:context=".lecture_schedule">
 
     <LinearLayout
+        android:id="@+id/Lecture_scedule_LL"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -46,81 +47,17 @@
             android:foreground="@android:drawable/bottom_bar" />
 
         <com.google.android.material.chip.ChipGroup
+            android:id="@+id/CathedraChipGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|center_horizontal"
             app:singleLine="false"
-            app:singleSelection="true"><![CDATA[
-            android:text="TEST"/>
-
-            ]]>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autoText="false"
-                android:gravity="center_horizontal"
-                android:maxWidth="1dp"
-                android:text="Факультет1"
-                android:textAlignment="center" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autoText="false"
-                android:gravity="center_horizontal"
-                android:maxWidth="1dp"
-                android:text="Факультет2"
-                android:textAlignment="center" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autoText="false"
-                android:gravity="center_horizontal"
-                android:maxWidth="1dp"
-                android:text="Факультет3"
-                android:textAlignment="center" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autoText="false"
-                android:gravity="center_horizontal"
-                android:maxWidth="1dp"
-                android:text="Факультет4"
-                android:textAlignment="center" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autoText="false"
-                android:gravity="center_horizontal"
-                android:maxWidth="1dp"
-                android:text="Факультет5"
-                android:textAlignment="center" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autoText="false"
-                android:gravity="center_horizontal"
-                android:maxWidth="1dp"
-                android:text="Факультет6"
-                android:textAlignment="center" />
-
-        </com.google.android.material.chip.ChipGroup>
+            app:singleSelection="true"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"/>
+            android:orientation="horizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -133,6 +70,7 @@
                 android:minHeight="60dp" />
 
             <com.google.android.material.chip.ChipGroup
+                android:id="@+id/ChipProfGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
