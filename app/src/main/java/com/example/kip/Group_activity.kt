@@ -1,19 +1,19 @@
 package com.example.kip
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
+import android.widget.*
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import org.redundent.kotlin.xml.xml
+//import khttp.get
+import org.jetbrains.anko.doAsync
 import java.io.IOException
+import java.util.concurrent.CountDownLatch
 
 
+var groupID:Int=0
 
 class Group_activity : AppCompatActivity() {
 
@@ -23,47 +23,71 @@ class Group_activity : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.button_select)
 
-        button.setOnClickListener {
-            val intent = Intent(this, Schedule_swipe::class.java)
-            startActivity(intent)
-        }
-
-        val jsonFileString = getJsonDataFromAsset(applicationContext, "group.json")
-        //jsonFileString?.let { Log.i("data", it) }
 
         val gson = Gson()
-        val GroupList = object : TypeToken<List<group>>() {}.type
+        //var Groups: List<group> = emptyList()
 
-        var Groups: List<group> = gson.fromJson(jsonFileString, GroupList)
-
-
-
-        val jsonFileString2 = getJsonDataFromAsset(applicationContext, "faculty.json")
-        jsonFileString2?.let { Log.i("data", it) }
+        var groupArray: Array<String> = emptyArray()
+        var groupIDArray: Array<Int> = emptyArray()
+        var facultyArray: Array<String> = emptyArray()
 
         val gson2 = Gson()
         val FacultyList = object : TypeToken<List<faculty>>() {}.type
+        val GroupList = object : TypeToken<List<group>>() {}.type
+
+
+        //var Facultys: List<faculty> = gson2.fromJson(jsonFileString2, FacultyList)
+
+        var Groups: List<group> = emptyList()
+
+        /*
+        val c = CountDownLatch(1)
+        val task = doAsync(){
+
+                val jsonFileString = get("https://31.202.49.107:5001/Group/?token=3012")
+
+                val jsonFileString2 = get("https://31.202.49.107:5001/faculty/?token=3012")
+
+
+                var Facultys: List<faculty> = gson2.fromJson(jsonFileString2.text, FacultyList)
+
+                 for (faculty in Facultys) {
+                    facultyArray +=faculty.facultyShortName
+                 }
+
+                val GroupList = object : TypeToken<List<group>>() {}.type
+                println(jsonFileString.content.toString())
+
+                Groups = gson.fromJson(jsonFileString.text, GroupList)
+
+
+
+                for (group in Groups) {
+                    groupArray += group.groupName
+                    groupIDArray +=group.groupID
+                }
+            c.countDown()
+            //println(jsonFileString.jsonArray)
+        }
+        c.await()
+        */
+
+        val jsonFileString = getJsonDataFromAsset(applicationContext, "group.json")
+        val jsonFileString2 = getJsonDataFromAsset(applicationContext, "faculty.json")
+
 
         var Facultys: List<faculty> = gson2.fromJson(jsonFileString2, FacultyList)
 
-        //Facultys.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
-
-        var groupArray: Array<String> = emptyArray()
-        var facultyArray: Array<String> = emptyArray()
-
-        for (group in Groups) {
-            groupArray += group.groupName
-        }
         for (faculty in Facultys) {
             facultyArray +=faculty.facultyShortName
         }
 
-        val spinner: Spinner = findViewById(R.id.spinner)
+        Groups = gson.fromJson(jsonFileString, GroupList)
 
-        val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, groupArray)
-
-        spinner.adapter = spinnerArrayAdapter
+        for (group in Groups) {
+            groupArray += group.groupName
+            groupIDArray +=group.groupID
+        }
 
         val spinner2: Spinner = findViewById(R.id.spinner2)
 
@@ -72,34 +96,50 @@ class Group_activity : AppCompatActivity() {
 
         spinner2.adapter = spinnerArrayAdapter2
 
-        //println("Writed to file")
-        /*
-        println("YA TUT 1")
-        doAsync{
-            println("YA  2")
-            //val r = get("https://api.github.com/events")
-            val r = get("https://10.0.2.2:5001/group/?token=3012")
-            println(r)
-            println("YA  3")
-            println(r.jsonArray)
-        }
-
-        */
 
 
-        /*
-        doAsync {
-            val url = URL("https://10.0.2.2:5001/group/?token=3012")
-            val urlConnection: HttpURLConnection = url.openConnection() as HttpURLConnection
-            try {
-                val `in`: InputStream = BufferedInputStream(urlConnection.getInputStream())
-                //readStream(`in`)
-            } finally {
-                urlConnection.disconnect()
+        val spinner: Spinner = findViewById(R.id.spinner)
+
+        spinner.onItemSelectedListener = object:AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>,view: View, position: Int, id: Long) {
+                val spinner: Spinner = findViewById<Spinner>(R.id.spinner)
+
+                var groupArray2: Array<String> = emptyArray()
+
+                val text: String = spinner2.selectedItem.toString()
+                println(text)
+
+                for (group in Groups) {
+                    for(faculty in Facultys)
+                        if(group.facultyID == faculty.facultyID && faculty.facultyShortName == text) {
+                            groupID = group.groupID
+                             groupArray2 += group.groupName
+                     }
+                }
+
+                val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
+                        applicationContext, android.R.layout.simple_spinner_item, groupArray2)
+
+                spinner.adapter = spinnerArrayAdapter
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                groupID=0
             }
         }
 
-         */
+        val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
+                applicationContext, android.R.layout.simple_spinner_item, groupArray)
+
+        spinner.adapter = spinnerArrayAdapter
+
+
+
+        button.setOnClickListener {
+            val intent = Intent(this, Schedule_swipe::class.java)
+            startActivity(intent)
+        }
+
     }
 
 }

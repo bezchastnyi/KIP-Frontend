@@ -75,39 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 app:singleLine="false"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autoText="false"
-                    android:gravity="center_horizontal"
-                    android:maxWidth="1dp"
-                    android:text="Преподователь1"
-                    android:textAlignment="center" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autoText="false"
-                    android:gravity="center_horizontal"
-                    android:maxWidth="1dp"
-                    android:text="Преподователь1"
-                    android:textAlignment="center" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip14"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autoText="false"
-                    android:gravity="center_horizontal"
-                    android:maxWidth="1dp"
-                    android:text="Преподователь3"
-                    android:textAlignment="center" />
-
-            </com.google.android.material.chip.ChipGroup>
+                app:singleSelection="true"/>
 
         </LinearLayout>
     </LinearLayout>

@@ -10,7 +10,9 @@ import android.widget.TextView
 import com.google.android.material.chip.Chip
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-
+import khttp.get
+import org.jetbrains.anko.doAsync
+import java.util.concurrent.CountDownLatch
 
 
 class Class_schedule : AppCompatActivity() {
@@ -24,15 +26,45 @@ class Class_schedule : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val jsonFileString = getJsonDataFromAsset(applicationContext, "schedule.json")
+        val gson2 = Gson()
+        val schedulesList = object : TypeToken<List<schedule>>() {}.type
+
+        //var schedules: List<schedule> = emptyList()// = gson2.fromJson(jsonFileString2, cathedraList2)
+
+        //schedules.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
+        /*
+        val c = CountDownLatch(1)
+        val task = doAsync(){
+
+            //val jsonFileString = get("https://kip-server-get-e3gw2ud6pa-ew.a.run.app/StudentSchedule/group/$groupID/?token=PLEASE_SPECIFY_VIA_ENV")
+
+            schedules = gson2.fromJson(jsonFileString.text, schedulesList)
+
+
+            c.countDown()
+            //println(jsonFileString.jsonArray)
+        }
+        c.await()
+        */
+
+
+        val jsonFileString = getJsonDataFromAsset(applicationContext, "StudentSchedule.json")
         //jsonFileString?.let { Log.i("data", it) }
 
         val gson = Gson()
         val scheduleList = object : TypeToken<List<schedule>>() {}.type
 
-        var schedules: List<schedule> = gson.fromJson(jsonFileString, scheduleList)
+        var schedulesTemp: List<schedule> = gson.fromJson(jsonFileString, scheduleList)
 
-       //schedules.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
+        var schedules:List<schedule> = emptyList()
+
+        for (schedule in schedulesTemp){
+            if(schedule.groupID == groupID){
+                schedules += schedule
+            }
+        }
+
+        //schedules.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
 
 
         var textviews: Array<TextView> = emptyArray()
@@ -53,14 +85,14 @@ class Class_schedule : AppCompatActivity() {
 
         var day_of_the_week: Int = 0
 
-        var currentWeek: Int = 0
+        var currentWeek: Boolean = false
 
         findViewById<Switch>(R.id.switchWeek).setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
-                currentWeek = 0
+                currentWeek = false
                 changeSchedule(schedules,day_of_the_week,currentWeek,textviews,textviews_time)
             }else{
-                currentWeek = 1
+                currentWeek = true
                 changeSchedule(schedules,day_of_the_week,currentWeek,textviews,textviews_time)
             }
         }
@@ -125,7 +157,7 @@ class Class_schedule : AppCompatActivity() {
 
 
     }
-    fun changeSchedule(schedules :List<schedule>, day_of_the_week:Int, currentWeek:Int, textviews:Array<TextView>, textviews_time:Array<String>){
+    fun changeSchedule(schedules :List<schedule>, day_of_the_week:Int, currentWeek:Boolean, textviews:Array<TextView>, textviews_time:Array<String>){
 
         var i:Int=0
 
@@ -137,7 +169,7 @@ class Class_schedule : AppCompatActivity() {
         for (schedule in schedules){
             if(schedule.day == day_of_the_week){
                 if(schedule.week == currentWeek){
-                    textviews[i].text = textviews_time[i] +  schedule.subjectName
+                    textviews[i].text = textviews_time[i] +  schedule.subject
                         i++
                         continue
                 }

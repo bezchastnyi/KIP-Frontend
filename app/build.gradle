@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+
 }
 
 android {
@@ -13,7 +14,6 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -44,7 +44,6 @@ dependencies {
     implementation "io.karn:khttp-android:[0.1.0]"
     implementation 'org.jetbrains.anko:anko-common:0.9'
     implementation 'com.google.code.gson:gson:2.8.5'
-
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
