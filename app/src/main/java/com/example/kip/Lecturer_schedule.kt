@@ -1,5 +1,6 @@
 package com.example.kip
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,8 +10,12 @@ import android.widget.TextView
 import com.google.android.material.chip.Chip
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import khttp.get
+import org.jetbrains.anko.doAsync
+import java.util.concurrent.CountDownLatch
 
 class Lecturer_schedule : AppCompatActivity() {
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecturer_schedule)
@@ -24,19 +29,32 @@ class Lecturer_schedule : AppCompatActivity() {
 
         val gson = Gson()
         val profSchelueList = object : TypeToken<List<prof>>() {}.type
-        /*
-        val jsonFileString = getJsonDataFromAsset(applicationContext, "profschedule.json")
 
-        var profTemp: List<profschedule> = gson.fromJson(jsonFileString, profSchelueList)
-
+        //val jsonFileString = getJsonDataFromAsset(applicationContext, "profschedule.json")
         var profschedules:List<profschedule> = emptyList()
 
-        for (prof in profTemp){
+        val c = CountDownLatch(1)
+        val task = doAsync(){
+            println(profID)
+            println(profScheduleByProfLink)
+            val jsonFileString = get(profScheduleByProfLink)
+
+            profschedules = gson.fromJson(jsonFileString.text, profSchelueList)
+
+
+            c.countDown()
+            //println(jsonFileString.jsonArray)
+        }
+        c.await()
+
+
+        /*
+        for (prof in profschedules){
             if(prof.profID == profID){
                 profschedules += prof
             }
         }
-
+*/
         var textviews: Array<TextView> = emptyArray()
         var textviews_time: Array<String> = emptyArray()
 
@@ -119,7 +137,7 @@ class Lecturer_schedule : AppCompatActivity() {
 
         var i:Int=0
 
-*/
+
     }
 
     fun changeSchedule(schedules :List<profschedule>, day_of_the_week:Int, currentWeek:Int, textviews:Array<TextView>, textviews_time:Array<String>){
@@ -130,16 +148,15 @@ class Lecturer_schedule : AppCompatActivity() {
             textviews[i].text = textviews_time[i]
             i++
         }
-        i=0
         for (schedule in schedules){
             if(schedule.day == day_of_the_week){
                 if(schedule.week == currentWeek){
-                    textviews[i].text = textviews_time[i] +  schedule.SubjectName
-                    i++
+                    textviews[schedule.number-1].text = "${textviews_time[schedule.number-1]} ${schedule.SubjectName}"
                     continue
                 }
             }
         }
 
     }
+
 }

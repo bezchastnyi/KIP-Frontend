@@ -6,4 +6,12 @@
     <string name="Day4">14:30 -</string>
     <string name="Day5">16:25 -</string>
     <string name="Day6">18:10 -</string>
+
+    <string-array name="Course">
+        <item>1 курс</item>
+        <item>2 курс</item>
+        <item>3 курс</item>
+        <item>4 курс</item>
+    </string-array>
+
 </resources>

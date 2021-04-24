@@ -1,5 +1,6 @@
 package com.example.kip
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,6 +17,7 @@ import java.util.concurrent.CountDownLatch
 
 
 class Class_schedule : AppCompatActivity() {
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_class_schedule)
@@ -29,14 +31,15 @@ class Class_schedule : AppCompatActivity() {
         val gson2 = Gson()
         val schedulesList = object : TypeToken<List<schedule>>() {}.type
 
-        //var schedules: List<schedule> = emptyList()// = gson2.fromJson(jsonFileString2, cathedraList2)
+        var schedules: List<schedule> = emptyList()// = gson2.fromJson(jsonFileString2, cathedraList2)
 
-        //schedules.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
-        /*
+        schedules.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
+
         val c = CountDownLatch(1)
         val task = doAsync(){
-
-            //val jsonFileString = get("https://kip-server-get-e3gw2ud6pa-ew.a.run.app/StudentSchedule/group/$groupID/?token=PLEASE_SPECIFY_VIA_ENV")
+            println(groupID)
+            println(studentScheduleByGroupLink)
+            val jsonFileString = get(studentScheduleByGroupLink)
 
             schedules = gson2.fromJson(jsonFileString.text, schedulesList)
 
@@ -45,9 +48,9 @@ class Class_schedule : AppCompatActivity() {
             //println(jsonFileString.jsonArray)
         }
         c.await()
-        */
 
 
+        /*
         val jsonFileString = getJsonDataFromAsset(applicationContext, "StudentSchedule.json")
         //jsonFileString?.let { Log.i("data", it) }
 
@@ -57,12 +60,7 @@ class Class_schedule : AppCompatActivity() {
         var schedulesTemp: List<schedule> = gson.fromJson(jsonFileString, scheduleList)
 
         var schedules:List<schedule> = emptyList()
-
-        for (schedule in schedulesTemp){
-            if(schedule.groupID == groupID){
-                schedules += schedule
-            }
-        }
+*/
 
         //schedules.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
 
@@ -85,14 +83,14 @@ class Class_schedule : AppCompatActivity() {
 
         var day_of_the_week: Int = 0
 
-        var currentWeek: Boolean = false
+        var currentWeek: Int = 0
 
         findViewById<Switch>(R.id.switchWeek).setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
-                currentWeek = false
+                currentWeek = 0
                 changeSchedule(schedules,day_of_the_week,currentWeek,textviews,textviews_time)
             }else{
-                currentWeek = true
+                currentWeek = 1
                 changeSchedule(schedules,day_of_the_week,currentWeek,textviews,textviews_time)
             }
         }
@@ -157,7 +155,7 @@ class Class_schedule : AppCompatActivity() {
 
 
     }
-    fun changeSchedule(schedules :List<schedule>, day_of_the_week:Int, currentWeek:Boolean, textviews:Array<TextView>, textviews_time:Array<String>){
+    fun changeSchedule(schedules :List<schedule>, day_of_the_week:Int, currentWeek:Int, textviews:Array<TextView>, textviews_time:Array<String>){
 
         var i:Int=0
 
@@ -165,12 +163,10 @@ class Class_schedule : AppCompatActivity() {
             textviews[i].text = textviews_time[i]
             i++
         }
-        i=0
         for (schedule in schedules){
             if(schedule.day == day_of_the_week){
                 if(schedule.week == currentWeek){
-                    textviews[i].text = textviews_time[i] +  schedule.subject
-                        i++
+                        textviews[schedule.number-1].text = "${textviews_time[schedule.number-1]} ${schedule.subjectName}"
                         continue
                 }
             }

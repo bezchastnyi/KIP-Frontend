@@ -17,7 +17,7 @@ import org.jetbrains.anko.doAsync
 import java.util.concurrent.CountDownLatch
 
 
-var profID:Int=0
+
 
 class lecture_schedule : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,13 +45,13 @@ class lecture_schedule : AppCompatActivity() {
         var profs: List<prof> = emptyList()// = gson2.fromJson(jsonFileString2, cathedraList2)
 
         profs.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
-        /*
+
         val c = CountDownLatch(1)
         val task = doAsync(){
 
-            val jsonFileString = get("https://kip-server-get-e3gw2ud6pa-ew.a.run.app/Cathedra/?token=PLEASE_SPECIFY_VIA_ENV")
+            val jsonFileString = get(cathedraByFacultyLink)
 
-            val jsonFileString2 = get("https://kip-server-get-e3gw2ud6pa-ew.a.run.app/prof/?token=PLEASE_SPECIFY_VIA_ENV")
+            val jsonFileString2 = get(profLink)
 
 
             cathedras = gson2.fromJson(jsonFileString.text, cathedraList)
@@ -65,7 +65,7 @@ class lecture_schedule : AppCompatActivity() {
             //println(jsonFileString.jsonArray)
         }
         c.await()
-*/
+        /*
         val jsonFileString = getJsonDataFromAsset(applicationContext, "cathedra.json")
 
         val jsonFileString2 = getJsonDataFromAsset(applicationContext, "prof.json")
@@ -74,7 +74,7 @@ class lecture_schedule : AppCompatActivity() {
 
 
         profs = gson.fromJson(jsonFileString2, profList)
-
+*/
         var chipsArray: Array<Chip> = emptyArray()
 
         for (cathedra in cathedras){
@@ -103,12 +103,14 @@ class lecture_schedule : AppCompatActivity() {
             // Set the chip click listener
             chip.setOnClickListener{
                 findViewById<ChipGroup>(R.id.ChipProfGroup).removeAllViews()
+                cathedraID=cathedra.cathedraID
+                setContentView(R.layout.activity_lecture_schedule_selection)
                 for(prof in profs){
                     //for (cathedra in cathedras) {
                         if (prof.cathedraID == cathedra.cathedraID) {
                             println("${prof.cathedraID} ${cathedra.cathedraID}")
                             val chip2 = Chip(this)
-                            chip2.text = "${prof.profSurname} ${prof.profName}"
+                            chip2.text = "${prof.profSurname} ${prof.profName} ${prof.profPatronymic}"
 
                             chip2.isClickable = true
                             chip2.isCheckable = false
