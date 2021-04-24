@@ -1,6 +1,7 @@
 package com.example.kip
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +15,7 @@ import com.google.gson.reflect.TypeToken
 import khttp.get
 import org.jetbrains.anko.doAsync
 import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 
 class Class_schedule : AppCompatActivity() {
@@ -35,6 +37,8 @@ class Class_schedule : AppCompatActivity() {
 
         schedules.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
 
+        connectionDone = false
+
         val c = CountDownLatch(1)
         val task = doAsync(){
             println(groupID)
@@ -43,14 +47,17 @@ class Class_schedule : AppCompatActivity() {
 
             schedules = gson2.fromJson(jsonFileString.text, schedulesList)
 
-
+            connectionDone = true
             c.countDown()
             //println(jsonFileString.jsonArray)
         }
-        c.await()
+        c.await(7, TimeUnit.SECONDS)
 
-
-        /*
+        if(!connectionDone){
+            popupMessage()
+        }
+        else {
+            /*
         val jsonFileString = getJsonDataFromAsset(applicationContext, "StudentSchedule.json")
         //jsonFileString?.let { Log.i("data", it) }
 
@@ -62,98 +69,98 @@ class Class_schedule : AppCompatActivity() {
         var schedules:List<schedule> = emptyList()
 */
 
-        //schedules.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
+            //schedules.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
 
 
-        var textviews: Array<TextView> = emptyArray()
-        var textviews_time: Array<String> = emptyArray()
+            var textviews: Array<TextView> = emptyArray()
+            var textviews_time: Array<String> = emptyArray()
 
-        textviews += findViewById<TextView>(R.id.textViewD1)
-        textviews += findViewById<TextView>(R.id.textViewD2)
-        textviews += findViewById<TextView>(R.id.textViewD3)
-        textviews += findViewById<TextView>(R.id.textViewD4)
-        textviews += findViewById<TextView>(R.id.textViewD5)
-        //chips += findViewById<TextView>(R.id.textViewD6)
+            textviews += findViewById<TextView>(R.id.textViewD1)
+            textviews += findViewById<TextView>(R.id.textViewD2)
+            textviews += findViewById<TextView>(R.id.textViewD3)
+            textviews += findViewById<TextView>(R.id.textViewD4)
+            textviews += findViewById<TextView>(R.id.textViewD5)
+            //chips += findViewById<TextView>(R.id.textViewD6)
 
-        textviews_time+= "8:30 - "
-        textviews_time+= "10:10 - "
-        textviews_time+= "12:35 - "
-        textviews_time+= "14:30 - "
-        textviews_time+= "16:10 - "
+            textviews_time += "8:30 - "
+            textviews_time += "10:10 - "
+            textviews_time += "12:35 - "
+            textviews_time += "14:30 - "
+            textviews_time += "16:10 - "
 
-        var day_of_the_week: Int = 0
+            var day_of_the_week: Int = 0
 
-        var currentWeek: Int = 0
+            var currentWeek: Int = 0
 
-        findViewById<Switch>(R.id.switchWeek).setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked){
-                currentWeek = 0
-                changeSchedule(schedules,day_of_the_week,currentWeek,textviews,textviews_time)
-            }else{
-                currentWeek = 1
-                changeSchedule(schedules,day_of_the_week,currentWeek,textviews,textviews_time)
-            }
-        }
-
-        findViewById<Chip>(R.id.chipMonday).setOnTouchListener { v, event ->
-            if (v is Chip) {
-                day_of_the_week = 0
-                changeSchedule(schedules,day_of_the_week,currentWeek,textviews,textviews_time)
-            }
-            false
-        }
-
-        findViewById<Chip>(R.id.chipThuesday).setOnTouchListener { v, event ->
-            if (v is Chip) {
-                day_of_the_week = 1
-                changeSchedule(schedules,day_of_the_week,currentWeek,textviews,textviews_time)
-            }
-            false
-        }
-
-        findViewById<Chip>(R.id.chipWednesday).setOnTouchListener { v, event ->
-            if (v is Chip) {
-                day_of_the_week = 2
-                changeSchedule(schedules,day_of_the_week,currentWeek,textviews,textviews_time)
-            }
-            false
-        }
-
-        findViewById<Chip>(R.id.chipThursday).setOnTouchListener { v, event ->
-            if (v is Chip) {
-                day_of_the_week = 3
-                changeSchedule(schedules,day_of_the_week,currentWeek,textviews,textviews_time)
-            }
-            false
-        }
-
-        findViewById<Chip>(R.id.chipFriday).setOnTouchListener { v, event ->
-            if (v is Chip) {
-                day_of_the_week = 4
-                changeSchedule(schedules,day_of_the_week,currentWeek,textviews,textviews_time)
-            }
-            false
-        }
-
-        findViewById<Chip>(R.id.chipSaturday).setOnTouchListener { v, event ->
-            if (v is Chip) {
-                day_of_the_week = 5
-                changeSchedule(schedules,day_of_the_week,currentWeek,textviews,textviews_time)
+            findViewById<Switch>(R.id.switchWeek).setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    currentWeek = 0
+                    changeSchedule(schedules, day_of_the_week, currentWeek, textviews, textviews_time)
+                } else {
+                    currentWeek = 1
+                    changeSchedule(schedules, day_of_the_week, currentWeek, textviews, textviews_time)
+                }
             }
 
-            false
+            findViewById<Chip>(R.id.chipMonday).setOnTouchListener { v, event ->
+                if (v is Chip) {
+                    day_of_the_week = 0
+                    changeSchedule(schedules, day_of_the_week, currentWeek, textviews, textviews_time)
+                }
+                false
+            }
+
+            findViewById<Chip>(R.id.chipThuesday).setOnTouchListener { v, event ->
+                if (v is Chip) {
+                    day_of_the_week = 1
+                    changeSchedule(schedules, day_of_the_week, currentWeek, textviews, textviews_time)
+                }
+                false
+            }
+
+            findViewById<Chip>(R.id.chipWednesday).setOnTouchListener { v, event ->
+                if (v is Chip) {
+                    day_of_the_week = 2
+                    changeSchedule(schedules, day_of_the_week, currentWeek, textviews, textviews_time)
+                }
+                false
+            }
+
+            findViewById<Chip>(R.id.chipThursday).setOnTouchListener { v, event ->
+                if (v is Chip) {
+                    day_of_the_week = 3
+                    changeSchedule(schedules, day_of_the_week, currentWeek, textviews, textviews_time)
+                }
+                false
+            }
+
+            findViewById<Chip>(R.id.chipFriday).setOnTouchListener { v, event ->
+                if (v is Chip) {
+                    day_of_the_week = 4
+                    changeSchedule(schedules, day_of_the_week, currentWeek, textviews, textviews_time)
+                }
+                false
+            }
+
+            findViewById<Chip>(R.id.chipSaturday).setOnTouchListener { v, event ->
+                if (v is Chip) {
+                    day_of_the_week = 5
+                    changeSchedule(schedules, day_of_the_week, currentWeek, textviews, textviews_time)
+                }
+
+                false
+            }
+
+
+            var i: Int = 0
+
+
+            button.setOnClickListener {
+                val intent = Intent(this, Schedule_swipe::class.java)
+                startActivity(intent)
+            }
+
         }
-
-
-        var i:Int=0
-
-
-        button.setOnClickListener{
-            val intent = Intent(this, Schedule_swipe::class.java)
-            startActivity(intent)
-        }
-
-
     }
     fun changeSchedule(schedules :List<schedule>, day_of_the_week:Int, currentWeek:Int, textviews:Array<TextView>, textviews_time:Array<String>){
 
@@ -172,5 +179,22 @@ class Class_schedule : AppCompatActivity() {
             }
         }
 
+    }
+
+    fun popupMessage() {
+        val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
+        alertDialogBuilder.setMessage("Отсутствует интернет-соединение или сервера не отвечают.")
+        alertDialogBuilder.setIcon(R.drawable.kip_logo)
+        alertDialogBuilder.setTitle("Произошла ошибка")
+        alertDialogBuilder.setNegativeButton("Ок", DialogInterface.OnClickListener { dialogInterface, i ->
+            Log.d("internet", "Ok btn pressed")
+            // add these two lines, if you wish to close the app:
+            //finishAffinity()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            //System.exit(0)
+        })
+        val alertDialog: android.app.AlertDialog? = alertDialogBuilder.create()
+        alertDialog?.show()
     }
 }

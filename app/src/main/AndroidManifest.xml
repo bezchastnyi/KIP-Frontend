@@ -27,20 +27,10 @@
             android:name=".Group_activity"
             android:label="@string/title_activity_group_activity"
             android:theme="@style/Theme.KHPI_in_phone.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".lecture_schedule" />
         <activity android:name=".Class_schedule" />
         <activity android:name=".Schedule_swipe_2">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Plan_edit" />
         <activity
@@ -56,11 +46,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Schedule_swipe">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

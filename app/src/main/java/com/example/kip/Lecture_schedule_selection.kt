@@ -1,5 +1,7 @@
 package com.example.kip
 
+import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +14,7 @@ import com.google.gson.reflect.TypeToken
 import khttp.get
 import org.jetbrains.anko.doAsync
 import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 class Lecture_schedule_selection : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,8 +41,12 @@ class Lecture_schedule_selection : AppCompatActivity() {
             c.countDown()
             //println(jsonFileString.jsonArray)
         }
-        c.await()
-        /*
+        c.await(5, TimeUnit.SECONDS)
+        if(!connectionDone){
+            popupMessage()
+        }
+        else {
+            /*
         val jsonFileString = getJsonDataFromAsset(applicationContext, "cathedra.json")
 
         val jsonFileString2 = getJsonDataFromAsset(applicationContext, "prof.json")
@@ -49,30 +56,46 @@ class Lecture_schedule_selection : AppCompatActivity() {
 
         profs = gson.fromJson(jsonFileString2, profList)
 */
-        var chipsArray: Array<Chip> = emptyArray()
+            var chipsArray: Array<Chip> = emptyArray()
 
-                for(prof in profs){
-                    //for (cathedra in cathedras) {
-                        val chip2 = Chip(this)
-                        chip2.text = "${prof.profSurname} ${prof.profName} ${prof.profPatronymic}"
+            for (prof in profs) {
+                //for (cathedra in cathedras) {
+                val chip2 = Chip(this)
+                chip2.text = "${prof.profSurname} ${prof.profName} ${prof.profPatronymic}"
 
-                        chip2.isClickable = true
-                        chip2.isCheckable = false
+                chip2.isClickable = true
+                chip2.isCheckable = false
 
-                        chip2.setLayoutParams(FrameLayout.LayoutParams(ChipGroup.LayoutParams.MATCH_PARENT, ChipGroup.LayoutParams.WRAP_CONTENT))
+                chip2.setLayoutParams(FrameLayout.LayoutParams(ChipGroup.LayoutParams.MATCH_PARENT, ChipGroup.LayoutParams.WRAP_CONTENT))
 
-                        chip2.textAlignment = View.TEXT_ALIGNMENT_CENTER
+                chip2.textAlignment = View.TEXT_ALIGNMENT_CENTER
 
-                        chip2.setOnClickListener{
-                            profID=prof.profID
-                            setContentView(R.layout.activity_lecturer_schedule)
-                        }
+                chip2.setOnClickListener {
+                    profID = prof.profID
+                    setContentView(R.layout.activity_lecturer_schedule)
+                }
 
-                        findViewById<ChipGroup>(R.id.ChipProfGroup).addView(chip2)
-                    }
-                    //}
+                findViewById<ChipGroup>(R.id.ChipProfGroup).addView(chip2)
+            }
+            //}
 
 
-
+        }
+    }
+    fun popupMessage() {
+        val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
+        alertDialogBuilder.setMessage("Отсутствует интернет-соединение или сервера не отвечают.")
+        alertDialogBuilder.setIcon(R.drawable.kip_logo)
+        alertDialogBuilder.setTitle("Произошла ошибка")
+        alertDialogBuilder.setNegativeButton("Ок", DialogInterface.OnClickListener { dialogInterface, i ->
+            Log.d("internet", "Ok btn pressed")
+            // add these two lines, if you wish to close the app:
+            //finishAffinity()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            //System.exit(0)
+        })
+        val alertDialog: android.app.AlertDialog? = alertDialogBuilder.create()
+        alertDialog?.show()
     }
 }

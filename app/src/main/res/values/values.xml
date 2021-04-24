@@ -14,4 +14,12 @@
         <item>4 курс</item>
     </string-array>
 
+    <string-array name="FacultySel">
+        <item>Выберете факультет</item>
+    </string-array>
+
+    <string-array name="courseSel">
+        <item>Выберете факультет</item>
+    </string-array>
+
 </resources>

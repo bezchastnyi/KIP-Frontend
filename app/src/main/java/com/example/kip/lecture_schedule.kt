@@ -1,5 +1,6 @@
 package com.example.kip
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,8 +16,7 @@ import com.google.gson.reflect.TypeToken
 import khttp.get
 import org.jetbrains.anko.doAsync
 import java.util.concurrent.CountDownLatch
-
-
+import java.util.concurrent.TimeUnit
 
 
 class lecture_schedule : AppCompatActivity() {
@@ -46,6 +46,8 @@ class lecture_schedule : AppCompatActivity() {
 
         profs.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
 
+        connectionDone = false
+
         val c = CountDownLatch(1)
         val task = doAsync(){
 
@@ -60,12 +62,18 @@ class lecture_schedule : AppCompatActivity() {
             profs = gson.fromJson(jsonFileString2.text, profList)
 
 
-
+            connectionDone = true
             c.countDown()
             //println(jsonFileString.jsonArray)
         }
-        c.await()
-        /*
+
+        c.await(5, TimeUnit.SECONDS)
+
+        if(!connectionDone){
+            popupMessage()
+        }
+        else {
+            /*
         val jsonFileString = getJsonDataFromAsset(applicationContext, "cathedra.json")
 
         val jsonFileString2 = getJsonDataFromAsset(applicationContext, "prof.json")
@@ -75,38 +83,38 @@ class lecture_schedule : AppCompatActivity() {
 
         profs = gson.fromJson(jsonFileString2, profList)
 */
-        var chipsArray: Array<Chip> = emptyArray()
+            var chipsArray: Array<Chip> = emptyArray()
 
-        for (cathedra in cathedras){
-            // Initialize a new chip instance
-            val chip = Chip(this)
-            chip.text = cathedra.cathedraName
+            for (cathedra in cathedras) {
+                // Initialize a new chip instance
+                val chip = Chip(this)
+                chip.text = cathedra.cathedraName
 
-            // Set the chip icon
-            //chip.chipIcon = ContextCompat.getDrawable(this,R.drawable.ic_action_android)
-            //chip.setChipIconTintResource(R.color.abc_search_url_text)
+                // Set the chip icon
+                //chip.chipIcon = ContextCompat.getDrawable(this,R.drawable.ic_action_android)
+                //chip.setChipIconTintResource(R.color.abc_search_url_text)
 
-            // Make the chip clickable
-            chip.isClickable = true
-            chip.isCheckable = false
+                // Make the chip clickable
+                chip.isClickable = true
+                chip.isCheckable = false
 
-            //chip.layoutParams.width = findViewById<LinearLayout>(R.id.Lecture_scedule_LL).width
+                //chip.layoutParams.width = findViewById<LinearLayout>(R.id.Lecture_scedule_LL).width
 
 
-            chip.setLayoutParams(FrameLayout.LayoutParams(ChipGroup.LayoutParams.MATCH_PARENT, ChipGroup.LayoutParams.WRAP_CONTENT))
+                chip.setLayoutParams(FrameLayout.LayoutParams(ChipGroup.LayoutParams.MATCH_PARENT, ChipGroup.LayoutParams.WRAP_CONTENT))
 
-            chip.textAlignment = View.TEXT_ALIGNMENT_CENTER
+                chip.textAlignment = View.TEXT_ALIGNMENT_CENTER
 
-            // Show the chip icon in chip
-            //chip.isCloseIconVisible = true
+                // Show the chip icon in chip
+                //chip.isCloseIconVisible = true
 
-            // Set the chip click listener
-            chip.setOnClickListener{
-                findViewById<ChipGroup>(R.id.ChipProfGroup).removeAllViews()
-                cathedraID=cathedra.cathedraID
-                setContentView(R.layout.activity_lecture_schedule_selection)
-                for(prof in profs){
-                    //for (cathedra in cathedras) {
+                // Set the chip click listener
+                chip.setOnClickListener {
+                    findViewById<ChipGroup>(R.id.ChipProfGroup).removeAllViews()
+                    cathedraID = cathedra.cathedraID
+                    setContentView(R.layout.activity_lecture_schedule_selection)
+                    for (prof in profs) {
+                        //for (cathedra in cathedras) {
                         if (prof.cathedraID == cathedra.cathedraID) {
                             println("${prof.cathedraID} ${cathedra.cathedraID}")
                             val chip2 = Chip(this)
@@ -119,30 +127,30 @@ class lecture_schedule : AppCompatActivity() {
 
                             chip2.textAlignment = View.TEXT_ALIGNMENT_CENTER
 
-                            chip2.setOnClickListener{
-                                profID=prof.profID
+                            chip2.setOnClickListener {
+                                profID = prof.profID
                                 setContentView(R.layout.activity_lecturer_schedule)
                             }
 
                             findViewById<ChipGroup>(R.id.ChipProfGroup).addView(chip2)
                         }
-                    //}
+                        //}
+                    }
                 }
-            }
 
-            // Set chip close icon click listener
-            //chip.setOnCloseIconClickListener{
+                // Set chip close icon click listener
+                //chip.setOnCloseIconClickListener{
                 // Smoothly remove chip from chip group
-           //     TransitionManager.beginDelayedTransition(chipGroup)
-           //     chipGroup.removeView(chip)
-           // }
+                //     TransitionManager.beginDelayedTransition(chipGroup)
+                //     chipGroup.removeView(chip)
+                // }
 
-            // Finally, add the chip to chip group
-            findViewById<ChipGroup>(R.id.CathedraChipGroup).addView(chip)
+                // Finally, add the chip to chip group
+                findViewById<ChipGroup>(R.id.CathedraChipGroup).addView(chip)
 
-            chipsArray+=chip
-        }
-        /*
+                chipsArray += chip
+            }
+            /*
         for (chip in chipsArray) {
             findViewById<Chip>(chip.id).setOnTouchListener { v, event ->
                 if (v is Chip) {
@@ -190,5 +198,23 @@ class lecture_schedule : AppCompatActivity() {
         }
 
          */
+        }
+    }
+
+    fun popupMessage() {
+        val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
+        alertDialogBuilder.setMessage("Отсутствует интернет-соединение или сервера не отвечают.")
+        alertDialogBuilder.setIcon(R.drawable.kip_logo)
+        alertDialogBuilder.setTitle("Произошла ошибка")
+        alertDialogBuilder.setNegativeButton("Ок", DialogInterface.OnClickListener { dialogInterface, i ->
+            Log.d("internet", "Ok btn pressed")
+            // add these two lines, if you wish to close the app:
+            //finishAffinity()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            //System.exit(0)
+        })
+        val alertDialog: android.app.AlertDialog? = alertDialogBuilder.create()
+        alertDialog?.show()
     }
 }
