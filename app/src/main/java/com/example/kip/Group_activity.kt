@@ -9,7 +9,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -22,6 +21,10 @@ import java.util.concurrent.TimeUnit
 var connectionDone = false
 
 class Group_activity : AppCompatActivity() {
+
+    var Facultys: List<faculty> = emptyList()
+
+    var Groups: List<group> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,15 +39,16 @@ class Group_activity : AppCompatActivity() {
         var groupArray: Array<String> = emptyArray()
         var groupIDArray: Array<Int> = emptyArray()
         var facultyArray: Array<String> = emptyArray()
+        var courseArray: Array<String> = emptyArray()
+        courseArray += resources.getStringArray(R.array.Course)
+        facultyArray+="Выберите факультет"
 
         val gson2 = Gson()
         val FacultyList = object : TypeToken<List<faculty>>() {}.type
         val GroupList = object : TypeToken<List<group>>() {}.type
 
 
-        var Facultys: List<faculty> = emptyList()// gson2.fromJson(jsonFileString2, FacultyList)
 
-        var Groups: List<group> = emptyList()
 
         connectionDone = false
 
@@ -106,41 +110,90 @@ class Group_activity : AppCompatActivity() {
             groupIDArray +=group.groupID
         }
         */
-            val spinner2: Spinner = findViewById(R.id.spinnerFaculty)
 
-            val spinnerF: Spinner = findViewById(R.id.spinnerFaculty)
-// Create an ArrayAdapter using the string array and a default spinner layout
-            ArrayAdapter.createFromResource(
-                    this,
-                    R.array.FacultySel,
-                    android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                // Specify the layout to use when the list of choices appears
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                // Apply the adapter to the spinner
-
-
-                spinnerF.adapter = adapter
-            }
-
+            val spinnerFaculty: Spinner = findViewById(R.id.spinnerFaculty)
+            val spinnerCourse: Spinner = findViewById(R.id.spinnerCourse)
+            val spinnerGroup: Spinner = findViewById(R.id.spinnerGroup)
 
             val spinnerArrayAdapter2: ArrayAdapter<String> = ArrayAdapter<String>(
                     this, android.R.layout.simple_spinner_item, facultyArray)
 
 
-            val spinner3: Spinner = findViewById(R.id.spinnerCourse)
 
-            spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            val courseArrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, courseArray)
+
+            spinnerCourse.adapter = courseArrayAdapter
+            spinnerFaculty.adapter = spinnerArrayAdapter2
+
+            spinnerFaculty.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    val spinner: Spinner = findViewById<Spinner>(R.id.spinnerGroup)
-                    val spinner3: Spinner = findViewById<Spinner>(R.id.spinnerCourse)
 
                     var groupArray2: Array<String> = emptyArray()
 
-                    val text: String = spinner2.selectedItem.toString()
+                    val text: String = spinnerFaculty.selectedItem.toString()
 
-                    val course: String = spinner3.selectedItem.toString()
-                    val courseInt = course.substring(0, 1).toInt()
+                    val course: String = spinnerCourse.selectedItem.toString()
+                    var courseInt:Int=0
+                    if(course.substring(0, 1)!="В") {
+                        courseInt = course.substring(0, 1).toInt()
+                    }
+
+                    println(text)
+                    println(Facultys)
+
+                    for (faculty in Facultys) {
+                        if (faculty.facultyShortName == text) {
+                            facultyID = faculty.facultyID;
+                        }
+                    }
+
+                    println(facultyID)
+                    println(courseInt)
+                    for (group in Groups) {
+                        if (group.facultyID == facultyID && group.course == courseInt) {
+                            groupArray2 += group.groupName
+                        }
+                    }
+
+                    val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
+                            applicationContext, android.R.layout.simple_spinner_item, groupArray2)
+
+                    spinnerGroup.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                            val text: String = spinnerGroup.selectedItem.toString()
+
+
+                            for (group in Groups) {
+                                if (group.groupName == text) {
+                                    groupID = group.groupID;
+                                }
+                            }
+                            println(groupID)
+                        }
+
+                        override fun onNothingSelected(parent: AdapterView<*>) {
+                            groupID = 0
+                        }
+                    }
+
+                    spinnerGroup.adapter = spinnerArrayAdapter
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    facultyID = 0
+                }
+            }
+
+            spinnerCourse.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                    var groupArray2: Array<String> = emptyArray()
+                    val text: String = spinnerFaculty.selectedItem.toString()
+
+                    val course: String = spinnerCourse.selectedItem.toString()
+                    var courseInt:Int=0
+                    if(course.substring(0, 1)!="В") {
+                        courseInt = course.substring(0, 1).toInt()
+                    }
 
 
                     println(text)
@@ -163,9 +216,9 @@ class Group_activity : AppCompatActivity() {
                     val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
                             applicationContext, android.R.layout.simple_spinner_item, groupArray2)
 
-                    spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    spinnerGroup.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                         override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                            val text: String = spinner.selectedItem.toString()
+                            val text: String = spinnerGroup.selectedItem.toString()
 
 
                             for (group in Groups) {
@@ -181,84 +234,14 @@ class Group_activity : AppCompatActivity() {
                         }
                     }
 
-                    spinner.adapter = spinnerArrayAdapter
+                    spinnerGroup.adapter = spinnerArrayAdapter
+
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
                     facultyID = 0
                 }
             }
-
-            spinner3.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    val spinner: Spinner = findViewById<Spinner>(R.id.spinnerGroup)
-                    val spinner3: Spinner = findViewById<Spinner>(R.id.spinnerCourse)
-
-                    var groupArray2: Array<String> = emptyArray()
-
-                    val text: String = spinner2.selectedItem.toString()
-
-                    val course: String = spinner3.selectedItem.toString()
-                    val courseInt = course.substring(0, 1).toInt()
-
-
-                    println(text)
-                    println(Facultys)
-
-                    for (faculty in Facultys) {
-                        if (faculty.facultyShortName == text) {
-                            facultyID = faculty.facultyID;
-                        }
-                    }
-
-                    println(facultyID)
-                    println(courseInt)
-                    for (group in Groups) {
-                        if (group.facultyID == facultyID && group.course == courseInt) {
-                            groupArray2 += group.groupName
-                        }
-                    }
-
-                    val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
-                            applicationContext, android.R.layout.simple_spinner_item, groupArray2)
-
-                    spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                        override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                            val text: String = spinner.selectedItem.toString()
-
-
-                            for (group in Groups) {
-                                if (group.groupName == text) {
-                                    groupID = group.groupID;
-                                }
-                            }
-                            println(groupID)
-                        }
-
-                        override fun onNothingSelected(parent: AdapterView<*>) {
-                            groupID = 0
-                        }
-                    }
-
-                    spinner.adapter = spinnerArrayAdapter
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    facultyID = 0
-                }
-            }
-
-            spinner2.adapter = spinnerArrayAdapter2
-
-            val spinner: Spinner = findViewById(R.id.spinnerGroup)
-
-
-            val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
-                    applicationContext, android.R.layout.simple_spinner_item, groupArray)
-
-
-            spinner.adapter = spinnerArrayAdapter
-
 
 
             button.setOnClickListener {
