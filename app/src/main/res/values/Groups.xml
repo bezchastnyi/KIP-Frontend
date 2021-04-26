@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Group">
+        <item>КН-118</item>
+        <item>кн-138</item>
+        <item>кн-788</item>
+        <item>кн-458</item>
+    </string-array>
+    <string-array name="faculty">
+        <item>КН</item>
+        <item>ГТ</item>
+        <item>ЖТ</item>
+        <item>СГТ</item>
+    </string-array>
+</resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Day1">8:30 -</string>
+    <string name="Day2">10:25 -</string>
+    <string name="Day3">12:35 -</string>
+    <string name="Day4">14:30 -</string>
+    <string name="Day5">16:25 -</string>
+    <string name="Day6">18:10 -</string>
+
+    <string-array name="Course">
+        <item>Выберите курс</item>
+        <item>1 курс</item>
+        <item>2 курс</item>
+        <item>3 курс</item>
+        <item>4 курс</item>
+    </string-array>
+
+    <string-array name="FacultySel">
+        <item>Выберете факультет</item>
+    </string-array>
+
+    <string-array name="courseSel">
+        <item>Выберете курс</item>
+    </string-array>
+
+</resources>

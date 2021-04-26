@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="PlanA">10:30 Что то там сделать</string>
+    <string name="PlanB">12:45 Что то там сделать</string>
+</resources>

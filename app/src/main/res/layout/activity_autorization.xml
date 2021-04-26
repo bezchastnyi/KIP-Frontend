@@ -8,6 +8,26 @@
     android:background="#000051"
     tools:context=".Autorization">
 
+    <Button
+        android:id="@+id/Enter_button_wtiout_auto"
+        android:layout_width="221dp"
+        android:layout_height="59dp"
+        android:layout_gravity="start"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="64dp"
+        android:autoSizeTextType="uniform"
+        android:enabled="true"
+        android:text="@string/enter_without_auto"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="0.0" />
+
     <EditText
         android:id="@+id/username"
         android:layout_width="0dp"
@@ -54,19 +74,18 @@
         android:layout_gravity="start"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="22dp"
-        android:layout_marginRight="22dp"
         android:layout_marginBottom="64dp"
+        android:autoSizeTextType="uniform"
         android:enabled="false"
         android:text="@string/action_sign_in"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.0"
-        android:autoSizeTextType="uniform" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ProgressBar
         android:id="@+id/loading"
@@ -90,15 +109,14 @@
         android:id="@+id/imageView"
         android:layout_width="233dp"
         android:layout_height="248dp"
+        android:autoSizeTextType="uniform"
         android:contentDescription="@string/action_sign"
         app:layout_constraintBottom_toTopOf="@+id/username"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.456"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1"
-        app:srcCompat="@drawable/khpi_logo"
-        android:autoSizeTextType="uniform" />
+        app:layout_constraintVertical_bias="0.111"
+        app:srcCompat="@drawable/khpi_logo" />
 
     <TextView
         android:id="@+id/textView"
