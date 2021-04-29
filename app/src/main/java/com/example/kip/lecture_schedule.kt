@@ -49,17 +49,14 @@ class lecture_schedule : AppCompatActivity() {
         connectionDone = false
 
         val c = CountDownLatch(1)
+        println(cathedraByFacultyLink)
+        println(profByCathedraLink)
         val task = doAsync(){
 
             val jsonFileString = get(cathedraByFacultyLink)
 
-            val jsonFileString2 = get(profLink)
-
 
             cathedras = gson2.fromJson(jsonFileString.text, cathedraList)
-
-
-            profs = gson.fromJson(jsonFileString2.text, profList)
 
 
             connectionDone = true
@@ -110,32 +107,9 @@ class lecture_schedule : AppCompatActivity() {
 
                 // Set the chip click listener
                 chip.setOnClickListener {
-                    findViewById<ChipGroup>(R.id.ChipProfGroup).removeAllViews()
                     cathedraID = cathedra.cathedraID
-                    setContentView(R.layout.activity_lecture_schedule_selection)
-                    for (prof in profs) {
-                        //for (cathedra in cathedras) {
-                        if (prof.cathedraID == cathedra.cathedraID) {
-                            println("${prof.cathedraID} ${cathedra.cathedraID}")
-                            val chip2 = Chip(this)
-                            chip2.text = "${prof.profSurname} ${prof.profName} ${prof.profPatronymic}"
-
-                            chip2.isClickable = true
-                            chip2.isCheckable = false
-
-                            chip2.setLayoutParams(FrameLayout.LayoutParams(ChipGroup.LayoutParams.MATCH_PARENT, ChipGroup.LayoutParams.WRAP_CONTENT))
-
-                            chip2.textAlignment = View.TEXT_ALIGNMENT_CENTER
-
-                            chip2.setOnClickListener {
-                                profID = prof.profID
-                                setContentView(R.layout.activity_lecturer_schedule)
-                            }
-
-                            findViewById<ChipGroup>(R.id.ChipProfGroup).addView(chip2)
-                        }
-                        //}
-                    }
+                    val intent = Intent(this, Lecture_schedule_selection::class.java)
+                    startActivity(intent)
                 }
 
                 // Set chip close icon click listener

@@ -173,7 +173,7 @@ class Class_schedule : AppCompatActivity() {
         for (schedule in schedules){
             if(schedule.day == day_of_the_week){
                 if(schedule.week == currentWeek){
-                        textviews[schedule.number-1].text = "${textviews_time[schedule.number-1]} ${schedule.subjectName}"
+                        textviews[schedule.number].text = "${textviews_time[schedule.number]} ${schedule.subjectName}"
                         continue
                 }
             }
@@ -190,7 +190,7 @@ class Class_schedule : AppCompatActivity() {
             Log.d("internet", "Ok btn pressed")
             // add these two lines, if you wish to close the app:
             //finishAffinity()
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, Schedule_swipe::class.java)
             startActivity(intent)
             //System.exit(0)
         })

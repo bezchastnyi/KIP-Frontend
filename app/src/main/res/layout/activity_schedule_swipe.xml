@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Layout_main_swipe"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000051"
@@ -17,9 +18,6 @@
             android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
             android:gravity="center"
             android:text="Расписание"
             android:textColor="@color/white"
@@ -32,19 +30,25 @@
             android:background="?android:attr/listDivider"
             android:foreground="@android:drawable/bottom_bar" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="160dp" />
-
-        <ImageButton
-            android:id="@+id/Swipe"
+        <LinearLayout
+            android:id="@+id/Swipe_slave_layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:background="#000051"
-            android:foregroundGravity="center"
-            android:src="@drawable/swipebutton" />
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/Swipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0"
+                android:background="#000051"
+                android:foregroundGravity="center"
+                android:src="@drawable/swipebutton" />
+        </LinearLayout>
+
     </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
