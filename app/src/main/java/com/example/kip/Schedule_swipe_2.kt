@@ -31,7 +31,7 @@ class Schedule_swipe_2 : AppCompatActivity() {
             }
             override fun onSwipeUp() {
                 val intent = Intent(this@Schedule_swipe_2, Main_screen::class.java)
-                startActivity(intent)
+                //startActivity(intent)
             }
         })
     }

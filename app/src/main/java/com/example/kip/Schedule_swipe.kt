@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class Schedule_swipe : AppCompatActivity() {
         private lateinit var layout:LinearLayout
+        private lateinit var layout2:LinearLayout
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_schedule_swipe)
@@ -22,6 +23,7 @@ class Schedule_swipe : AppCompatActivity() {
             layout = findViewById(R.id.swipe_layout)
             layout.setOnTouchListener(object : OnSwipeTouchListener(this@Schedule_swipe) {
                 override fun onSwipeLeft() {
+                    println("left")
                     val intent = Intent(this@Schedule_swipe, Schedule_swipe_2::class.java)
                     startActivity(intent)
                 }
@@ -34,6 +36,23 @@ class Schedule_swipe : AppCompatActivity() {
                     startActivity(intent)
                 }
             })
+            layout2 = findViewById(R.id.Swipe_slave_layout)
+            layout2.setOnTouchListener(object : OnSwipeTouchListener(this@Schedule_swipe) {
+                override fun onSwipeLeft() {
+                    println("left")
+                    val intent = Intent(this@Schedule_swipe, Schedule_swipe_2::class.java)
+                    startActivity(intent)
+                }
+                override fun onSwipeRight() {
+                    val intent = Intent(this@Schedule_swipe, Schedule_swipe_2::class.java)
+                    startActivity(intent)
+                }
+                override fun onSwipeUp() {
+                    val intent = Intent(this@Schedule_swipe, Main_screen::class.java)
+                    //startActivity(intent)
+                }
+            })
+
         }
 
 }

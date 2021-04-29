@@ -15,7 +15,6 @@ import org.jetbrains.anko.doAsync
 import java.util.concurrent.CountDownLatch
 
 class Lecturer_schedule : AppCompatActivity() {
-    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecturer_schedule)
@@ -28,7 +27,7 @@ class Lecturer_schedule : AppCompatActivity() {
         }
 
         val gson = Gson()
-        val profSchelueList = object : TypeToken<List<prof>>() {}.type
+        val profSchelueList = object : TypeToken<List<profschedule>>() {}.type
 
         //val jsonFileString = getJsonDataFromAsset(applicationContext, "profschedule.json")
         var profschedules:List<profschedule> = emptyList()
@@ -58,11 +57,11 @@ class Lecturer_schedule : AppCompatActivity() {
         var textviews: Array<TextView> = emptyArray()
         var textviews_time: Array<String> = emptyArray()
 
-        textviews += findViewById<TextView>(R.id.textViewD1)
-        textviews += findViewById<TextView>(R.id.textViewD2)
-        textviews += findViewById<TextView>(R.id.textViewD3)
-        textviews += findViewById<TextView>(R.id.textViewD4)
-        textviews += findViewById<TextView>(R.id.textViewD5)
+        textviews += findViewById<TextView>(R.id.textViewD12)
+        textviews += findViewById<TextView>(R.id.textViewD22)
+        textviews += findViewById<TextView>(R.id.textViewD32)
+        textviews += findViewById<TextView>(R.id.textViewD42)
+        textviews += findViewById<TextView>(R.id.textViewD52)
         //chips += findViewById<TextView>(R.id.textViewD6)
 
         textviews_time+= "8:30 - "
@@ -85,7 +84,7 @@ class Lecturer_schedule : AppCompatActivity() {
             }
         }
 
-        findViewById<Chip>(R.id.chipMonday).setOnTouchListener { v, event ->
+        findViewById<Chip>(R.id.chipMonday2).setOnTouchListener { v, event ->
             if (v is Chip) {
                 day_of_the_week = 0
                 changeSchedule(profschedules,day_of_the_week,currentWeek,textviews,textviews_time)
@@ -93,7 +92,7 @@ class Lecturer_schedule : AppCompatActivity() {
             false
         }
 
-        findViewById<Chip>(R.id.chipThuesday).setOnTouchListener { v, event ->
+        findViewById<Chip>(R.id.chipThuesday2).setOnTouchListener { v, event ->
             if (v is Chip) {
                 day_of_the_week = 1
                 changeSchedule(profschedules,day_of_the_week,currentWeek,textviews,textviews_time)
@@ -101,7 +100,7 @@ class Lecturer_schedule : AppCompatActivity() {
             false
         }
 
-        findViewById<Chip>(R.id.chipWednesday).setOnTouchListener { v, event ->
+        findViewById<Chip>(R.id.chipWednesday2).setOnTouchListener { v, event ->
             if (v is Chip) {
                 day_of_the_week = 2
                 changeSchedule(profschedules,day_of_the_week,currentWeek,textviews,textviews_time)
@@ -109,7 +108,7 @@ class Lecturer_schedule : AppCompatActivity() {
             false
         }
 
-        findViewById<Chip>(R.id.chipThursday).setOnTouchListener { v, event ->
+        findViewById<Chip>(R.id.chipThursday2).setOnTouchListener { v, event ->
             if (v is Chip) {
                 day_of_the_week = 3
                 changeSchedule(profschedules,day_of_the_week,currentWeek,textviews,textviews_time)
@@ -117,7 +116,7 @@ class Lecturer_schedule : AppCompatActivity() {
             false
         }
 
-        findViewById<Chip>(R.id.chipFriday).setOnTouchListener { v, event ->
+        findViewById<Chip>(R.id.chipFriday2).setOnTouchListener { v, event ->
             if (v is Chip) {
                 day_of_the_week = 4
                 changeSchedule(profschedules,day_of_the_week,currentWeek,textviews,textviews_time)
@@ -125,7 +124,7 @@ class Lecturer_schedule : AppCompatActivity() {
             false
         }
 
-        findViewById<Chip>(R.id.chipSaturday).setOnTouchListener { v, event ->
+        findViewById<Chip>(R.id.chipSaturday2).setOnTouchListener { v, event ->
             if (v is Chip) {
                 day_of_the_week = 5
                 changeSchedule(profschedules,day_of_the_week,currentWeek,textviews,textviews_time)
@@ -140,18 +139,18 @@ class Lecturer_schedule : AppCompatActivity() {
 
     }
 
-    fun changeSchedule(schedules :List<profschedule>, day_of_the_week:Int, currentWeek:Int, textviews:Array<TextView>, textviews_time:Array<String>){
+    fun changeSchedule(schedules2 :List<profschedule>, day_of_the_week:Int, currentWeek:Int, textviews:Array<TextView>, textviews_time:Array<String>){
 
         var i:Int=0
-
+        println(schedules2)
         for (textview in textviews){
             textviews[i].text = textviews_time[i]
             i++
         }
-        for (schedule in schedules){
-            if(schedule.day == day_of_the_week){
-                if(schedule.week == currentWeek){
-                    textviews[schedule.number-1].text = "${textviews_time[schedule.number-1]} ${schedule.SubjectName}"
+        for (schedule2 in schedules2){
+            if(schedule2.day == day_of_the_week){
+                if(schedule2.week == currentWeek){
+                    textviews[schedule2.number].text = "${textviews_time[schedule2.number]} ${schedule2.subjectName}"
                     continue
                 }
             }

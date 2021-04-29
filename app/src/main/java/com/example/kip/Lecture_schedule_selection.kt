@@ -29,9 +29,10 @@ class Lecture_schedule_selection : AppCompatActivity() {
         profs.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
 
         val c = CountDownLatch(1)
+        println(profByCathedraLink)
         val task = doAsync(){
 
-            val jsonFileString2 = get(profLink)
+            val jsonFileString2 = get(profByCathedraLink)
 
 
             profs = gson.fromJson(jsonFileString2.text, profList)
@@ -72,7 +73,8 @@ class Lecture_schedule_selection : AppCompatActivity() {
 
                 chip2.setOnClickListener {
                     profID = prof.profID
-                    setContentView(R.layout.activity_lecturer_schedule)
+                    val intent = Intent(this, Lecturer_schedule::class.java)
+                    startActivity(intent)
                 }
 
                 findViewById<ChipGroup>(R.id.ChipProfGroup).addView(chip2)

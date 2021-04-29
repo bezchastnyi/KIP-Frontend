@@ -71,14 +71,6 @@
                 </LinearLayout>
             </ScrollView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:isScrollContainer="true"
-                android:orientation="vertical"
-                android:scrollbars="vertical">
-
-            </LinearLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

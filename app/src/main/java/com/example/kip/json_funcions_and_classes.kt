@@ -18,7 +18,7 @@ data class cathedra(val facultyID: Int,val cathedraID:Int, val cathedraShortName
 data class prof(val cathedra: Int,val cathedraID:Int,val profID:Int, val profName: String, val profSurname: String,val profPatronymic: String) {
 }
 
-data class profschedule(val ProfScheduleID: Int,val SubjectName: String,val week:Int,val day:Int,val number:Int,val Type: String,val prof: String,val profID:Int, val BuildingID: Int,val building: String, val AudienceID: Int,val audience: String,val GroupID: List<Int>,val group: String) {
+data class profschedule(val profScheduleID: Int,val subjectName: String,val week:Int,val day:Int,val type: String,val number:Int,val profID:Int,val prof: String, val buildingID: Int,val building: String, val audienceID: Int,val audience: String,val groupID: List<Int>,val group: String) {
 }
 
 fun getJsonDataFromAsset(context: Context, fileName: String): String? {

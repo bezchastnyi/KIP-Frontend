@@ -122,6 +122,7 @@ class Group_activity : AppCompatActivity() {
 
             val courseArrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, courseArray)
 
+
             spinnerCourse.adapter = courseArrayAdapter
             spinnerFaculty.adapter = spinnerArrayAdapter2
 
@@ -136,6 +137,9 @@ class Group_activity : AppCompatActivity() {
                     var courseInt:Int=0
                     if(course.substring(0, 1)!="В") {
                         courseInt = course.substring(0, 1).toInt()
+                    }
+                    if(text.substring(0, 1)=="В"){
+                        facultyID=0
                     }
 
                     println(text)
@@ -194,6 +198,7 @@ class Group_activity : AppCompatActivity() {
                     if(course.substring(0, 1)!="В") {
                         courseInt = course.substring(0, 1).toInt()
                     }
+
 
 
                     println(text)

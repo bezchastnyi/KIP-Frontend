@@ -17,15 +17,21 @@ var groupID:Int=0
 var profID:Int=0
     set(value) {
         field = value
-        profScheduleByProfLink = "$baseLink/StudentSchedule/profschedule/prof/$profID/?token=$tocken"
+        profScheduleByProfLink = "$baseLink/profschedule/prof/$profID/?token=$tocken"
     }
 var cathedraID:Int=0
+    set(value) {
+        field = value
+        profByCathedraLink = "$baseLink/prof/cathedra/${cathedraID}/?token=$tocken"
+    }
+
 
 var groupLink:String = "$baseLink/Group/?token=$tocken"
 var facultyLink:String = "$baseLink/faculty/?token=$tocken"
 
 var cathedraByFacultyLink:String = "$baseLink/Cathedra/faculty/$facultyID/?token=$tocken"
-var profLink:String = "$baseLink/prof/?token=$tocken"
+
 
 var studentScheduleByGroupLink:String = "$baseLink/StudentSchedule/group/$groupID/?token=$tocken"
-var profScheduleByProfLink:String = "$baseLink/StudentSchedule/profschedule/prof/$profID/?token=$tocken"
+var profScheduleByProfLink:String = "$baseLink/profschedule/prof/$profID/?token=$tocken"
+var profByCathedraLink:String = "$baseLink/prof/cathedra/${cathedraID}/?token=$tocken"
