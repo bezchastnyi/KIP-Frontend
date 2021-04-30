@@ -29,6 +29,7 @@ class Lecture_schedule_selection : AppCompatActivity() {
         profs.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
 
         val c = CountDownLatch(1)
+        connectionDone=false
         println(profByCathedraLink)
         val task = doAsync(){
 
@@ -38,7 +39,7 @@ class Lecture_schedule_selection : AppCompatActivity() {
             profs = gson.fromJson(jsonFileString2.text, profList)
 
 
-
+            connectionDone=true
             c.countDown()
             //println(jsonFileString.jsonArray)
         }
@@ -47,6 +48,10 @@ class Lecture_schedule_selection : AppCompatActivity() {
             popupMessage()
         }
         else {
+            val comparator = profCompare()
+            println(profs)
+            profs = profs.sortedWith(comparator)
+            println(profs)
             /*
         val jsonFileString = getJsonDataFromAsset(applicationContext, "cathedra.json")
 

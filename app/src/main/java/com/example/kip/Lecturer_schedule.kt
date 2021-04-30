@@ -36,6 +36,7 @@ class Lecturer_schedule : AppCompatActivity() {
         var profschedules:List<profschedule> = emptyList()
 
         val c = CountDownLatch(1)
+        connectionDone=false
         val task = doAsync(){
             println(profID)
             println(profScheduleByProfLink)
@@ -43,11 +44,11 @@ class Lecturer_schedule : AppCompatActivity() {
 
             profschedules = gson.fromJson(jsonFileString.text, profSchelueList)
 
-
+            connectionDone=true
             c.countDown()
             //println(jsonFileString.jsonArray)
         }
-        c.await(5, TimeUnit.SECONDS)
+        c.await(7, TimeUnit.SECONDS)
         if(!connectionDone){
             popupMessage()
         }

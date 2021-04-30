@@ -21,6 +21,27 @@ data class prof(val cathedra: Int,val cathedraID:Int,val profID:Int, val profNam
 data class profschedule(val profScheduleID: Int,val subjectName: String,val week:Int,val day:Int,val type: String,val number:Int,val profID:Int,val prof: String, val buildingID: Int,val building: String, val audienceID: Int,val audience: String,val groupID: List<Int>,val group: String) {
 }
 
+class profCompare: Comparator<prof>{
+    override fun compare(o1: prof, o2: prof): Int {
+        var i:Int = 0
+        val surname= o1.profSurname.toLowerCase()
+        val surnameAnother= o2.profSurname.toLowerCase()
+        for(letter in surname){
+            if(letter.toInt()<surnameAnother[i].toInt()){
+                return -1
+            }
+            else if (letter.toInt()>surnameAnother[i].toInt()){
+                return 1
+            }
+            i++
+            if(i>surnameAnother.length){
+                return -1
+            }
+        }
+        return 0
+    }
+}
+
 fun getJsonDataFromAsset(context: Context, fileName: String): String? {
     val jsonString: String
     try {

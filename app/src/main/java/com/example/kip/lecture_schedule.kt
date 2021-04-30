@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageButton
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -23,7 +22,7 @@ class lecture_schedule : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_schedule)
-        val button = findViewById<ImageButton>(R.id.back_button)
+        val button = findViewById<ImageButton>(R.id.back_button_LS)
 
         button.setOnClickListener{
             val intent = Intent(this, Schedule_swipe_2::class.java)

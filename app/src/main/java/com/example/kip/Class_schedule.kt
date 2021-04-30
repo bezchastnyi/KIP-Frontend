@@ -23,7 +23,7 @@ class Class_schedule : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_class_schedule)
-        val button = findViewById<ImageButton>(R.id.back_button)
+        val button = findViewById<ImageButton>(R.id.back_button_LS)
 
         button.setOnClickListener{
             val intent = Intent(this, Schedule_swipe::class.java)
