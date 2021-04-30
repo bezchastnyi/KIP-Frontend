@@ -93,7 +93,7 @@ class Lecture_schedule_selection : AppCompatActivity() {
             Log.d("internet", "Ok btn pressed")
             // add these two lines, if you wish to close the app:
             //finishAffinity()
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, Schedule_swipe_2::class.java)
             startActivity(intent)
             //System.exit(0)
         })

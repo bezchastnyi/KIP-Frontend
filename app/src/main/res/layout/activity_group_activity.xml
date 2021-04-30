@@ -16,12 +16,12 @@
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="272dp"
+            android:layout_weight="100"
             android:adjustViewBounds="false"
             android:autoSizeTextType="uniform"
             android:contentDescription="@string/action_sign"
             android:cropToPadding="false"
-            android:scaleType="fitCenter"
             app:srcCompat="@drawable/khpi_logo" />
 
         <TextView

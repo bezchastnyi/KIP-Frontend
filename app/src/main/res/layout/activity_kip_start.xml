@@ -13,14 +13,16 @@
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="200"
+        android:paddingLeft="20sp"
+        android:paddingRight="20sp"
         app:srcCompat="@drawable/kip_logo" />
 
     <Button
         android:id="@+id/button_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40sp"
         android:text="Старт"
-        android:textSize="36sp" />
+        android:textSize="30sp" />
 
 </LinearLayout>

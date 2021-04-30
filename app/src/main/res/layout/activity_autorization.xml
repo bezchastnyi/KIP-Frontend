@@ -13,26 +13,29 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="10"
         android:contentDescription="@string/action_sign"
         app:srcCompat="@drawable/khpi_logo" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoSizeTextType="uniform"
-        android:text="@string/enter_password"
-        android:textColor="#9F9F9F"
-        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:autoSizeTextType="uniform"
         android:text="@string/greeting"
         android:textColor="#FFFFFF"
         android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:autoSizeTextType="uniform"
+        android:text="@string/enter_password"
+        android:textColor="#9F9F9F"
+        android:textSize="14sp" />
 
     <EditText
         android:id="@+id/username"
@@ -40,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginLeft="30sp"
+        android:layout_weight="0"
         android:autoSizeTextType="uniform"
         android:autofillHints=""
         android:gravity="left"
@@ -57,6 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginLeft="30sp"
+        android:layout_weight="0"
         android:autoSizeTextType="uniform"
         android:autofillHints=""
         android:gravity="left"
@@ -80,9 +85,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:layout_marginRight="20sp"
             android:autoSizeTextType="uniform"
             android:enabled="true"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
             android:text="@string/enter_without_auto"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
@@ -94,6 +100,8 @@
             android:layout_gravity="start"
             android:autoSizeTextType="uniform"
             android:enabled="false"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
             android:text="@string/action_sign_in"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />

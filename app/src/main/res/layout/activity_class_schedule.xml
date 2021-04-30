@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:orientation="horizontal">
 
         <ImageButton
@@ -25,11 +26,13 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:gravity="center"
+            android:maxLines="1"
             android:text="Расписание Занятий"
             android:textColor="@color/white"
-            android:textSize="36sp" />
+            android:textSize="32sp" />
 
     </LinearLayout>
 
@@ -43,77 +46,80 @@
     <com.google.android.material.chip.ChipGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center|center_horizontal|center_vertical"
+        android:layout_weight="0"
+        android:paddingLeft="10sp"
+        android:paddingRight="10sp"
+        android:soundEffectsEnabled="false"
         app:singleLine="false"
-        app:singleSelection="true">
+        app:singleSelection="true"><![CDATA[
         android:text="TEST"/>
+
+
+
+
+
+        ]]>
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipMonday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autoText="false"
-            android:gravity="center_horizontal"
-            android:maxWidth="1sp"
+
             android:text="Понедельник"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="18sp"
+            app:chipMinTouchTargetSize="36sp" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipThuesday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autoText="false"
-            android:gravity="center_horizontal"
-            android:maxWidth="1sp"
             android:text="Вторник"
             android:textAlignment="center"
-            android:textSize="24sp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipWednesday"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoText="false"
-            android:gravity="center_horizontal"
-            android:maxWidth="1sp"
-            android:text="Среда"
-            android:textAlignment="center"
-            android:textSize="24sp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipThursday"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoText="false"
-            android:gravity="center_horizontal"
-            android:maxWidth="1sp"
-            android:text="Четверг"
-            android:textAlignment="center"
-            android:textSize="24sp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipFriday"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoText="false"
-            android:gravity="center_horizontal"
-            android:maxWidth="1sp"
-            android:text="Пятница"
-            android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="18sp"
+            app:chipMinTouchTargetSize="36sp" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipSaturday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autoText="false"
-            android:gravity="center_horizontal"
-            android:maxWidth="1sp"
             android:text="Суббота"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="18sp"
+            app:chipMinTouchTargetSize="36sp" />
 
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipThursday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoText="false"
+            android:text="Четверг"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:chipMinTouchTargetSize="36sp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipFriday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoText="false"
+            android:text="Пятница"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:chipMinTouchTargetSize="36sp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipWednesday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoText="false"
+            android:text="Среда"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:chipMinTouchTargetSize="36sp" />
     </com.google.android.material.chip.ChipGroup>
 
     <LinearLayout
@@ -128,6 +134,7 @@
             android:layout_gravity="right"
             android:layout_weight="1"
             android:gravity="center"
+            android:maxLines="1"
             android:text="парная"
             android:textColor="@color/white"
             android:textSize="36sp" />
@@ -150,6 +157,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:maxLines="1"
             android:text="непарная"
             android:textColor="@color/white"
             android:textSize="36sp" />
@@ -157,83 +165,99 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
         android:orientation="vertical">
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="30sp" />
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/textViewD1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center|center_vertical"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
+            android:layout_weight="1"
             android:background="#5E5EFF"
+            android:gravity="center"
             android:includeFontPadding="false"
+            android:maxLines="1"
             android:text="@string/Day1"
-            android:textAlignment="center"
+            android:textAlignment="gravity"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewD2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center|center_vertical"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
+            android:layout_weight="1"
             android:background="#5E5EFF"
+            android:gravity="center"
             android:includeFontPadding="false"
+            android:maxLines="1"
             android:text="@string/Day2"
-            android:textAlignment="center"
+            android:textAlignment="gravity"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewD3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center|center_vertical"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
+            android:layout_weight="1"
             android:background="#5E5EFF"
+            android:gravity="center"
             android:includeFontPadding="false"
+            android:maxLines="1"
             android:text="@string/Day3"
-            android:textAlignment="center"
+            android:textAlignment="gravity"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewD4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center|center_vertical"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
+            android:layout_weight="1"
             android:background="#5E5EFF"
+            android:gravity="center"
             android:includeFontPadding="false"
+            android:maxLines="1"
             android:text="@string/Day4"
-            android:textAlignment="center"
+            android:textAlignment="gravity"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewD5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center|center_vertical"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
+            android:layout_weight="1"
             android:background="#5E5EFF"
+            android:gravity="center"
             android:includeFontPadding="false"
+            android:maxLines="1"
             android:text="@string/Day5"
-            android:textAlignment="center"
+            android:textAlignment="gravity"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
 </LinearLayout>

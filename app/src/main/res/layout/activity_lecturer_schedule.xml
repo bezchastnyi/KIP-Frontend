@@ -27,9 +27,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:maxLines="1"
             android:text="Расписание Преподователя"
             android:textColor="@color/white"
-            android:textSize="28sp" />
+            android:textSize="26sp" />
     </LinearLayout>
 
     <View
@@ -42,7 +43,9 @@
     <com.google.android.material.chip.ChipGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center|center_horizontal|center_vertical"
+        android:layout_weight="0"
+        android:paddingLeft="10sp"
+        android:paddingRight="10sp"
         app:singleLine="false"
         app:singleSelection="true">
         android:text="TEST"/>
@@ -53,10 +56,10 @@
             android:layout_height="wrap_content"
             android:autoText="false"
             android:gravity="center_horizontal"
-            android:maxWidth="1dp"
             android:text="Понедельник"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="18sp"
+            app:chipMinTouchTargetSize="36sp" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipThuesday2"
@@ -64,10 +67,10 @@
             android:layout_height="wrap_content"
             android:autoText="false"
             android:gravity="center_horizontal"
-            android:maxWidth="1dp"
             android:text="Вторник"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="18sp"
+            app:chipMinTouchTargetSize="36sp" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipWednesday2"
@@ -75,10 +78,10 @@
             android:layout_height="wrap_content"
             android:autoText="false"
             android:gravity="center_horizontal"
-            android:maxWidth="1dp"
             android:text="Среда"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="18sp"
+            app:chipMinTouchTargetSize="36sp" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipThursday2"
@@ -86,10 +89,10 @@
             android:layout_height="wrap_content"
             android:autoText="false"
             android:gravity="center_horizontal"
-            android:maxWidth="1dp"
             android:text="Четверг"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="18sp"
+            app:chipMinTouchTargetSize="36sp" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipFriday2"
@@ -97,10 +100,10 @@
             android:layout_height="wrap_content"
             android:autoText="false"
             android:gravity="center_horizontal"
-            android:maxWidth="1dp"
             android:text="Пятница"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="18sp"
+            app:chipMinTouchTargetSize="36sp" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipSaturday2"
@@ -108,16 +111,17 @@
             android:layout_height="wrap_content"
             android:autoText="false"
             android:gravity="center_horizontal"
-            android:maxWidth="1dp"
             android:text="Суббота"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="18sp"
+            app:chipMinTouchTargetSize="36sp" />
 
     </com.google.android.material.chip.ChipGroup>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:orientation="horizontal">
 
         <TextView
@@ -127,6 +131,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
+            android:maxLines="1"
             android:text="парная"
             android:textColor="@color/white"
             android:textSize="36sp" />
@@ -151,6 +156,7 @@
             android:layout_weight="1"
             android:gravity="center|top"
             android:maxWidth="125dp"
+            android:maxLines="1"
             android:text="непарная"
             android:textColor="@color/white"
             android:textSize="36sp" />
@@ -158,13 +164,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
         android:orientation="vertical">
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="30dp" />
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/textViewD12"
@@ -173,11 +180,12 @@
             android:layout_gravity="center"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
+            android:layout_weight="1"
             android:background="#5E5EFF"
             android:gravity="center"
             android:text="@string/Day1"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewD22"
@@ -186,11 +194,12 @@
             android:layout_gravity="center"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
+            android:layout_weight="1"
             android:background="#5E5EFF"
             android:gravity="center"
             android:text="@string/Day2"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewD32"
@@ -199,11 +208,12 @@
             android:layout_gravity="center"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
+            android:layout_weight="1"
             android:background="#5E5EFF"
             android:gravity="center"
             android:text="@string/Day3"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewD42"
@@ -212,11 +222,12 @@
             android:layout_gravity="center"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
+            android:layout_weight="1"
             android:background="#5E5EFF"
             android:gravity="center"
             android:text="@string/Day4"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewD52"
@@ -225,11 +236,12 @@
             android:layout_gravity="center"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
+            android:layout_weight="1"
             android:background="#5E5EFF"
             android:gravity="center"
             android:text="@string/Day5"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
 </LinearLayout>
