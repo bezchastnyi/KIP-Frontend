@@ -25,7 +25,7 @@ class lecture_schedule : AppCompatActivity() {
         val button = findViewById<ImageButton>(R.id.back_button_LS)
 
         button.setOnClickListener{
-            val intent = Intent(this, Schedule_swipe_2::class.java)
+            val intent = Intent(this, Schedule_swipe::class.java)
             startActivity(intent)
         }
 

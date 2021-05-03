@@ -3,22 +3,22 @@ package com.example.kip
 import android.content.Context
 import java.io.IOException
 
-data class group(val facultyID: Int, val faculty: String, val groupID: Int, val course: Int, val groupName: String) {
+data class group(val facultyID: Int, val faculty: String, val groupID: Int, val course: Int,val scheduleIsPresent:Boolean, val groupName: String) {
 }
 
 data class faculty(val facultyID: Int, val facultyShortName: String, val facultyName: String) {
 }
 
-data class schedule(val studentScheduleID: Int,val subjectName: String,val week: Int,val day: Int,val type: String,val number:Int,val groupID: Int,val group: String,val buildingID: Int,val building: String,val audienceID: Int,val audience: String,val profID: Int,val prof: String) {
+data class schedule(val studentScheduleID: Int,val subjectName: String,val week: Int,val day: Int,val type: String,val number:Int,val output:String,val groupID: Int,val group: String,val buildingID: Int,val building: String,val audienceID: Int,val audience: String,val profID: Int,val prof: String) {
 }
 
 data class cathedra(val facultyID: Int,val cathedraID:Int, val cathedraShortName: String, val cathedraName: String) {
 }
 
-data class prof(val cathedra: Int,val cathedraID:Int,val profID:Int, val profName: String, val profSurname: String,val profPatronymic: String) {
+data class prof(val cathedra: Int,val cathedraID:Int,val profID:Int, val profName: String, val profSurname: String,val profPatronymic: String,val scheduleIsPresent:Boolean) {
 }
 
-data class profschedule(val profScheduleID: Int,val subjectName: String,val week:Int,val day:Int,val type: String,val number:Int,val profID:Int,val prof: String, val buildingID: Int,val building: String, val audienceID: Int,val audience: String,val groupID: List<Int>,val group: String) {
+data class profschedule(val profScheduleID: Int,val subjectName: String,val week:Int,val day:Int,val type: String,val number:Int,val output:String,val profID:Int,val prof: String, val buildingID: Int,val building: String, val audienceID: Int,val audience: String,val groupID: List<Int>,val group: String) {
 }
 
 class profCompare: Comparator<prof>{
@@ -52,3 +52,6 @@ fun getJsonDataFromAsset(context: Context, fileName: String): String? {
     }
     return jsonString
 }
+
+var groupValid = false
+var profValid = true

@@ -83,10 +83,10 @@ class Class_schedule : AppCompatActivity() {
             //chips += findViewById<TextView>(R.id.textViewD6)
 
             textviews_time += "8:30 - "
-            textviews_time += "10:10 - "
+            textviews_time += "10:25 - "
             textviews_time += "12:35 - "
             textviews_time += "14:30 - "
-            textviews_time += "16:10 - "
+            textviews_time += "16:25 - "
 
             var day_of_the_week: Int = 0
 
@@ -173,7 +173,7 @@ class Class_schedule : AppCompatActivity() {
         for (schedule in schedules){
             if(schedule.day == day_of_the_week){
                 if(schedule.week == currentWeek){
-                        textviews[schedule.number].text = "${textviews_time[schedule.number]} ${schedule.subjectName}"
+                        textviews[schedule.number].text = "${textviews_time[schedule.number]} ${schedule.output}"
                         continue
                 }
             }

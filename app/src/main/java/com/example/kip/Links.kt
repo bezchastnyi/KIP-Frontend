@@ -1,13 +1,14 @@
 package com.example.kip
 
 const val tocken:Int=3012
-const val baseLink:String = "https://server-get-b5ntqidyva-ew.a.run.app"
+const val baseLink:String = "https://kip-server-get-b5ntqidyva-ew.a.run.app"
 
 var facultyID:Int=0
     set(value) {
         field = value
         cathedraByFacultyLink="$baseLink/Cathedra/faculty/$facultyID/?token=$tocken"
     }
+
 var groupID:Int=0
     set(value) {
         field = value

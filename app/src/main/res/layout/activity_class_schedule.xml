@@ -30,7 +30,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:maxLines="1"
-            android:text="Расписание Занятий"
+            android:text="Расписание"
             android:textColor="@color/white"
             android:textSize="32sp" />
 
@@ -253,6 +253,11 @@
             android:textAlignment="gravity"
             android:textColor="@color/white"
             android:textSize="18sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
     </LinearLayout>
 
 </LinearLayout>

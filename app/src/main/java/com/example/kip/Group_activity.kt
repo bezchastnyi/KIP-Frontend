@@ -2,6 +2,7 @@ package com.example.kip
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import khttp.get
@@ -26,6 +28,8 @@ class Group_activity : AppCompatActivity() {
 
     var Groups: List<group> = emptyList()
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_activity)
@@ -40,6 +44,8 @@ class Group_activity : AppCompatActivity() {
         var groupIDArray: Array<Int> = emptyArray()
         var facultyArray: Array<String> = emptyArray()
         var courseArray: Array<String> = emptyArray()
+        val button3 = findViewById<Button>(R.id.button_select)
+        button3.isEnabled=false
         courseArray += resources.getStringArray(R.array.Course)
         facultyArray+="Выберите факультет"
 
@@ -75,7 +81,12 @@ class Group_activity : AppCompatActivity() {
 
 
                 for (group in Groups) {
-                    groupArray += group.groupName
+                    if(group.scheduleIsPresent){
+                        groupArray += group.groupName
+                    }
+                    else{
+                        groupArray += "${group.groupName} (без расписания)"
+                    }
                     groupIDArray += group.groupID
                 }
                 connectionDone = true
@@ -111,6 +122,8 @@ class Group_activity : AppCompatActivity() {
         }
         */
 
+
+
             val spinnerFaculty: Spinner = findViewById(R.id.spinnerFaculty)
             val spinnerCourse: Spinner = findViewById(R.id.spinnerCourse)
             val spinnerGroup: Spinner = findViewById(R.id.spinnerGroup)
@@ -137,6 +150,11 @@ class Group_activity : AppCompatActivity() {
                     var courseInt:Int=0
                     if(course.substring(0, 1)!="В") {
                         courseInt = course.substring(0, 1).toInt()
+
+                    }
+                    else{
+                        button3.isEnabled=false
+                        button3.setBackgroundColor(Color.GRAY)
                     }
                     if(text.substring(0, 1)=="В"){
                         facultyID=0
@@ -155,7 +173,12 @@ class Group_activity : AppCompatActivity() {
                     println(courseInt)
                     for (group in Groups) {
                         if (group.facultyID == facultyID && group.course == courseInt) {
-                            groupArray2 += group.groupName
+                            if(group.scheduleIsPresent) {
+                                groupArray2 += group.groupName
+                            }
+                            else{
+                                groupArray2 += "${group.groupName} (без расписания)"
+                            }
                         }
                     }
 
@@ -164,19 +187,24 @@ class Group_activity : AppCompatActivity() {
 
                     spinnerGroup.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                         override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                            val text: String = spinnerGroup.selectedItem.toString()
+                            val text: String = spinnerGroup.selectedItem.toString().split(" ")[0]
 
 
                             for (group in Groups) {
                                 if (group.groupName == text) {
-                                    groupID = group.groupID;
+                                    groupID = group.groupID
+                                    groupValid = group.scheduleIsPresent
+                                    button3.isEnabled =true
+                                    button3.setBackgroundColor(Color.parseColor("#3700B3"))
                                 }
                             }
-                            println(groupID)
+                            println("$groupID $text")
                         }
 
                         override fun onNothingSelected(parent: AdapterView<*>) {
                             groupID = 0
+                            button3.isEnabled=false
+                            button3.setBackgroundColor(Color.GRAY)
                         }
                     }
 
@@ -185,6 +213,8 @@ class Group_activity : AppCompatActivity() {
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
                     facultyID = 0
+                    button3.isEnabled=false
+                    button3.setBackgroundColor(Color.GRAY)
                 }
             }
 
@@ -193,10 +223,16 @@ class Group_activity : AppCompatActivity() {
                     var groupArray2: Array<String> = emptyArray()
                     val text: String = spinnerFaculty.selectedItem.toString()
 
+
                     val course: String = spinnerCourse.selectedItem.toString()
                     var courseInt:Int=0
                     if(course.substring(0, 1)!="В") {
                         courseInt = course.substring(0, 1).toInt()
+
+                    }
+                    else{
+                        button3.isEnabled=false
+                        button3.setBackgroundColor(Color.GRAY)
                     }
 
 
@@ -214,7 +250,12 @@ class Group_activity : AppCompatActivity() {
                     println(courseInt)
                     for (group in Groups) {
                         if (group.facultyID == facultyID && group.course == courseInt) {
-                            groupArray2 += group.groupName
+                            if(group.scheduleIsPresent) {
+                                groupArray2 += group.groupName
+                            }
+                            else{
+                                groupArray2 += "${group.groupName} (без расписания)"
+                            }
                         }
                     }
 
@@ -223,19 +264,25 @@ class Group_activity : AppCompatActivity() {
 
                     spinnerGroup.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                         override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                            val text: String = spinnerGroup.selectedItem.toString()
+                            val text: String = spinnerGroup.selectedItem.toString().split(" ")[0]
 
 
                             for (group in Groups) {
                                 if (group.groupName == text) {
-                                    groupID = group.groupID;
+                                    groupID = group.groupID
+                                    groupValid = group.scheduleIsPresent
+                                    button3.isEnabled =true
+                                    button3.setBackgroundColor(Color.parseColor("#3700B3"))
                                 }
                             }
-                            println(groupID)
+                            println("$groupID $text")
+
                         }
 
                         override fun onNothingSelected(parent: AdapterView<*>) {
                             groupID = 0
+                            button3.isEnabled=false
+                            button3.setBackgroundColor(Color.GRAY)
                         }
                     }
 
@@ -245,6 +292,8 @@ class Group_activity : AppCompatActivity() {
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
                     facultyID = 0
+                    button3.isEnabled=false
+                    button3.setBackgroundColor(Color.GRAY)
                 }
             }
 
@@ -273,5 +322,6 @@ class Group_activity : AppCompatActivity() {
         val alertDialog: android.app.AlertDialog? = alertDialogBuilder.create()
         alertDialog?.show()
     }
+
 
 }

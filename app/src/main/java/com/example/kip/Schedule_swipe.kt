@@ -14,44 +14,21 @@ class Schedule_swipe : AppCompatActivity() {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_schedule_swipe)
 
-            val button = findViewById<ImageButton>(R.id.Swipe)
-            button.setOnClickListener{
-                val intent = Intent(this, Class_schedule::class.java)
-                startActivity(intent)
-            }
 
-            layout = findViewById(R.id.swipe_layout)
-            layout.setOnTouchListener(object : OnSwipeTouchListener(this@Schedule_swipe) {
-                override fun onSwipeLeft() {
-                    println("left")
-                    val intent = Intent(this@Schedule_swipe, Schedule_swipe_2::class.java)
+            val button = findViewById<ImageButton>(R.id.swipe2)
+            if(groupValid) {
+                button.setOnClickListener {
+                    val intent = Intent(this, Class_schedule::class.java)
                     startActivity(intent)
                 }
-                override fun onSwipeRight() {
-                    val intent = Intent(this@Schedule_swipe, Schedule_swipe_2::class.java)
+            }
+            val button2 = findViewById<ImageButton>(R.id.swipe)
+            if(profValid) {
+                button2.setOnClickListener {
+                    val intent = Intent(this, lecture_schedule::class.java)
                     startActivity(intent)
                 }
-                override fun onSwipeUp() {
-                    val intent = Intent(this@Schedule_swipe, Main_screen::class.java)
-                    startActivity(intent)
-                }
-            })
-            layout2 = findViewById(R.id.Swipe_slave_layout)
-            layout2.setOnTouchListener(object : OnSwipeTouchListener(this@Schedule_swipe) {
-                override fun onSwipeLeft() {
-                    println("left")
-                    val intent = Intent(this@Schedule_swipe, Schedule_swipe_2::class.java)
-                    startActivity(intent)
-                }
-                override fun onSwipeRight() {
-                    val intent = Intent(this@Schedule_swipe, Schedule_swipe_2::class.java)
-                    startActivity(intent)
-                }
-                override fun onSwipeUp() {
-                    val intent = Intent(this@Schedule_swipe, Main_screen::class.java)
-                    //startActivity(intent)
-                }
-            })
+            }
 
         }
 

@@ -30,23 +30,24 @@
             android:background="?android:attr/listDivider"
             android:foreground="@android:drawable/bottom_bar" />
 
-        <LinearLayout
-            android:id="@+id/Swipe_slave_layout"
+        <ImageButton
+            android:id="@+id/swipe"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:src="@drawable/swipebutton2" />
 
-            <ImageButton
-                android:id="@+id/Swipe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="0"
-                android:background="#000051"
-                android:foregroundGravity="center"
-                android:src="@drawable/swipebutton" />
-        </LinearLayout>
+        <ImageButton
+            android:id="@+id/swipe2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#000051"
+            android:foregroundGravity="center"
+            android:src="@drawable/swipebutton" />
 
     </LinearLayout>
 

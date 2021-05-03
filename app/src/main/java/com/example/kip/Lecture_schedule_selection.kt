@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageButton
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.gson.Gson
@@ -23,6 +24,14 @@ class Lecture_schedule_selection : AppCompatActivity() {
 
         val gson = Gson()
         val profList = object : TypeToken<List<prof>>() {}.type
+
+
+        val button = findViewById<ImageButton>(R.id.back_button_LS)
+
+        button.setOnClickListener{
+            val intent = Intent(this, Schedule_swipe::class.java)
+            startActivity(intent)
+        }
 
         var profs: List<prof> = emptyList()// = gson2.fromJson(jsonFileString2, cathedraList2)
 
@@ -67,8 +76,13 @@ class Lecture_schedule_selection : AppCompatActivity() {
             for (prof in profs) {
                 //for (cathedra in cathedras) {
                 val chip2 = Chip(this)
+                if(prof.scheduleIsPresent){
                 chip2.text = "${prof.profSurname} ${prof.profName} ${prof.profPatronymic}"
-
+                }
+                else{
+                    chip2.text = "${prof.profSurname} ${prof.profName} ${prof.profPatronymic} (без расписания)"
+                    chip2.isEnabled=false
+                }
                 chip2.isClickable = true
                 chip2.isCheckable = false
 
@@ -78,6 +92,7 @@ class Lecture_schedule_selection : AppCompatActivity() {
 
                 chip2.setOnClickListener {
                     profID = prof.profID
+                    profValid = prof.scheduleIsPresent
                     val intent = Intent(this, Lecturer_schedule::class.java)
                     startActivity(intent)
                 }

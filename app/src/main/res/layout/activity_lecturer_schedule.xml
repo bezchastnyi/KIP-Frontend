@@ -28,7 +28,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:maxLines="1"
-            android:text="Расписание Преподователя"
+            android:text="Расписание"
             android:textColor="@color/white"
             android:textSize="26sp" />
     </LinearLayout>
@@ -242,6 +242,11 @@
             android:text="@string/Day5"
             android:textColor="@color/white"
             android:textSize="18sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
     </LinearLayout>
 
 </LinearLayout>

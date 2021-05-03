@@ -25,7 +25,7 @@ class Lecturer_schedule : AppCompatActivity() {
         val button = findViewById<ImageButton>(R.id.back_button2)
 
         button.setOnClickListener{
-            val intent = Intent(this, Schedule_swipe_2::class.java)
+            val intent = Intent(this, Lecture_schedule_selection::class.java)
             startActivity(intent)
         }
 
@@ -73,10 +73,10 @@ class Lecturer_schedule : AppCompatActivity() {
             //chips += findViewById<TextView>(R.id.textViewD6)
 
             textviews_time += "8:30 - "
-            textviews_time += "10:10 - "
+            textviews_time += "10:25 - "
             textviews_time += "12:35 - "
             textviews_time += "14:30 - "
-            textviews_time += "16:10 - "
+            textviews_time += "16:25 - "
 
             var day_of_the_week: Int = 0
 
@@ -158,7 +158,7 @@ class Lecturer_schedule : AppCompatActivity() {
         for (schedule2 in schedules2){
             if(schedule2.day == day_of_the_week){
                 if(schedule2.week == currentWeek){
-                    textviews[schedule2.number].text = "${textviews_time[schedule2.number]} ${schedule2.subjectName}"
+                    textviews[schedule2.number].text = "${textviews_time[schedule2.number]} ${schedule2.output}"
                     continue
                 }
             }
