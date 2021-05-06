@@ -14,14 +14,31 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView8"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Расписание"
-            android:textColor="@color/white"
-            android:textSize="36sp" />
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/back_button_SW"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#000051"
+                android:fadingEdge="vertical"
+                app:srcCompat="@drawable/backbutton" />
+
+            <TextView
+                android:id="@+id/textViewDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Расписание"
+                android:textColor="@color/white"
+                android:textSize="36sp" />
+        </LinearLayout>
 
         <View
             android:id="@+id/divider2"

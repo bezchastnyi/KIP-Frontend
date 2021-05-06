@@ -47,6 +47,7 @@ class Group_activity : AppCompatActivity() {
         val button3 = findViewById<Button>(R.id.button_select)
         button3.isEnabled=false
         courseArray += resources.getStringArray(R.array.Course)
+
         facultyArray+="Выберите факультет"
 
         val gson2 = Gson()
@@ -62,32 +63,33 @@ class Group_activity : AppCompatActivity() {
 
         val task = doAsync() {
                 println(groupLink)
-                val jsonFileString = get(groupLink)
 
-                val jsonFileString2 = get(facultyLink)
-
-
-                Facultys = gson2.fromJson(jsonFileString2.text, FacultyList)
-
-                for (faculty in Facultys) {
-                    facultyArray += faculty.facultyShortName
-                }
-
-                val GroupList = object : TypeToken<List<group>>() {}.type
-                println(jsonFileString.content.toString())
-
-                Groups = gson.fromJson(jsonFileString.text, GroupList)
+                if(Groups.isEmpty() || Facultys.isEmpty()) {
+                    val jsonFileString = get(groupLink)
+                    val jsonFileString2 = get(facultyLink)
 
 
+                    Facultys = gson2.fromJson(jsonFileString2.text, FacultyList)
 
-                for (group in Groups) {
-                    if(group.scheduleIsPresent){
-                        groupArray += group.groupName
+                    for (faculty in Facultys) {
+                        facultyArray += faculty.facultyShortName
                     }
-                    else{
-                        groupArray += "${group.groupName} (без расписания)"
+
+                    val GroupList = object : TypeToken<List<group>>() {}.type
+                    println(jsonFileString.content.toString())
+
+                    Groups = gson.fromJson(jsonFileString.text, GroupList)
+
+
+
+                    for (group in Groups) {
+                        if (group.scheduleIsPresent) {
+                            groupArray += group.groupName
+                        } else {
+                            groupArray += "${group.groupName} (без расписания)"
+                        }
+                        groupIDArray += group.groupID
                     }
-                    groupIDArray += group.groupID
                 }
                 connectionDone = true
                 c.countDown()
@@ -306,7 +308,7 @@ class Group_activity : AppCompatActivity() {
 
     }
 
-    fun popupMessage() {
+    private fun popupMessage() {
         val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
         alertDialogBuilder.setMessage("Отсутствует интернет-соединение или сервера не отвечают.")
         alertDialogBuilder.setIcon(R.drawable.kip_logo)

@@ -158,7 +158,7 @@ class Lecturer_schedule : AppCompatActivity() {
         for (schedule2 in schedules2){
             if(schedule2.day == day_of_the_week){
                 if(schedule2.week == currentWeek){
-                    textviews[schedule2.number].text = "${textviews_time[schedule2.number]} ${schedule2.output}"
+                    textviews[schedule2.number].text = "${textviews_time[schedule2.number]} ${schedule2.subjectName}"
                     continue
                 }
             }
@@ -175,7 +175,7 @@ class Lecturer_schedule : AppCompatActivity() {
             Log.d("internet", "Ok btn pressed")
             // add these two lines, if you wish to close the app:
             //finishAffinity()
-            val intent = Intent(this, Schedule_swipe_2::class.java)
+            val intent = Intent(this, Schedule_swipe::class.java)
             startActivity(intent)
             //System.exit(0)
         })

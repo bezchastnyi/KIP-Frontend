@@ -12,6 +12,9 @@ data class faculty(val facultyID: Int, val facultyShortName: String, val faculty
 data class schedule(val studentScheduleID: Int,val subjectName: String,val week: Int,val day: Int,val type: String,val number:Int,val output:String,val groupID: Int,val group: String,val buildingID: Int,val building: String,val audienceID: Int,val audience: String,val profID: Int,val prof: String) {
 }
 
+data class studentScheduleDay(val subjectName:String, val type:String,val number:Int,val week:Int,val audienceName:String,val profName:String){
+}
+
 data class cathedra(val facultyID: Int,val cathedraID:Int, val cathedraShortName: String, val cathedraName: String) {
 }
 
@@ -34,7 +37,7 @@ class profCompare: Comparator<prof>{
                 return 1
             }
             i++
-            if(i>surnameAnother.length){
+            if(i>=surnameAnother.length){
                 return -1
             }
         }

@@ -15,6 +15,12 @@ class Schedule_swipe : AppCompatActivity() {
             setContentView(R.layout.activity_schedule_swipe)
 
 
+            val button3 = findViewById<ImageButton>(R.id.back_button_SW)
+            button3.setOnClickListener {
+                val intent = Intent(this, Group_activity::class.java)
+                startActivity(intent)
+            }
+
             val button = findViewById<ImageButton>(R.id.swipe2)
             if(groupValid) {
                 button.setOnClickListener {

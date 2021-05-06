@@ -19,6 +19,8 @@ import java.util.concurrent.TimeUnit
 
 
 class lecture_schedule : AppCompatActivity() {
+    var cathedras: List<cathedra> = emptyList()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_schedule)
@@ -33,7 +35,6 @@ class lecture_schedule : AppCompatActivity() {
         val gson = Gson()
         val cathedraList = object : TypeToken<List<cathedra>>() {}.type
 
-        var cathedras: List<cathedra> = emptyList()// = gson.fromJson(jsonFileString, cathedraList)
 
         cathedras.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
 
@@ -52,12 +53,18 @@ class lecture_schedule : AppCompatActivity() {
         println(profByCathedraLink)
         val task = doAsync(){
 
-            val jsonFileString = get(cathedraByFacultyLink)
-
-
-            cathedras = gson2.fromJson(jsonFileString.text, cathedraList)
-
-
+            if(cathedras.isEmpty()) {
+                val jsonFileString = get(cathedraByFacultyLink)
+                cathedras = gson2.fromJson(jsonFileString.text, cathedraList)
+            }
+            else{
+                if(cathedras.isNotEmpty()){
+                    if(cathedras[0].cathedraID!= cathedraID){
+                        val jsonFileString = get(cathedraByFacultyLink)
+                        cathedras = gson2.fromJson(jsonFileString.text, cathedraList)
+                    }
+                }
+            }
             connectionDone = true
             c.countDown()
             //println(jsonFileString.jsonArray)
