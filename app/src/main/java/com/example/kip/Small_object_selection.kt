@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit
 class Small_object_selection : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lecture_schedule_selection)
+        setContentView(R.layout.activity_small_object_selection)
 
         val gson = Gson()
         val profList = object : TypeToken<List<prof>>() {}.type
@@ -141,7 +141,7 @@ class Small_object_selection : AppCompatActivity() {
             Log.d("internet", "Ok btn pressed")
             // add these two lines, if you wish to close the app:
             //finishAffinity()
-            val intent = Intent(this, Schedule_swipe_2::class.java)
+            val intent = Intent(this, Big_object_selection::class.java)
             startActivity(intent)
             //System.exit(0)
         })

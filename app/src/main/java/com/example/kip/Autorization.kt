@@ -13,7 +13,7 @@ class Autorization : AppCompatActivity() {
         val button2 = findViewById<Button>(R.id.Enter_button_wtiout_auto)
         
         button.setOnClickListener {
-            val intent = Intent(this, Main_screen::class.java)
+            val intent = Intent(this, Group_activity::class.java)
             startActivity(intent)
         }
         button2.setOnClickListener {

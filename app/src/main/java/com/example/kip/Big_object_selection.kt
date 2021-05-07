@@ -24,7 +24,7 @@ class Big_object_selection : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lecture_schedule)
+        setContentView(R.layout.activity_big_object_selection)
         val button = findViewById<ImageButton>(R.id.back_button_LS)
         if(students) {
             button.setOnClickListener {
