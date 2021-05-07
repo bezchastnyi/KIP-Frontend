@@ -2,7 +2,6 @@ package com.example.kip
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -24,14 +23,16 @@ class Schedule_swipe : AppCompatActivity() {
             val button = findViewById<ImageButton>(R.id.swipe2)
             if(groupValid) {
                 button.setOnClickListener {
-                    val intent = Intent(this, Class_schedule::class.java)
+                    selectedScheduleType=0
+                    val intent = Intent(this, Day_schedule_selection::class.java)
                     startActivity(intent)
                 }
             }
             val button2 = findViewById<ImageButton>(R.id.swipe)
             if(profValid) {
                 button2.setOnClickListener {
-                    val intent = Intent(this, lecture_schedule::class.java)
+                    selectedScheduleType=1
+                    val intent = Intent(this, Big_object_selection::class.java)
                     startActivity(intent)
                 }
             }

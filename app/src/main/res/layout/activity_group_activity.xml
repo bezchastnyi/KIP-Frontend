@@ -7,6 +7,7 @@
     tools:context=".Group_activity">
 
     <LinearLayout
+        android:id="@+id/LinearGroup"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#000051"

@@ -2,27 +2,27 @@ package com.example.kip
 
 import android.content.DialogInterface
 import android.content.Intent
-import android.icu.util.TimeUnit
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.Switch
 import android.widget.TextView
-import com.google.android.material.chip.Chip
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import khttp.get
 import org.jetbrains.anko.doAsync
 import java.util.concurrent.CountDownLatch
 
-class Class_schedule_extended : AppCompatActivity() {
+class Day_schedule : AppCompatActivity() {
 
-    var schedules: List<studentScheduleDay> = emptyList()
+    var schedulesStudent: List<studentScheduleDay> = emptyList()
+    var schedulesProfs: List<profscheduleDay> = emptyList()
+    var schedulesAuditory: List<studentScheduleDay> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_class_schedule_extended)
+        setContentView(R.layout.activity_day_schedule)
 
         val day = findViewById<TextView>(R.id.textViewDay)
 
@@ -31,10 +31,9 @@ class Class_schedule_extended : AppCompatActivity() {
 
         val gson2 = Gson()
         val schedulesList = object : TypeToken<List<studentScheduleDay>>() {}.type
+        val profsList = object : TypeToken<List<profscheduleDay>>() {}.type
 
-        // = gson2.fromJson(jsonFileString2, cathedraList2)
-
-        schedules.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
+        schedulesStudent.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
 
         connectionDone = false
 
@@ -42,19 +41,25 @@ class Class_schedule_extended : AppCompatActivity() {
         val task = doAsync() {
             println("$groupID $dayOfTheWeek")
             println(studentScheduleByGroupDayLink)
-            val jsonFileString = get(studentScheduleByGroupDayLink)
-
-            schedules = gson2.fromJson(jsonFileString.text, schedulesList)
+            if(selectedScheduleType==0){
+                val jsonFileString = get(studentScheduleByGroupDayLink)
+                schedulesStudent = gson2.fromJson(jsonFileString.text, schedulesList)
+            }
+            else if(selectedScheduleType==1){
+                val jsonFileString = get(profscheduleByProfDayLink)
+                schedulesProfs = gson2.fromJson(jsonFileString.text, profsList)
+            }
 
             connectionDone = true
             c.countDown()
             //println(jsonFileString.jsonArray)
         }
-        c.await(7, java.util.concurrent.TimeUnit.SECONDS)
+        c.await(5, java.util.concurrent.TimeUnit.SECONDS)
 
         if (!connectionDone) {
             popupMessage()
-        } else {
+        }
+        else {
             var textview: Array<TextView> = emptyArray()
             var ScheduleText: Array<Array<TextView>> = emptyArray()
 
@@ -92,25 +97,40 @@ class Class_schedule_extended : AppCompatActivity() {
             ScheduleText+=textview
 
             var currentWeek: Int = 0
-            changeSchedule(schedules, currentWeek, ScheduleText)
+            if(selectedScheduleType==0) {
+                changeSchedule(schedulesStudent, currentWeek, ScheduleText)
 
-            findViewById<Switch>(R.id.switchWeek).setOnCheckedChangeListener { buttonView, isChecked ->
-                if (isChecked) {
-                    currentWeek = 0
-                    changeSchedule(schedules, currentWeek, ScheduleText)
-                } else {
-                    currentWeek = 1
-                    changeSchedule(schedules, currentWeek, ScheduleText)
+                findViewById<Switch>(R.id.switchWeek).setOnCheckedChangeListener { buttonView, isChecked ->
+                    if (isChecked) {
+                        currentWeek = 0
+                        changeSchedule(schedulesStudent, currentWeek, ScheduleText)
+                    } else {
+                        currentWeek = 1
+                        changeSchedule(schedulesStudent, currentWeek, ScheduleText)
+                    }
                 }
             }
 
+            else if(selectedScheduleType==1) {
+                changeSchedule2(schedulesProfs, currentWeek, ScheduleText)
+
+                findViewById<Switch>(R.id.switchWeek).setOnCheckedChangeListener { buttonView, isChecked ->
+                    if (isChecked) {
+                        currentWeek = 0
+                        changeSchedule2(schedulesProfs, currentWeek, ScheduleText)
+                    } else {
+                        currentWeek = 1
+                        changeSchedule2(schedulesProfs, currentWeek, ScheduleText)
+                    }
+                }
+            }
 
 
             var i: Int = 0
 
             val button = findViewById<ImageButton>(R.id.back_button_SE)
             button.setOnClickListener {
-                val intent = Intent(this, Class_schedule::class.java)
+                val intent = Intent(this, Day_schedule_selection::class.java)
                 startActivity(intent)
             }
 
@@ -127,6 +147,17 @@ class Class_schedule_extended : AppCompatActivity() {
 
     }
 
+    fun changeSchedule2(schedules:List<profscheduleDay>, currentWeek:Int, ScheduleText:Array<Array<TextView>>){
+        for (schedule in schedules){
+            if(schedule.week == currentWeek){
+                ScheduleText[schedule.number][0].text = "${schedule.subjectName}"
+                ScheduleText[schedule.number][1].text = "${schedule.audienceName}"
+                ScheduleText[schedule.number][2].text = "${schedule.type} ${schedule.groupNames}"
+            }
+        }
+
+    }
+
     fun popupMessage() {
         val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
         alertDialogBuilder.setMessage("Отсутствует интернет-соединение или сервера не отвечают.")
@@ -136,7 +167,7 @@ class Class_schedule_extended : AppCompatActivity() {
             Log.d("internet", "Ok btn pressed")
             // add these two lines, if you wish to close the app:
             //finishAffinity()
-            val intent = Intent(this, Class_schedule::class.java)
+            val intent = Intent(this, Day_schedule_selection::class.java)
             startActivity(intent)
             //System.exit(0)
         })

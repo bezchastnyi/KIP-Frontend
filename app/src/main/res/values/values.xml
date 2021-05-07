@@ -13,6 +13,8 @@
         <item>2 курс</item>
         <item>3 курс</item>
         <item>4 курс</item>
+        <item>5 курс</item>
+        <item>6 курс</item>
     </string-array>
 
     <string-array name="FacultySel">

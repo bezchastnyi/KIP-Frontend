@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Lecture_schedule_selection">
+    tools:context=".Small_object_selection">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#000051"
-        tools:context=".lecture_schedule">
+        tools:context=".Big_object_selection">
 
         <LinearLayout
             android:id="@+id/Lecture_scedule_LL"

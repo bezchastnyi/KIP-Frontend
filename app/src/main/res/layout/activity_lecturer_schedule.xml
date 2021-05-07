@@ -40,10 +40,15 @@
         android:background="?android:attr/listDivider"
         android:foreground="@android:drawable/bottom_bar" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5" />
+
     <com.google.android.material.chip.ChipGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
+        android:layout_weight="10"
         android:paddingLeft="10sp"
         android:paddingRight="10sp"
         app:singleLine="false"
@@ -58,8 +63,7 @@
             android:gravity="center_horizontal"
             android:text="Понедельник"
             android:textAlignment="center"
-            android:textSize="18sp"
-            app:chipMinTouchTargetSize="36sp" />
+            android:textSize="30sp" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipThuesday2"
@@ -69,8 +73,7 @@
             android:gravity="center_horizontal"
             android:text="Вторник"
             android:textAlignment="center"
-            android:textSize="18sp"
-            app:chipMinTouchTargetSize="36sp" />
+            android:textSize="30sp" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipWednesday2"
@@ -80,8 +83,7 @@
             android:gravity="center_horizontal"
             android:text="Среда"
             android:textAlignment="center"
-            android:textSize="18sp"
-            app:chipMinTouchTargetSize="36sp" />
+            android:textSize="30sp" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipThursday2"
@@ -91,8 +93,7 @@
             android:gravity="center_horizontal"
             android:text="Четверг"
             android:textAlignment="center"
-            android:textSize="18sp"
-            app:chipMinTouchTargetSize="36sp" />
+            android:textSize="30sp" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipFriday2"
@@ -102,8 +103,7 @@
             android:gravity="center_horizontal"
             android:text="Пятница"
             android:textAlignment="center"
-            android:textSize="18sp"
-            app:chipMinTouchTargetSize="36sp" />
+            android:textSize="30sp" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipSaturday2"
@@ -113,140 +113,8 @@
             android:gravity="center_horizontal"
             android:text="Суббота"
             android:textAlignment="center"
-            android:textSize="18sp"
-            app:chipMinTouchTargetSize="36sp" />
+            android:textSize="30sp" />
 
     </com.google.android.material.chip.ChipGroup>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:maxLines="1"
-            android:text="парная"
-            android:textColor="@color/white"
-            android:textSize="36sp" />
-
-        <Switch
-            android:id="@+id/switchWeek"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:scrollbarSize="72dp"
-            android:textColor="@color/white"
-            android:textOff="парная"
-            android:textOn="непарная"
-            android:textSize="36sp"
-            tools:checked="false" />
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center|top"
-            android:maxWidth="125dp"
-            android:maxLines="1"
-            android:text="непарная"
-            android:textColor="@color/white"
-            android:textSize="36sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:orientation="vertical">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/textViewD12"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20sp"
-            android:layout_marginRight="20sp"
-            android:layout_weight="1"
-            android:background="#5E5EFF"
-            android:gravity="center"
-            android:text="@string/Day1"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/textViewD22"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20sp"
-            android:layout_marginRight="20sp"
-            android:layout_weight="1"
-            android:background="#5E5EFF"
-            android:gravity="center"
-            android:text="@string/Day2"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/textViewD32"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20sp"
-            android:layout_marginRight="20sp"
-            android:layout_weight="1"
-            android:background="#5E5EFF"
-            android:gravity="center"
-            android:text="@string/Day3"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/textViewD42"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20sp"
-            android:layout_marginRight="20sp"
-            android:layout_weight="1"
-            android:background="#5E5EFF"
-            android:gravity="center"
-            android:text="@string/Day4"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/textViewD52"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20sp"
-            android:layout_marginRight="20sp"
-            android:layout_weight="1"
-            android:background="#5E5EFF"
-            android:gravity="center"
-            android:text="@string/Day5"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-    </LinearLayout>
 
 </LinearLayout>

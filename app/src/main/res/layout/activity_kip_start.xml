@@ -11,19 +11,60 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="200"
+        android:layout_weight="10"
         android:paddingLeft="20sp"
+        android:paddingTop="20sp"
         android:paddingRight="20sp"
+        android:scaleType="fitCenter"
         app:srcCompat="@drawable/kip_logo" />
 
-    <Button
-        android:id="@+id/button_start"
-        android:layout_width="wrap_content"
+    <Space
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20sp"
-        android:text="Старт"
-        android:textSize="30sp" />
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/Student"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:paddingLeft="20sp"
+            android:paddingTop="20sp"
+            android:paddingEnd="20sp"
+            android:paddingRight="20sp"
+            android:paddingBottom="20sp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/swipebutton12" />
+
+        <ImageButton
+            android:id="@+id/Profs"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:paddingLeft="20sp"
+            android:paddingTop="20sp"
+            android:paddingEnd="20sp"
+            android:paddingRight="20sp"
+            android:paddingBottom="20sp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/swipebutton22" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
 </LinearLayout>

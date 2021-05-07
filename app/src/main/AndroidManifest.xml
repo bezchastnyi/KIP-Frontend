@@ -14,8 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KHPI_in_phone"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Class_schedule_extended"></activity>
-        <activity android:name=".Lecture_schedule_selection" />
+        <activity android:name=".Auditory_schedule_extended"></activity>
+        <activity android:name=".Auditory_schedule" />
+        <activity android:name=".Aduitory_schedule_selection" />
+        <activity android:name=".Building_shedule_selection" />
+        <activity
+            android:name=".lecturer_schedule_extended"
+            android:label="@string/title_activity_lecturer_schedule_extended"
+            android:theme="@style/Theme.KHPI_in_phone.NoActionBar" />
+        <activity android:name=".Day_schedule" />
+        <activity android:name=".Small_object_selection" />
         <activity android:name=".Lecturer_schedule" />
 
         <meta-data
@@ -27,10 +35,10 @@
         <activity
             android:name=".Group_activity"
             android:label="@string/title_activity_group_activity"
-            android:theme="@style/Theme.KHPI_in_phone.NoActionBar"></activity>
-        <activity android:name=".lecture_schedule" />
-        <activity android:name=".Class_schedule" />
-        <activity android:name=".Schedule_swipe_2"></activity>
+            android:theme="@style/Theme.KHPI_in_phone.NoActionBar" />
+        <activity android:name=".Big_object_selection" />
+        <activity android:name=".Day_schedule_selection" />
+        <activity android:name=".Schedule_swipe_2" />
         <activity android:name=".Plan_edit" />
         <activity
             android:name=".Main_screen"
@@ -44,7 +52,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Schedule_swipe"></activity>
+        <activity android:name=".Schedule_swipe" />
     </application>
 
 </manifest>

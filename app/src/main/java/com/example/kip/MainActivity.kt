@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -17,13 +18,22 @@ class MainActivity : AppCompatActivity() {
         val image = findViewById<ImageView>(R.id.imageView2)
         image.startAnimation(animation)
 
-        val button = findViewById<Button>(R.id.button_start)
+        val button = findViewById<ImageButton>(R.id.Profs)
         button.startAnimation(animation)
         button.setOnClickListener{
+            students = false
             val intent = Intent(this, Group_activity::class.java)
             startActivity(intent)
         }
-        
+
+        val button2 = findViewById<ImageButton>(R.id.Student)
+        button2.startAnimation(animation)
+        button2.setOnClickListener{
+            students = true
+            val intent = Intent(this, Group_activity::class.java)
+            startActivity(intent)
+        }
+
         /*
         val button2 = findViewById<Button>(R.id.autorizate)
         button2.setOnClickListener{

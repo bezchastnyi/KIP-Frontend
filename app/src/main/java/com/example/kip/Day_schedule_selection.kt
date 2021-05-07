@@ -7,24 +7,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
-import android.widget.Switch
-import android.widget.TextView
 import com.google.android.material.chip.Chip
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import khttp.get
-import org.jetbrains.anko.doAsync
-import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
 
 
-class Class_schedule : AppCompatActivity() {
+class Day_schedule_selection : AppCompatActivity() {
 
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_class_schedule)
+        setContentView(R.layout.activity_day_schedule_selection)
         val button = findViewById<ImageButton>(R.id.back_button_LS)
 
         button.setOnClickListener{
@@ -36,7 +28,7 @@ class Class_schedule : AppCompatActivity() {
             if (v is Chip) {
                 dayOfTheWeek = 0
                 DayOfWeekName = "Понедельник"
-                val intent = Intent(this, Class_schedule_extended::class.java)
+                val intent = Intent(this, Day_schedule::class.java)
                 startActivity(intent)
             }
             false
@@ -46,7 +38,7 @@ class Class_schedule : AppCompatActivity() {
             if (v is Chip) {
                 dayOfTheWeek = 1
                 DayOfWeekName = "Вторник"
-                val intent = Intent(this, Class_schedule_extended::class.java)
+                val intent = Intent(this, Day_schedule::class.java)
                 startActivity(intent)
             }
             false
@@ -56,7 +48,7 @@ class Class_schedule : AppCompatActivity() {
             if (v is Chip) {
                 dayOfTheWeek = 2
                 DayOfWeekName = "Среда"
-                val intent = Intent(this, Class_schedule_extended::class.java)
+                val intent = Intent(this, Day_schedule::class.java)
                 startActivity(intent)
             }
             false
@@ -66,7 +58,7 @@ class Class_schedule : AppCompatActivity() {
             if (v is Chip) {
                 dayOfTheWeek = 3
                 DayOfWeekName = "Четверг"
-                val intent = Intent(this, Class_schedule_extended::class.java)
+                val intent = Intent(this, Day_schedule::class.java)
                 startActivity(intent)
             }
             false
@@ -76,7 +68,7 @@ class Class_schedule : AppCompatActivity() {
             if (v is Chip) {
                 dayOfTheWeek = 4
                 DayOfWeekName = "Пятница"
-                val intent = Intent(this, Class_schedule_extended::class.java)
+                val intent = Intent(this, Day_schedule::class.java)
                 startActivity(intent)
             }
             false
@@ -86,7 +78,7 @@ class Class_schedule : AppCompatActivity() {
             if (v is Chip) {
                 dayOfTheWeek = 5
                 DayOfWeekName = "Суббота"
-                val intent = Intent(this, Class_schedule_extended::class.java)
+                val intent = Intent(this, Day_schedule::class.java)
                 startActivity(intent)
             }
 

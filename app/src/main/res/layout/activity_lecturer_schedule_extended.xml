@@ -2,11 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000051"
     android:orientation="vertical"
-    tools:context=".Class_schedule_extended">
+    tools:context=".lecturer_schedule_extended">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +25,7 @@
             app:srcCompat="@drawable/backbutton" />
 
         <TextView
-            android:id="@+id/textViewDay"
+            android:id="@+id/textViewDay1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -36,7 +37,7 @@
     </LinearLayout>
 
     <View
-        android:id="@+id/divider4"
+        android:id="@+id/divider5"
         android:layout_width="match_parent"
         android:layout_height="10sp"
         android:layout_weight="0"
@@ -63,7 +64,7 @@
             android:paddingRight="10sp">
 
             <TextView
-                android:id="@+id/textViewDate1"
+                android:id="@+id/textViewDate11"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -88,29 +89,32 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewA1"
+                    android:id="@+id/textViewA11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
-                    android:background="#8383E8"
-                    android:paddingLeft="10sp"
+                    android:background="#3B3BAF"
+                    android:paddingLeft="6sp"
                     android:textColor="#FFFFFF"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textViewB1"
+                    android:id="@+id/textViewB11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#6C6CDC"
+                    android:background="#3B3BAF"
+                    android:paddingLeft="6sp"
                     android:textColor="#FFFFFF" />
 
                 <TextView
-                    android:id="@+id/textViewC1"
+                    android:id="@+id/textViewC11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#5B5BE4"
+                    android:background="#3B3BAF"
+                    android:paddingLeft="6sp"
                     android:textColor="#FFFFFF" />
 
             </LinearLayout>
@@ -155,27 +159,31 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewA2"
+                    android:id="@+id/textViewA21"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#8383E8"
+                    android:background="#3B3BAF"
+                    android:paddingLeft="6sp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textViewB21"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#3B3BAF"
+                    android:paddingLeft="6sp"
                     android:textColor="#FFFFFF" />
 
                 <TextView
-                    android:id="@+id/textViewB2"
+                    android:id="@+id/textViewC21"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#6C6CDC"
-                    android:textColor="#FFFFFF" />
-
-                <TextView
-                    android:id="@+id/textViewC2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#5B5BE4"
+                    android:background="#3B3BAF"
+                    android:paddingLeft="6sp"
                     android:textColor="#FFFFFF" />
 
             </LinearLayout>
@@ -195,7 +203,7 @@
             android:paddingRight="10sp">
 
             <TextView
-                android:id="@+id/textViewDate3"
+                android:id="@+id/textViewDate31"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -220,27 +228,32 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewA3"
+                    android:id="@+id/textViewA31"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#8383E8"
+                    android:background="#3B3BAF"
+                    android:paddingLeft="6sp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewB31"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#3B3BAF"
+                    android:paddingLeft="6sp"
                     android:textColor="#FFFFFF" />
 
                 <TextView
-                    android:id="@+id/textViewB3"
+                    android:id="@+id/textViewC31"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#6C6CDC"
-                    android:textColor="#FFFFFF" />
-
-                <TextView
-                    android:id="@+id/textViewC3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#5B5BE4"
+                    android:background="#3B3BAF"
+                    android:paddingLeft="6sp"
                     android:textColor="#FFFFFF" />
 
             </LinearLayout>
@@ -260,7 +273,7 @@
             android:paddingRight="10sp">
 
             <TextView
-                android:id="@+id/textViewDate4"
+                android:id="@+id/textViewDate41"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -285,27 +298,32 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewA4"
+                    android:id="@+id/textViewA41"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#8383E8"
+                    android:background="#3B3BAF"
+                    android:paddingLeft="6sp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewB41"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#3B3BAF"
+                    android:paddingLeft="6sp"
                     android:textColor="#FFFFFF" />
 
                 <TextView
-                    android:id="@+id/textViewB4"
+                    android:id="@+id/textViewC41"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#6C6CDC"
-                    android:textColor="#FFFFFF" />
-
-                <TextView
-                    android:id="@+id/textViewC4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#5B5BE4"
+                    android:background="#3B3BAF"
+                    android:paddingLeft="6sp"
                     android:textColor="#FFFFFF" />
 
             </LinearLayout>
@@ -325,7 +343,7 @@
             android:paddingRight="10sp">
 
             <TextView
-                android:id="@+id/textViewDate5"
+                android:id="@+id/textViewDate51"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -350,27 +368,32 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewA5"
+                    android:id="@+id/textViewA51"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#8383E8"
+                    android:background="#3B3BAF"
+                    android:paddingLeft="6sp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewB51"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#3B3BAF"
+                    android:paddingLeft="6sp"
                     android:textColor="#FFFFFF" />
 
                 <TextView
-                    android:id="@+id/textViewB5"
+                    android:id="@+id/textViewC51"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#6C6CDC"
-                    android:textColor="#FFFFFF" />
-
-                <TextView
-                    android:id="@+id/textViewC5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#5B5BE4"
+                    android:background="#3B3BAF"
+                    android:paddingLeft="6sp"
                     android:textColor="#FFFFFF" />
 
             </LinearLayout>
@@ -428,6 +451,5 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.1" />
-
+        android:layout_weight="0.05" />
 </LinearLayout>

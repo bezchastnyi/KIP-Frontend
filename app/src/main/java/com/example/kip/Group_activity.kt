@@ -6,12 +6,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import khttp.get
@@ -124,185 +120,277 @@ class Group_activity : AppCompatActivity() {
         }
         */
 
-
-
             val spinnerFaculty: Spinner = findViewById(R.id.spinnerFaculty)
             val spinnerCourse: Spinner = findViewById(R.id.spinnerCourse)
             val spinnerGroup: Spinner = findViewById(R.id.spinnerGroup)
 
-            val spinnerArrayAdapter2: ArrayAdapter<String> = ArrayAdapter<String>(
-                    this, android.R.layout.simple_spinner_item, facultyArray)
+            if(students) {
 
 
+                val spinnerArrayAdapter2: ArrayAdapter<String> = ArrayAdapter<String>(
+                    this, android.R.layout.simple_spinner_item, facultyArray
+                )
 
-            val courseArrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, courseArray)
+
+                val courseArrayAdapter =
+                    ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, courseArray)
 
 
-            spinnerCourse.adapter = courseArrayAdapter
-            spinnerFaculty.adapter = spinnerArrayAdapter2
+                spinnerCourse.adapter = courseArrayAdapter
+                spinnerFaculty.adapter = spinnerArrayAdapter2
 
-            spinnerFaculty.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                spinnerFaculty.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(
+                            parent: AdapterView<*>,
+                            view: View,
+                            position: Int,
+                            id: Long
+                        ) {
 
-                    var groupArray2: Array<String> = emptyArray()
+                            var groupArray2: Array<String> = emptyArray()
 
-                    val text: String = spinnerFaculty.selectedItem.toString()
+                            val text: String = spinnerFaculty.selectedItem.toString()
 
-                    val course: String = spinnerCourse.selectedItem.toString()
-                    var courseInt:Int=0
-                    if(course.substring(0, 1)!="В") {
-                        courseInt = course.substring(0, 1).toInt()
+                            val course: String = spinnerCourse.selectedItem.toString()
+                            var courseInt: Int = 0
+                            if (course.substring(0, 1) != "В") {
+                                button3.isEnabled = true
+                                courseInt = course.substring(0, 1).toInt()
 
-                    }
-                    else{
-                        button3.isEnabled=false
-                        button3.setBackgroundColor(Color.GRAY)
-                    }
-                    if(text.substring(0, 1)=="В"){
-                        facultyID=0
-                    }
-
-                    println(text)
-                    println(Facultys)
-
-                    for (faculty in Facultys) {
-                        if (faculty.facultyShortName == text) {
-                            facultyID = faculty.facultyID;
-                        }
-                    }
-
-                    println(facultyID)
-                    println(courseInt)
-                    for (group in Groups) {
-                        if (group.facultyID == facultyID && group.course == courseInt) {
-                            if(group.scheduleIsPresent) {
-                                groupArray2 += group.groupName
+                            } else {
+                                button3.isEnabled = false
+                                button3.setBackgroundColor(Color.GRAY)
                             }
-                            else{
-                                groupArray2 += "${group.groupName} (без расписания)"
+                            if (text.substring(0, 1) == "В") {
+                                facultyID = 0
+                                button3.isEnabled = false
                             }
-                        }
-                    }
 
-                    val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
-                            applicationContext, android.R.layout.simple_spinner_item, groupArray2)
+                            println(text)
+                            println(Facultys)
 
-                    spinnerGroup.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                        override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                            val text: String = spinnerGroup.selectedItem.toString().split(" ")[0]
-
-
-                            for (group in Groups) {
-                                if (group.groupName == text) {
-                                    groupID = group.groupID
-                                    groupValid = group.scheduleIsPresent
-                                    button3.isEnabled =true
-                                    button3.setBackgroundColor(Color.parseColor("#3700B3"))
+                            for (faculty in Facultys) {
+                                if (faculty.facultyShortName == text) {
+                                    facultyID = faculty.facultyID;
                                 }
                             }
-                            println("$groupID $text")
+
+                            println(facultyID)
+                            println(courseInt)
+                            for (group in Groups) {
+                                if (group.facultyID == facultyID && group.course == courseInt) {
+                                    if (group.scheduleIsPresent) {
+                                        groupArray2 += group.groupName
+                                    } else {
+                                        groupArray2 += "${group.groupName} (без расписания)"
+                                    }
+                                }
+                            }
+
+                            val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
+                                applicationContext,
+                                android.R.layout.simple_spinner_item,
+                                groupArray2
+                            )
+
+                            spinnerGroup.onItemSelectedListener =
+                                object : AdapterView.OnItemSelectedListener {
+                                    override fun onItemSelected(
+                                        parent: AdapterView<*>,
+                                        view: View,
+                                        position: Int,
+                                        id: Long
+                                    ) {
+                                        val text: String =
+                                            spinnerGroup.selectedItem.toString().split(" ")[0]
+
+
+                                        for (group in Groups) {
+                                            if (group.groupName == text) {
+                                                groupID = group.groupID
+                                                groupValid = group.scheduleIsPresent
+                                                button3.isEnabled = true
+                                                button3.setBackgroundColor(Color.parseColor("#3700B3"))
+                                            }
+                                        }
+                                        println("$groupID $text")
+                                    }
+
+                                    override fun onNothingSelected(parent: AdapterView<*>) {
+                                        groupID = 0
+                                        button3.isEnabled = false
+                                        button3.setBackgroundColor(Color.GRAY)
+                                    }
+                                }
+
+                            spinnerGroup.adapter = spinnerArrayAdapter
                         }
 
                         override fun onNothingSelected(parent: AdapterView<*>) {
-                            groupID = 0
-                            button3.isEnabled=false
+                            facultyID = 0
+                            button3.isEnabled = false
                             button3.setBackgroundColor(Color.GRAY)
                         }
                     }
 
-                    spinnerGroup.adapter = spinnerArrayAdapter
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    facultyID = 0
-                    button3.isEnabled=false
-                    button3.setBackgroundColor(Color.GRAY)
-                }
-            }
-
-            spinnerCourse.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    var groupArray2: Array<String> = emptyArray()
-                    val text: String = spinnerFaculty.selectedItem.toString()
+                spinnerCourse.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>,
+                        view: View,
+                        position: Int,
+                        id: Long
+                    ) {
+                        var groupArray2: Array<String> = emptyArray()
+                        val text: String = spinnerFaculty.selectedItem.toString()
 
 
-                    val course: String = spinnerCourse.selectedItem.toString()
-                    var courseInt:Int=0
-                    if(course.substring(0, 1)!="В") {
-                        courseInt = course.substring(0, 1).toInt()
+                        val course: String = spinnerCourse.selectedItem.toString()
+                        var courseInt: Int = 0
+                        if (course.substring(0, 1) != "В") {
+                            courseInt = course.substring(0, 1).toInt()
 
-                    }
-                    else{
-                        button3.isEnabled=false
-                        button3.setBackgroundColor(Color.GRAY)
-                    }
-
-
-
-                    println(text)
-                    println(Facultys)
-
-                    for (faculty in Facultys) {
-                        if (faculty.facultyShortName == text) {
-                            facultyID = faculty.facultyID;
-                        }
-                    }
-
-                    println(facultyID)
-                    println(courseInt)
-                    for (group in Groups) {
-                        if (group.facultyID == facultyID && group.course == courseInt) {
-                            if(group.scheduleIsPresent) {
-                                groupArray2 += group.groupName
-                            }
-                            else{
-                                groupArray2 += "${group.groupName} (без расписания)"
-                            }
-                        }
-                    }
-
-                    val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
-                            applicationContext, android.R.layout.simple_spinner_item, groupArray2)
-
-                    spinnerGroup.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                        override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                            val text: String = spinnerGroup.selectedItem.toString().split(" ")[0]
-
-
-                            for (group in Groups) {
-                                if (group.groupName == text) {
-                                    groupID = group.groupID
-                                    groupValid = group.scheduleIsPresent
-                                    button3.isEnabled =true
-                                    button3.setBackgroundColor(Color.parseColor("#3700B3"))
-                                }
-                            }
-                            println("$groupID $text")
-
-                        }
-
-                        override fun onNothingSelected(parent: AdapterView<*>) {
-                            groupID = 0
-                            button3.isEnabled=false
+                        } else {
+                            button3.isEnabled = false
                             button3.setBackgroundColor(Color.GRAY)
                         }
+
+
+
+                        println(text)
+                        println(Facultys)
+
+                        for (faculty in Facultys) {
+                            if (faculty.facultyShortName == text) {
+                                facultyID = faculty.facultyID;
+                            }
+                        }
+
+                        println(facultyID)
+                        println(courseInt)
+                        for (group in Groups) {
+                            if (group.facultyID == facultyID && group.course == courseInt) {
+                                if (group.scheduleIsPresent) {
+                                    groupArray2 += group.groupName
+                                } else {
+                                    groupArray2 += "${group.groupName} (без расписания)"
+                                }
+                            }
+                        }
+
+                        val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
+                            applicationContext, android.R.layout.simple_spinner_item, groupArray2
+                        )
+
+                        spinnerGroup.onItemSelectedListener =
+                            object : AdapterView.OnItemSelectedListener {
+                                override fun onItemSelected(
+                                    parent: AdapterView<*>,
+                                    view: View,
+                                    position: Int,
+                                    id: Long
+                                ) {
+                                    val text: String =
+                                        spinnerGroup.selectedItem.toString().split(" ")[0]
+
+
+                                    for (group in Groups) {
+                                        if (group.groupName == text) {
+                                            groupID = group.groupID
+                                            groupValid = group.scheduleIsPresent
+                                            button3.isEnabled = true
+                                            button3.setBackgroundColor(Color.parseColor("#3700B3"))
+                                        }
+                                    }
+                                    println("$groupID $text")
+
+                                }
+
+                                override fun onNothingSelected(parent: AdapterView<*>) {
+                                    groupID = 0
+                                    button3.isEnabled = false
+                                    button3.setBackgroundColor(Color.GRAY)
+                                }
+                            }
+
+                        spinnerGroup.adapter = spinnerArrayAdapter
+
                     }
 
-                    spinnerGroup.adapter = spinnerArrayAdapter
-
+                    override fun onNothingSelected(parent: AdapterView<*>) {
+                        facultyID = 0
+                        button3.isEnabled = false
+                        button3.setBackgroundColor(Color.GRAY)
+                    }
                 }
 
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    facultyID = 0
-                    button3.isEnabled=false
-                    button3.setBackgroundColor(Color.GRAY)
+
+                button.setOnClickListener {
+                    val intent = Intent(this, Schedule_swipe::class.java)
+                    startActivity(intent)
                 }
             }
+            else{
+                val tv = findViewById<TextView>(R.id.textView3)
+                tv.text = "Выбирите ваш факультет"
+
+                spinnerCourse.isEnabled = false
+                spinnerGroup.isEnabled = false
+
+                val layout = findViewById<LinearLayout>(R.id.LinearGroup)
+
+                layout.removeView(spinnerCourse)
+                layout.removeView(spinnerGroup)
 
 
-            button.setOnClickListener {
-                val intent = Intent(this, Schedule_swipe::class.java)
-                startActivity(intent)
+
+                val spinnerArrayAdapter2: ArrayAdapter<String> = ArrayAdapter<String>(
+                    this, android.R.layout.simple_spinner_item, facultyArray
+                )
+                spinnerFaculty.adapter = spinnerArrayAdapter2
+                button3.isEnabled = false
+                spinnerFaculty.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>,
+                        view: View,
+                        position: Int,
+                        id: Long
+                    ) {
+                        val text: String = spinnerFaculty.selectedItem.toString()
+
+                        if (text.substring(0, 1) == "В") {
+                            facultyID = 0
+                            button3.isEnabled = false
+                        }
+                        else{
+                            button3.setBackgroundColor(Color.parseColor("#3700B3"))
+                            button3.isEnabled = true
+                        }
+
+                        println(text)
+                        println(Facultys)
+
+                        for (faculty in Facultys) {
+                            if (faculty.facultyShortName == text) {
+                                facultyID = faculty.facultyID;
+                            }
+                        }
+
+                        println(facultyID)
+
+
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>) {
+                        facultyID = 0
+                        button3.isEnabled = false
+                        button3.setBackgroundColor(Color.GRAY)
+                    }
+                }
+
+                button.setOnClickListener {
+                    val intent = Intent(this, Big_object_selection::class.java)
+                    startActivity(intent)
+                }
             }
         }
 

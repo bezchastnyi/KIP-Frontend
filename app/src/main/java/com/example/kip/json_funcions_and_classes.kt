@@ -3,10 +3,19 @@ package com.example.kip
 import android.content.Context
 import java.io.IOException
 
+var students:Boolean=false
+
+var selectedScheduleType:Int=0
+
 data class group(val facultyID: Int, val faculty: String, val groupID: Int, val course: Int,val scheduleIsPresent:Boolean, val groupName: String) {
 }
 
 data class faculty(val facultyID: Int, val facultyShortName: String, val facultyName: String) {
+}
+
+data class building(val facultyID: Int, val facultyShortName: String, val facultyName: String) {
+}
+data class auditory(val facultyID: Int, val faculty: String, val groupID: Int, val course: Int,val scheduleIsPresent:Boolean, val groupName: String) {
 }
 
 data class schedule(val studentScheduleID: Int,val subjectName: String,val week: Int,val day: Int,val type: String,val number:Int,val output:String,val groupID: Int,val group: String,val buildingID: Int,val building: String,val audienceID: Int,val audience: String,val profID: Int,val prof: String) {
@@ -22,6 +31,9 @@ data class prof(val cathedra: Int,val cathedraID:Int,val profID:Int, val profNam
 }
 
 data class profschedule(val profScheduleID: Int,val subjectName: String,val week:Int,val day:Int,val type: String,val number:Int,val output:String,val profID:Int,val prof: String, val buildingID: Int,val building: String, val audienceID: Int,val audience: String,val groupID: List<Int>,val group: String) {
+}
+
+data class profscheduleDay(val subjectName:String, val type:String,val number:Int,val week:Int,val audienceName:String,val groupNames:String) {
 }
 
 class profCompare: Comparator<prof>{

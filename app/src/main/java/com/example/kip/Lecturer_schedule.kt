@@ -1,14 +1,11 @@
 package com.example.kip
 
-import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
-import android.widget.Switch
-import android.widget.TextView
 import com.google.android.material.chip.Chip
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -25,7 +22,7 @@ class Lecturer_schedule : AppCompatActivity() {
         val button = findViewById<ImageButton>(R.id.back_button2)
 
         button.setOnClickListener{
-            val intent = Intent(this, Lecture_schedule_selection::class.java)
+            val intent = Intent(this, Small_object_selection::class.java)
             startActivity(intent)
         }
 
@@ -55,115 +52,69 @@ class Lecturer_schedule : AppCompatActivity() {
         else {
 
 
-            /*
-        for (prof in profschedules){
-            if(prof.profID == profID){
-                profschedules += prof
-            }
-        }
-*/
-            var textviews: Array<TextView> = emptyArray()
-            var textviews_time: Array<String> = emptyArray()
-
-            textviews += findViewById<TextView>(R.id.textViewD12)
-            textviews += findViewById<TextView>(R.id.textViewD22)
-            textviews += findViewById<TextView>(R.id.textViewD32)
-            textviews += findViewById<TextView>(R.id.textViewD42)
-            textviews += findViewById<TextView>(R.id.textViewD52)
-            //chips += findViewById<TextView>(R.id.textViewD6)
-
-            textviews_time += "8:30 - "
-            textviews_time += "10:25 - "
-            textviews_time += "12:35 - "
-            textviews_time += "14:30 - "
-            textviews_time += "16:25 - "
-
-            var day_of_the_week: Int = 0
-
-            var currentWeek: Int = 0
-
-            findViewById<Switch>(R.id.switchWeek).setOnCheckedChangeListener { buttonView, isChecked ->
-                if (isChecked) {
-                    currentWeek = 0
-                    changeSchedule(profschedules, day_of_the_week, currentWeek, textviews, textviews_time)
-                } else {
-                    currentWeek = 1
-                    changeSchedule(profschedules, day_of_the_week, currentWeek, textviews, textviews_time)
-                }
-            }
-
             findViewById<Chip>(R.id.chipMonday2).setOnTouchListener { v, event ->
                 if (v is Chip) {
-                    day_of_the_week = 0
-                    changeSchedule(profschedules, day_of_the_week, currentWeek, textviews, textviews_time)
+                    dayOfTheWeek = 0
+                    DayOfWeekName = "Понедельник"
+                    val intent = Intent(this, lecturer_schedule_extended::class.java)
+                    startActivity(intent)
                 }
                 false
             }
 
             findViewById<Chip>(R.id.chipThuesday2).setOnTouchListener { v, event ->
                 if (v is Chip) {
-                    day_of_the_week = 1
-                    changeSchedule(profschedules, day_of_the_week, currentWeek, textviews, textviews_time)
+                    dayOfTheWeek = 1
+                    DayOfWeekName = "Вторник"
+                    val intent = Intent(this, lecturer_schedule_extended::class.java)
+                    startActivity(intent)
                 }
                 false
             }
 
             findViewById<Chip>(R.id.chipWednesday2).setOnTouchListener { v, event ->
                 if (v is Chip) {
-                    day_of_the_week = 2
-                    changeSchedule(profschedules, day_of_the_week, currentWeek, textviews, textviews_time)
+                    dayOfTheWeek = 2
+                    DayOfWeekName = "Среда"
+                    val intent = Intent(this, lecturer_schedule_extended::class.java)
+                    startActivity(intent)
                 }
                 false
             }
 
             findViewById<Chip>(R.id.chipThursday2).setOnTouchListener { v, event ->
                 if (v is Chip) {
-                    day_of_the_week = 3
-                    changeSchedule(profschedules, day_of_the_week, currentWeek, textviews, textviews_time)
+                    dayOfTheWeek = 3
+                    DayOfWeekName = "Четверг"
+                    val intent = Intent(this, lecturer_schedule_extended::class.java)
+                    startActivity(intent)
                 }
                 false
             }
 
             findViewById<Chip>(R.id.chipFriday2).setOnTouchListener { v, event ->
                 if (v is Chip) {
-                    day_of_the_week = 4
-                    changeSchedule(profschedules, day_of_the_week, currentWeek, textviews, textviews_time)
+                    dayOfTheWeek = 4
+                    DayOfWeekName = "Пятница"
+                    val intent = Intent(this, lecturer_schedule_extended::class.java)
+                    startActivity(intent)
                 }
                 false
             }
 
             findViewById<Chip>(R.id.chipSaturday2).setOnTouchListener { v, event ->
                 if (v is Chip) {
-                    day_of_the_week = 5
-                    changeSchedule(profschedules, day_of_the_week, currentWeek, textviews, textviews_time)
+                    dayOfTheWeek = 5
+                    DayOfWeekName = "Суббота"
+                    val intent = Intent(this, lecturer_schedule_extended::class.java)
+                    startActivity(intent)
                 }
 
                 false
             }
 
 
-            var i: Int = 0
-
         }
-    }
-
-    fun changeSchedule(schedules2 :List<profschedule>, day_of_the_week:Int, currentWeek:Int, textviews:Array<TextView>, textviews_time:Array<String>){
-
-        var i:Int=0
-        println(schedules2)
-        for (textview in textviews){
-            textviews[i].text = textviews_time[i]
-            i++
-        }
-        for (schedule2 in schedules2){
-            if(schedule2.day == day_of_the_week){
-                if(schedule2.week == currentWeek){
-                    textviews[schedule2.number].text = "${textviews_time[schedule2.number]} ${schedule2.subjectName}"
-                    continue
-                }
-            }
-        }
-
     }
 
     fun popupMessage() {
