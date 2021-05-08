@@ -18,12 +18,57 @@ class Day_schedule_selection : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_day_schedule_selection)
         val button = findViewById<ImageButton>(R.id.back_button_LS)
-
-        button.setOnClickListener{
-            val intent = Intent(this, Schedule_swipe::class.java)
-            startActivity(intent)
+        if(selectedScheduleType==0) {
+            button.setOnClickListener {
+                val intent = Intent(this, Schedule_swipe::class.java)
+                startActivity(intent)
+            }
         }
-
+        else{
+            button.setOnClickListener {
+                val intent = Intent(this, Small_object_selection::class.java)
+                startActivity(intent)
+            }
+        }
+        if (selectedScheduleType==0){
+            for (student in Groups) {
+                if (student.groupID == groupID) {
+                    findViewById<Chip>(R.id.chipMonday).isEnabled = student.scheduleIsPresent[0]
+                    findViewById<Chip>(R.id.chipThuesday).isEnabled = student.scheduleIsPresent[1]
+                    findViewById<Chip>(R.id.chipWednesday).isEnabled = student.scheduleIsPresent[2]
+                    findViewById<Chip>(R.id.chipThursday).isEnabled = student.scheduleIsPresent[3]
+                    findViewById<Chip>(R.id.chipFriday).isEnabled = student.scheduleIsPresent[4]
+                    findViewById<Chip>(R.id.chipSaturday).isEnabled = student.scheduleIsPresent[5]
+                    break
+                }
+            }
+        }
+        else if(selectedScheduleType==1) {
+            for (prof in profs) {
+                if (prof.profID == profID) {
+                    findViewById<Chip>(R.id.chipMonday).isEnabled = prof.scheduleIsPresent[0]
+                    findViewById<Chip>(R.id.chipThuesday).isEnabled = prof.scheduleIsPresent[1]
+                    findViewById<Chip>(R.id.chipWednesday).isEnabled = prof.scheduleIsPresent[2]
+                    findViewById<Chip>(R.id.chipThursday).isEnabled = prof.scheduleIsPresent[3]
+                    findViewById<Chip>(R.id.chipFriday).isEnabled = prof.scheduleIsPresent[4]
+                    findViewById<Chip>(R.id.chipSaturday).isEnabled = prof.scheduleIsPresent[5]
+                    break
+                }
+            }
+        }
+        else if(selectedScheduleType==2) {
+            for (auditory in auditorys) {
+                if (auditory.audienceID == audioryID) {
+                    findViewById<Chip>(R.id.chipMonday).isEnabled = auditory.scheduleIsPresent[0]
+                    findViewById<Chip>(R.id.chipThuesday).isEnabled = auditory.scheduleIsPresent[1]
+                    findViewById<Chip>(R.id.chipWednesday).isEnabled = auditory.scheduleIsPresent[2]
+                    findViewById<Chip>(R.id.chipThursday).isEnabled = auditory.scheduleIsPresent[3]
+                    findViewById<Chip>(R.id.chipFriday).isEnabled = auditory.scheduleIsPresent[4]
+                    findViewById<Chip>(R.id.chipSaturday).isEnabled = auditory.scheduleIsPresent[5]
+                    break
+                }
+            }
+        }
         findViewById<Chip>(R.id.chipMonday).setOnTouchListener { v, event ->
             if (v is Chip) {
                 dayOfTheWeek = 0

@@ -29,7 +29,18 @@ var cathedraID:Int=0
     }
 
 var buildingsID:Int=0
+    set(value){
+        field = value
+        audienceByBuilingLink = "$baseLink/Audience/building/$buildingsID?token=$token"
+    }
+
+
 var audioryID:Int=0
+    set(value) {
+        field = value
+        audienceScheduleByAudienceDayLink = "$baseLink/AudienceSchedule/Audience/${audioryID}/Day/$dayOfTheWeek?token=$token"
+    }
+
 
 var DayOfWeekName = ""
 var dayOfTheWeek:Int=0
@@ -37,6 +48,7 @@ var dayOfTheWeek:Int=0
         field = value
         studentScheduleByGroupDayLink = "$baseLink/StudentSchedule/Group/$groupID/Day/$dayOfTheWeek/?token=$token"
         profscheduleByProfDayLink = "$baseLink/ProfSchedule/Prof/$profID/Day/$dayOfTheWeek?token=$token"
+        audienceScheduleByAudienceDayLink = "$baseLink/AudienceSchedule/Audience/${audioryID}/Day/$dayOfTheWeek?token=$token"
     }
 
 
@@ -46,6 +58,9 @@ var facultyLink:String = "$baseLink/faculty/?token=$token"
 var cathedraByFacultyLink:String = "$baseLink/Cathedra/faculty/$facultyID/?token=$token"
 
 var studentScheduleByGroupDayLink = "$baseLink/prof/cathedra/${cathedraID}/?token=$token"
+var buildingsLink = "$baseLink/building?token=$token"
+var audienceByBuilingLink = "$baseLink/Audience/building/$buildingsID?token=$token"
+var audienceScheduleByAudienceDayLink = "$baseLink/AudienceSchedule/Audience//${cathedraID}/Day/$dayOfTheWeek?token=$token"
 var studentScheduleByGroupLink:String = "$baseLink/StudentSchedule/group/$groupID/?token=$token"
 var profScheduleByProfLink:String = "$baseLink/profschedule/prof/$profID/?token=$token"
 var profscheduleByProfDayLink = "$baseLink/ProfSchedule/Prof/$profID/Day/$dayOfTheWeek?token=$token"

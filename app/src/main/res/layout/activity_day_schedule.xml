@@ -62,17 +62,35 @@
             android:paddingLeft="10sp"
             android:paddingRight="10sp">
 
-            <TextView
-                android:id="@+id/textViewDate1"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:background="#5E5EFF"
-                android:gravity="center"
-                android:singleLine="false"
-                android:text="8:30"
-                android:textColor="#FFFFFF"
-                android:textSize="36sp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewDate1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="#5E5EFF"
+                    android:gravity="center"
+                    android:singleLine="false"
+                    android:text="8:30"
+                    android:textColor="#FFFFFF"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:id="@+id/textViewType1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:background="#3B3BAF"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView16"
@@ -132,17 +150,35 @@
             android:paddingLeft="10sp"
             android:paddingRight="10sp">
 
-            <TextView
-                android:id="@+id/textViewDate2"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:background="#5E5EFF"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text="10:25"
-                android:textColor="#FFFFFF"
-                android:textSize="36sp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewDate2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="#5E5EFF"
+                    android:gravity="center"
+                    android:singleLine="false"
+                    android:text="10:25"
+                    android:textColor="#FFFFFF"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:id="@+id/textViewType2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:background="#3B3BAF"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView17"
@@ -202,17 +238,35 @@
             android:paddingLeft="10sp"
             android:paddingRight="10sp">
 
-            <TextView
-                android:id="@+id/textViewDate3"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:background="#5E5EFF"
-                android:gravity="center"
-                android:singleLine="false"
-                android:text="12:35"
-                android:textColor="#FFFFFF"
-                android:textSize="36sp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewDate3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="#5E5EFF"
+                    android:gravity="center"
+                    android:singleLine="false"
+                    android:text="12:35"
+                    android:textColor="#FFFFFF"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:id="@+id/textViewType3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:background="#3B3BAF"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView18"
@@ -272,17 +326,35 @@
             android:paddingLeft="10sp"
             android:paddingRight="10sp">
 
-            <TextView
-                android:id="@+id/textViewDate4"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:background="#5E5EFF"
-                android:gravity="center"
-                android:singleLine="false"
-                android:text="14:30"
-                android:textColor="#FFFFFF"
-                android:textSize="36sp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewDate4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="#5E5EFF"
+                    android:gravity="center"
+                    android:singleLine="false"
+                    android:text="14:30"
+                    android:textColor="#FFFFFF"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:id="@+id/textViewType4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:background="#3B3BAF"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView19"
@@ -342,17 +414,35 @@
             android:paddingLeft="10sp"
             android:paddingRight="10sp">
 
-            <TextView
-                android:id="@+id/textViewDate5"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:background="#5E5EFF"
-                android:gravity="center"
-                android:singleLine="false"
-                android:text="16:25"
-                android:textColor="#FFFFFF"
-                android:textSize="36sp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewDate5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="#5E5EFF"
+                    android:gravity="center"
+                    android:singleLine="false"
+                    android:text="16:25"
+                    android:textColor="#FFFFFF"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:id="@+id/textViewType5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:background="#3B3BAF"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView20"
@@ -412,7 +502,7 @@
 
             <TextView
                 android:id="@+id/textView9"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_weight="1"
@@ -427,6 +517,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
                 android:foregroundGravity="center"
                 android:gravity="center"
                 android:textColor="@color/white"
@@ -437,7 +528,7 @@
 
             <TextView
                 android:id="@+id/textView11"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:maxLines="1"

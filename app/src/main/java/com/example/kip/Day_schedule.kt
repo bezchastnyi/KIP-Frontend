@@ -16,9 +16,6 @@ import java.util.concurrent.CountDownLatch
 
 class Day_schedule : AppCompatActivity() {
 
-    var schedulesStudent: List<studentScheduleDay> = emptyList()
-    var schedulesProfs: List<profscheduleDay> = emptyList()
-    var schedulesAuditory: List<studentScheduleDay> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +29,7 @@ class Day_schedule : AppCompatActivity() {
         val gson2 = Gson()
         val schedulesList = object : TypeToken<List<studentScheduleDay>>() {}.type
         val profsList = object : TypeToken<List<profscheduleDay>>() {}.type
+        val auditoryList = object : TypeToken<List<auditoryscheduleDay>>() {}.type
 
         schedulesStudent.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
 
@@ -40,14 +38,20 @@ class Day_schedule : AppCompatActivity() {
         val c = CountDownLatch(1)
         val task = doAsync() {
             println("$groupID $dayOfTheWeek")
-            println(studentScheduleByGroupDayLink)
             if(selectedScheduleType==0){
+                println(studentScheduleByGroupDayLink)
                 val jsonFileString = get(studentScheduleByGroupDayLink)
                 schedulesStudent = gson2.fromJson(jsonFileString.text, schedulesList)
             }
             else if(selectedScheduleType==1){
+                println(profscheduleByProfDayLink)
                 val jsonFileString = get(profscheduleByProfDayLink)
                 schedulesProfs = gson2.fromJson(jsonFileString.text, profsList)
+            }
+            else if(selectedScheduleType==2){
+                println(audienceScheduleByAudienceDayLink)
+                val jsonFileString = get(audienceScheduleByAudienceDayLink)
+                schedulesAuditoryDay = gson2.fromJson(jsonFileString.text, auditoryList)
             }
 
             connectionDone = true
@@ -66,6 +70,7 @@ class Day_schedule : AppCompatActivity() {
             textview += findViewById<TextView>(R.id.textViewA1)
             textview += findViewById<TextView>(R.id.textViewB1)
             textview += findViewById<TextView>(R.id.textViewC1)
+            textview += findViewById<TextView>(R.id.textViewType1)
             ScheduleText+=textview
 
             textview = emptyArray()
@@ -73,6 +78,7 @@ class Day_schedule : AppCompatActivity() {
             textview += findViewById<TextView>(R.id.textViewA2)
             textview += findViewById<TextView>(R.id.textViewB2)
             textview += findViewById<TextView>(R.id.textViewC2)
+            textview += findViewById<TextView>(R.id.textViewType2)
             ScheduleText+=textview
 
             textview = emptyArray()
@@ -80,6 +86,7 @@ class Day_schedule : AppCompatActivity() {
             textview += findViewById<TextView>(R.id.textViewA3)
             textview += findViewById<TextView>(R.id.textViewB3)
             textview += findViewById<TextView>(R.id.textViewC3)
+            textview += findViewById<TextView>(R.id.textViewType3)
             ScheduleText+=textview
 
             textview = emptyArray()
@@ -87,6 +94,7 @@ class Day_schedule : AppCompatActivity() {
             textview += findViewById<TextView>(R.id.textViewA4)
             textview += findViewById<TextView>(R.id.textViewB4)
             textview += findViewById<TextView>(R.id.textViewC4)
+            textview += findViewById<TextView>(R.id.textViewType4)
             ScheduleText+=textview
 
             textview = emptyArray()
@@ -94,6 +102,7 @@ class Day_schedule : AppCompatActivity() {
             textview += findViewById<TextView>(R.id.textViewA5)
             textview += findViewById<TextView>(R.id.textViewB5)
             textview += findViewById<TextView>(R.id.textViewC5)
+            textview += findViewById<TextView>(R.id.textViewType5)
             ScheduleText+=textview
 
             var currentWeek: Int = 0
@@ -109,6 +118,7 @@ class Day_schedule : AppCompatActivity() {
                         changeSchedule(schedulesStudent, currentWeek, ScheduleText)
                     }
                 }
+                findViewById<Switch>(R.id.switchWeek).isChecked=true
             }
 
             else if(selectedScheduleType==1) {
@@ -123,6 +133,21 @@ class Day_schedule : AppCompatActivity() {
                         changeSchedule2(schedulesProfs, currentWeek, ScheduleText)
                     }
                 }
+                findViewById<Switch>(R.id.switchWeek).isChecked=true
+            }
+            else if(selectedScheduleType==2) {
+                changeSchedule3(schedulesAuditoryDay, currentWeek, ScheduleText)
+
+                findViewById<Switch>(R.id.switchWeek).setOnCheckedChangeListener { buttonView, isChecked ->
+                    if (isChecked) {
+                        currentWeek = 0
+                        changeSchedule3(schedulesAuditoryDay, currentWeek, ScheduleText)
+                    } else {
+                        currentWeek = 1
+                        changeSchedule3(schedulesAuditoryDay, currentWeek, ScheduleText)
+                    }
+                }
+                findViewById<Switch>(R.id.switchWeek).isChecked=true
             }
 
 
@@ -137,22 +162,53 @@ class Day_schedule : AppCompatActivity() {
         }
     }
     fun changeSchedule(schedules :List<studentScheduleDay>, currentWeek:Int, ScheduleText:Array<Array<TextView>>){
+        for(schedule in ScheduleText){
+            for(text in schedule){
+                text.text=""
+            }
+        }
         for (schedule in schedules){
                 if(schedule.week == currentWeek){
                     ScheduleText[schedule.number][0].text = "${schedule.subjectName}"
                     ScheduleText[schedule.number][1].text = "${schedule.audienceName}"
                     ScheduleText[schedule.number][2].text = "${schedule.profName}"
+                    ScheduleText[schedule.number][3].text = "${schedule.type}"
                 }
+
         }
 
     }
 
     fun changeSchedule2(schedules:List<profscheduleDay>, currentWeek:Int, ScheduleText:Array<Array<TextView>>){
+        for(schedule in ScheduleText){
+            for(text in schedule){
+                text.text=""
+            }
+        }
         for (schedule in schedules){
             if(schedule.week == currentWeek){
                 ScheduleText[schedule.number][0].text = "${schedule.subjectName}"
                 ScheduleText[schedule.number][1].text = "${schedule.audienceName}"
-                ScheduleText[schedule.number][2].text = "${schedule.type} ${schedule.groupNames}"
+                ScheduleText[schedule.number][2].text = "${schedule.groupNames}"
+                ScheduleText[schedule.number][3].text = "${schedule.type}"
+            }
+
+        }
+
+    }
+
+    fun changeSchedule3(schedules:List<auditoryscheduleDay>, currentWeek:Int, ScheduleText:Array<Array<TextView>>){
+        for(schedule in ScheduleText){
+            for(text in schedule){
+                text.text=""
+            }
+        }
+        for (schedule in schedules){
+            if(schedule.week == currentWeek){
+                ScheduleText[schedule.number][0].text = "${schedule.subjectName}"
+                ScheduleText[schedule.number][1].text = "${schedule.profName}"
+                ScheduleText[schedule.number][2].text = "${schedule.groupNames}"
+                ScheduleText[schedule.number][3].text = "${schedule.type}"
             }
         }
 

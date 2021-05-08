@@ -20,9 +20,6 @@ var connectionDone = false
 
 class Group_activity : AppCompatActivity() {
 
-    var Facultys: List<faculty> = emptyList()
-
-    var Groups: List<group> = emptyList()
 
 
 
@@ -60,7 +57,7 @@ class Group_activity : AppCompatActivity() {
         val task = doAsync() {
                 println(groupLink)
 
-                if(Groups.isEmpty() || Facultys.isEmpty()) {
+
                     val jsonFileString = get(groupLink)
                     val jsonFileString2 = get(facultyLink)
 
@@ -79,14 +76,21 @@ class Group_activity : AppCompatActivity() {
 
 
                     for (group in Groups) {
-                        if (group.scheduleIsPresent) {
+                        var scheduleIsPresent=false
+                        for(day in group.scheduleIsPresent){
+                            if(day){
+                                scheduleIsPresent=true
+                                break
+                            }
+                        }
+                        if (scheduleIsPresent) {
                             groupArray += group.groupName
                         } else {
                             groupArray += "${group.groupName} (без расписания)"
                         }
                         groupIDArray += group.groupID
                     }
-                }
+
                 connectionDone = true
                 c.countDown()
 
@@ -179,7 +183,14 @@ class Group_activity : AppCompatActivity() {
                             println(courseInt)
                             for (group in Groups) {
                                 if (group.facultyID == facultyID && group.course == courseInt) {
-                                    if (group.scheduleIsPresent) {
+                                    var scheduleIsPresent=false
+                                    for(day in group.scheduleIsPresent){
+                                        if(day){
+                                            scheduleIsPresent=true
+                                            break
+                                        }
+                                    }
+                                    if (scheduleIsPresent) {
                                         groupArray2 += group.groupName
                                     } else {
                                         groupArray2 += "${group.groupName} (без расписания)"
@@ -207,8 +218,15 @@ class Group_activity : AppCompatActivity() {
 
                                         for (group in Groups) {
                                             if (group.groupName == text) {
+                                                var scheduleIsPresent=false
+                                                for(day in group.scheduleIsPresent){
+                                                    if(day){
+                                                        scheduleIsPresent=true
+                                                        break
+                                                    }
+                                                }
                                                 groupID = group.groupID
-                                                groupValid = group.scheduleIsPresent
+                                                groupValid = scheduleIsPresent
                                                 button3.isEnabled = true
                                                 button3.setBackgroundColor(Color.parseColor("#3700B3"))
                                             }
@@ -269,7 +287,14 @@ class Group_activity : AppCompatActivity() {
                         println(courseInt)
                         for (group in Groups) {
                             if (group.facultyID == facultyID && group.course == courseInt) {
-                                if (group.scheduleIsPresent) {
+                                var scheduleIsPresent=false
+                                for(day in group.scheduleIsPresent){
+                                    if(day){
+                                        scheduleIsPresent=true
+                                        break
+                                    }
+                                }
+                                if (scheduleIsPresent) {
                                     groupArray2 += group.groupName
                                 } else {
                                     groupArray2 += "${group.groupName} (без расписания)"
@@ -295,8 +320,15 @@ class Group_activity : AppCompatActivity() {
 
                                     for (group in Groups) {
                                         if (group.groupName == text) {
+                                            var scheduleIsPresent=false
+                                            for(day in group.scheduleIsPresent){
+                                                if(day){
+                                                    scheduleIsPresent=true
+                                                    break
+                                                }
+                                            }
                                             groupID = group.groupID
-                                            groupValid = group.scheduleIsPresent
+                                            groupValid = scheduleIsPresent
                                             button3.isEnabled = true
                                             button3.setBackgroundColor(Color.parseColor("#3700B3"))
                                         }
@@ -331,7 +363,7 @@ class Group_activity : AppCompatActivity() {
             }
             else{
                 val tv = findViewById<TextView>(R.id.textView3)
-                tv.text = "Выбирите ваш факультет"
+                tv.text = "Выберите ваш факультет"
 
                 spinnerCourse.isEnabled = false
                 spinnerGroup.isEnabled = false
@@ -388,7 +420,7 @@ class Group_activity : AppCompatActivity() {
                 }
 
                 button.setOnClickListener {
-                    val intent = Intent(this, Big_object_selection::class.java)
+                    val intent = Intent(this, Schedule_swipe::class.java)
                     startActivity(intent)
                 }
             }

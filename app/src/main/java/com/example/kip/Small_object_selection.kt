@@ -35,21 +35,21 @@ class Small_object_selection : AppCompatActivity() {
             startActivity(intent)
         }
 
-        var profs: List<prof> = emptyList()
-        var auditorys: List<prof> = emptyList()
 
         profs.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
 
         val c = CountDownLatch(1)
         connectionDone=false
-        println(profByCathedraLink)
+
         val task = doAsync(){
             if(selectedScheduleType==1) {
+                println(profByCathedraLink)
                 val jsonFileString2 = get(profByCathedraLink)
                 profs = gson.fromJson(jsonFileString2.text, profList)
             }
             else if(selectedScheduleType==2){
-                val jsonFileString2 = get(profByCathedraLink)
+                println(audienceByBuilingLink)
+                val jsonFileString2 = get(audienceByBuilingLink)
                 auditorys = gson.fromJson(jsonFileString2.text, auditoryList)
             }
 
@@ -71,7 +71,15 @@ class Small_object_selection : AppCompatActivity() {
                 for (prof in profs) {
                     //for (cathedra in cathedras) {
                     val chip2 = Chip(this)
-                    if (prof.scheduleIsPresent) {
+                    var scheduleIsPresent=false
+                    for(day in prof.scheduleIsPresent){
+                        if(day){
+                            scheduleIsPresent=true
+                            break
+                        }
+                    }
+
+                    if (scheduleIsPresent) {
                         chip2.text = "${prof.profSurname} ${prof.profName} ${prof.profPatronymic}"
                     } else {
                         chip2.text =
@@ -92,7 +100,7 @@ class Small_object_selection : AppCompatActivity() {
 
                     chip2.setOnClickListener {
                         profID = prof.profID
-                        profValid = prof.scheduleIsPresent
+                        profValid = scheduleIsPresent
                         val intent = Intent(this, Day_schedule_selection::class.java)
                         startActivity(intent)
                     }
@@ -105,11 +113,20 @@ class Small_object_selection : AppCompatActivity() {
                 for (audiory in auditorys) {
                     //for (cathedra in cathedras) {
                     val chip2 = Chip(this)
-                    if(audiory.scheduleIsPresent){
-                        chip2.text = "${audiory.profSurname} ${audiory.profName} ${audiory.profPatronymic}"
+
+                    var scheduleIsPresent=false
+                    for(day in audiory.scheduleIsPresent){
+                        if(day){
+                            scheduleIsPresent=true
+                            break
+                        }
+                    }
+
+                    if(scheduleIsPresent){
+                        chip2.text = "${audiory.audienceName}"
                     }
                     else{
-                        chip2.text = "${audiory.profSurname} ${audiory.profName} ${audiory.profPatronymic} (без расписания)"
+                        chip2.text = "${audiory.audienceName} (без расписания)"
                         chip2.isEnabled=false
                     }
                     chip2.isClickable = true
@@ -120,8 +137,8 @@ class Small_object_selection : AppCompatActivity() {
                     chip2.textAlignment = View.TEXT_ALIGNMENT_CENTER
 
                     chip2.setOnClickListener {
-                        audioryID = audiory.profID
-                        profValid = audiory.scheduleIsPresent
+                        audioryID = audiory.audienceID
+                        buidlingValid = scheduleIsPresent
                         val intent = Intent(this, Day_schedule_selection::class.java)
                         startActivity(intent)
                     }

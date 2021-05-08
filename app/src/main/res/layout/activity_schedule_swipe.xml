@@ -48,23 +48,41 @@
             android:foreground="@android:drawable/bottom_bar" />
 
         <ImageButton
-            android:id="@+id/swipe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="#00FFFFFF"
-            android:src="@drawable/swipebutton2" />
-
-        <ImageButton
             android:id="@+id/swipe2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="#000051"
             android:foregroundGravity="center"
-            android:src="@drawable/swipebutton" />
+            android:paddingTop="20sp"
+            android:paddingBottom="20sp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/swipebutton211" />
+
+        <ImageButton
+            android:id="@+id/swipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:paddingTop="20sp"
+            android:paddingBottom="20sp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/swipebutton21" />
+
+        <ImageButton
+            android:id="@+id/swipe3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#000051"
+            android:paddingTop="20sp"
+            android:paddingBottom="20sp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/swipebutton32" />
 
     </LinearLayout>
 

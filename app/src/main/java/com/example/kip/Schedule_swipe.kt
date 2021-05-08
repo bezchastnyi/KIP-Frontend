@@ -21,7 +21,7 @@ class Schedule_swipe : AppCompatActivity() {
             }
 
             val button = findViewById<ImageButton>(R.id.swipe2)
-            if(groupValid) {
+            if(groupValid && students) {
                 button.setOnClickListener {
                     selectedScheduleType=0
                     val intent = Intent(this, Day_schedule_selection::class.java)
@@ -32,6 +32,14 @@ class Schedule_swipe : AppCompatActivity() {
             if(profValid) {
                 button2.setOnClickListener {
                     selectedScheduleType=1
+                    val intent = Intent(this, Big_object_selection::class.java)
+                    startActivity(intent)
+                }
+            }
+            val button4 = findViewById<ImageButton>(R.id.swipe3)
+            if(buidlingValid) {
+                button4.setOnClickListener {
+                    selectedScheduleType=2
                     val intent = Intent(this, Big_object_selection::class.java)
                     startActivity(intent)
                 }

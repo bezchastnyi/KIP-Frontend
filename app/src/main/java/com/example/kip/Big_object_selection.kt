@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit
 
 class Big_object_selection : AppCompatActivity() {
     var cathedras: List<cathedra> = emptyList()
-    var buildings: List<cathedra> = emptyList()
+    var buildings: List<building> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,31 +61,15 @@ class Big_object_selection : AppCompatActivity() {
         println(profByCathedraLink)
         val task = doAsync(){
             if(selectedScheduleType==1) {
-                if (cathedras.isEmpty()) {
                     val jsonFileString = get(cathedraByFacultyLink)
                     cathedras = gson2.fromJson(jsonFileString.text, cathedraList)
-                } else {
-                    if (cathedras.isNotEmpty()) {
-                        if (cathedras[0].cathedraID != cathedraID) {
-                            val jsonFileString = get(cathedraByFacultyLink)
-                            cathedras = gson2.fromJson(jsonFileString.text, cathedraList)
-                        }
-                    }
-                }
+
             }
             else if(selectedScheduleType==2){
-                if (buildings.isEmpty()) {
-                    val jsonFileString = get(cathedraByFacultyLink)
-                    buildings = gson2.fromJson(jsonFileString.text, cathedraList)
-                } else {
-                    if (buildings.isNotEmpty()) {
-                        if (buildings[0].cathedraID != buildingsID) {
-                            val jsonFileString = get(cathedraByFacultyLink)
-                            buildings = gson2.fromJson(jsonFileString.text, buildingList)
-                        }
-                    }
-                }
-                }
+                val jsonFileString = get(buildingsLink)
+                buildings = gson2.fromJson(jsonFileString.text, buildingList)
+
+            }
 
             connectionDone = true
             c.countDown()
@@ -131,7 +115,7 @@ class Big_object_selection : AppCompatActivity() {
 
                 for (building in buildings) {
                     val chip = Chip(this)
-                    chip.text = building.cathedraName
+                    chip.text = building.buildingName
                     chip.isClickable = true
                     chip.isCheckable = false
 
@@ -144,8 +128,8 @@ class Big_object_selection : AppCompatActivity() {
 
                     chip.textAlignment = View.TEXT_ALIGNMENT_CENTER
                     chip.setOnClickListener {
-                        cathedraID = building.cathedraID
-                        val intent = Intent(this, Day_schedule::class.java)
+                        buildingsID = building.buildingID
+                        val intent = Intent(this, Small_object_selection::class.java)
                         startActivity(intent)
                     }
 
