@@ -5,8 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -34,7 +37,7 @@ class Big_object_selection : AppCompatActivity() {
         }
         else{
             button.setOnClickListener {
-                val intent = Intent(this, Group_activity::class.java)
+                val intent = Intent(this, Schedule_swipe::class.java)
                 startActivity(intent)
             }
         }
@@ -82,8 +85,8 @@ class Big_object_selection : AppCompatActivity() {
             popupMessage()
         }
         else {
+            var chipsArray: Array<Chip> = emptyArray()
             if(selectedScheduleType==1) {
-                var chipsArray: Array<Chip> = emptyArray()
 
                 for (cathedra in cathedras) {
                     val chip = Chip(this)
@@ -111,7 +114,6 @@ class Big_object_selection : AppCompatActivity() {
                 }
             }
             else if(selectedScheduleType ==2){
-                var chipsArray: Array<Chip> = emptyArray()
 
                 for (building in buildings) {
                     val chip = Chip(this)
@@ -138,19 +140,35 @@ class Big_object_selection : AppCompatActivity() {
                     chipsArray += chip
                 }
             }
+
+            var AnimationDay: Array<Animation> = emptyArray()
+
+            var i:Long=0
+            for(chip in chipsArray){
+                val animation = AnimationUtils.loadAnimation(this,R.anim.kip_button_left)
+                animation.duration=250
+                animation.startOffset=100+i*50
+                i+=1
+                AnimationDay+=animation
+            }
+            var k=0
+            for(chip in chipsArray){
+                chip.startAnimation(AnimationDay[k])
+                k+=1
+            }
         }
     }
 
     fun popupMessage() {
         val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
-        alertDialogBuilder.setMessage("Отсутствует интернет-соединение или сервера не отвечают.")
+        alertDialogBuilder.setMessage("Відсутнє інтернет-з'єднання.")
         alertDialogBuilder.setIcon(R.drawable.kip_logo)
-        alertDialogBuilder.setTitle("Произошла ошибка")
+        alertDialogBuilder.setTitle("Увага!")
         alertDialogBuilder.setNegativeButton("Ок", DialogInterface.OnClickListener { dialogInterface, i ->
             Log.d("internet", "Ok btn pressed")
             // add these two lines, if you wish to close the app:
             //finishAffinity()
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, Schedule_swipe::class.java)
             startActivity(intent)
             //System.exit(0)
         })

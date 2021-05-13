@@ -6,7 +6,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageButton
+import android.widget.TextView
 import com.google.android.material.chip.Chip
 
 
@@ -18,6 +21,34 @@ class Day_schedule_selection : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_day_schedule_selection)
         val button = findViewById<ImageButton>(R.id.back_button_LS)
+
+        val animation = AnimationUtils.loadAnimation(this,R.anim.kip_button_left)
+        var ChipDay: Array<Chip> = emptyArray()
+        var AnimationDay: Array<Animation> = emptyArray()
+
+        ChipDay += findViewById<Chip>(R.id.chipMonday)
+        ChipDay += findViewById<Chip>(R.id.chipThuesday)
+        ChipDay += findViewById<Chip>(R.id.chipWednesday)
+        ChipDay += findViewById<Chip>(R.id.chipThursday)
+        ChipDay += findViewById<Chip>(R.id.chipFriday)
+        ChipDay += findViewById<Chip>(R.id.chipSaturday)
+
+
+        var i:Long=0
+        for(chip in ChipDay){
+            val animation = AnimationUtils.loadAnimation(this,R.anim.kip_button_left)
+            animation.duration=300
+            animation.startOffset=100+i*100
+            i+=1
+            AnimationDay+=animation
+        }
+        var k=0
+        for(chip in ChipDay){
+            chip.startAnimation(AnimationDay[k])
+            k+=1
+        }
+
+
         if(selectedScheduleType==0) {
             button.setOnClickListener {
                 val intent = Intent(this, Schedule_swipe::class.java)
@@ -72,7 +103,7 @@ class Day_schedule_selection : AppCompatActivity() {
         findViewById<Chip>(R.id.chipMonday).setOnTouchListener { v, event ->
             if (v is Chip) {
                 dayOfTheWeek = 0
-                DayOfWeekName = "Понедельник"
+                DayOfWeekName = "Понеділок"
                 val intent = Intent(this, Day_schedule::class.java)
                 startActivity(intent)
             }
@@ -82,7 +113,7 @@ class Day_schedule_selection : AppCompatActivity() {
         findViewById<Chip>(R.id.chipThuesday).setOnTouchListener { v, event ->
             if (v is Chip) {
                 dayOfTheWeek = 1
-                DayOfWeekName = "Вторник"
+                DayOfWeekName = "Вівторок"
                 val intent = Intent(this, Day_schedule::class.java)
                 startActivity(intent)
             }
@@ -92,7 +123,7 @@ class Day_schedule_selection : AppCompatActivity() {
         findViewById<Chip>(R.id.chipWednesday).setOnTouchListener { v, event ->
             if (v is Chip) {
                 dayOfTheWeek = 2
-                DayOfWeekName = "Среда"
+                DayOfWeekName = "Середа"
                 val intent = Intent(this, Day_schedule::class.java)
                 startActivity(intent)
             }
@@ -102,7 +133,7 @@ class Day_schedule_selection : AppCompatActivity() {
         findViewById<Chip>(R.id.chipThursday).setOnTouchListener { v, event ->
             if (v is Chip) {
                 dayOfTheWeek = 3
-                DayOfWeekName = "Четверг"
+                DayOfWeekName = "Четвер"
                 val intent = Intent(this, Day_schedule::class.java)
                 startActivity(intent)
             }
@@ -112,7 +143,7 @@ class Day_schedule_selection : AppCompatActivity() {
         findViewById<Chip>(R.id.chipFriday).setOnTouchListener { v, event ->
             if (v is Chip) {
                 dayOfTheWeek = 4
-                DayOfWeekName = "Пятница"
+                DayOfWeekName = "П'ятниця"
                 val intent = Intent(this, Day_schedule::class.java)
                 startActivity(intent)
             }
@@ -122,7 +153,7 @@ class Day_schedule_selection : AppCompatActivity() {
         findViewById<Chip>(R.id.chipSaturday).setOnTouchListener { v, event ->
             if (v is Chip) {
                 dayOfTheWeek = 5
-                DayOfWeekName = "Суббота"
+                DayOfWeekName = "Субота"
                 val intent = Intent(this, Day_schedule::class.java)
                 startActivity(intent)
             }
@@ -136,9 +167,9 @@ class Day_schedule_selection : AppCompatActivity() {
 
     fun popupMessage() {
         val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
-        alertDialogBuilder.setMessage("Отсутствует интернет-соединение или сервера не отвечают.")
+        alertDialogBuilder.setMessage("Відсутнє інтернет-з'єднання.")
         alertDialogBuilder.setIcon(R.drawable.kip_logo)
-        alertDialogBuilder.setTitle("Произошла ошибка")
+        alertDialogBuilder.setTitle("Увага!")
         alertDialogBuilder.setNegativeButton("Ок", DialogInterface.OnClickListener { dialogInterface, i ->
             Log.d("internet", "Ok btn pressed")
             // add these two lines, if you wish to close the app:

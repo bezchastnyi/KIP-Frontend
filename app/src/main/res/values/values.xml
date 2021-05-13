@@ -8,7 +8,7 @@
     <string name="Day6">18:10 -</string>
 
     <string-array name="Course">
-        <item>Выберите курс</item>
+        <item>Оберіть курс</item>
         <item>1 курс</item>
         <item>2 курс</item>
         <item>3 курс</item>
@@ -18,15 +18,15 @@
     </string-array>
 
     <string-array name="FacultySel">
-        <item>Выберете факультет</item>
+        <item>Оберіть факультет</item>
     </string-array>
 
     <string-array name="GroupSel">
-        <item>Выберете группу</item>
+        <item>Оберіть групу</item>
     </string-array>
 
     <string-array name="courseSel">
-        <item>Выберете курс</item>
+        <item>Оберіть курс</item>
     </string-array>
 
 </resources>

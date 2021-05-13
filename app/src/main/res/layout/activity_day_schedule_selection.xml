@@ -30,7 +30,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:maxLines="1"
-            android:text="Расписание"
+            android:text="Розклад"
             android:textColor="@color/white"
             android:textSize="32sp" />
 
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:autoText="false"
 
-            android:text="Понедельник"
+            android:text="Понеділок"
             android:textAlignment="center"
             android:textSize="30sp" />
 
@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autoText="false"
-            android:text="Вторник"
+            android:text="Вівторок"
             android:textAlignment="center"
             android:textSize="30sp" />
 
@@ -89,7 +89,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autoText="false"
-            android:text="Среда"
+            android:text="Середа"
             android:textAlignment="center"
             android:textSize="30sp" />
 
@@ -98,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autoText="false"
-            android:text="Четверг"
+            android:text="Четвер"
             android:textAlignment="center"
             android:textSize="30sp" />
 
@@ -107,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autoText="false"
-            android:text="Пятница"
+            android:text="П'ятниця"
             android:textAlignment="center"
             android:textSize="30sp" />
 
@@ -116,7 +116,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autoText="false"
-            android:text="Суббота"
+            android:text="Субота"
             android:textAlignment="center"
             android:textSize="30sp" />
     </com.google.android.material.chip.ChipGroup>

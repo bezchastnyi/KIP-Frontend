@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -41,7 +42,7 @@ class Group_activity : AppCompatActivity() {
         button3.isEnabled=false
         courseArray += resources.getStringArray(R.array.Course)
 
-        facultyArray+="Выберите факультет"
+        facultyArray+="Оберіть факультет"
 
         val gson2 = Gson()
         val FacultyList = object : TypeToken<List<faculty>>() {}.type
@@ -86,7 +87,7 @@ class Group_activity : AppCompatActivity() {
                         if (scheduleIsPresent) {
                             groupArray += group.groupName
                         } else {
-                            groupArray += "${group.groupName} (без расписания)"
+                            groupArray += "${group.groupName} (без роскладу)"
                         }
                         groupIDArray += group.groupID
                     }
@@ -105,24 +106,6 @@ class Group_activity : AppCompatActivity() {
         }
         else {
 
-            /*
-        val jsonFileString = getJsonDataFromAsset(applicationContext, "group.json")
-        val jsonFileString2 = getJsonDataFromAsset(applicationContext, "faculty.json")
-
-
-        var Facultys: List<faculty> = gson2.fromJson(jsonFileString2, FacultyList)
-
-        for (faculty in Facultys) {
-            facultyArray +=faculty.facultyShortName
-        }
-
-        Groups = gson.fromJson(jsonFileString, GroupList)
-
-        for (group in Groups) {
-            groupArray += group.groupName
-            groupIDArray +=group.groupID
-        }
-        */
 
             val spinnerFaculty: Spinner = findViewById(R.id.spinnerFaculty)
             val spinnerCourse: Spinner = findViewById(R.id.spinnerCourse)
@@ -157,7 +140,7 @@ class Group_activity : AppCompatActivity() {
 
                             val course: String = spinnerCourse.selectedItem.toString()
                             var courseInt: Int = 0
-                            if (course.substring(0, 1) != "В") {
+                            if (course.substring(0, 1) != "О") {
                                 button3.isEnabled = true
                                 courseInt = course.substring(0, 1).toInt()
 
@@ -165,7 +148,7 @@ class Group_activity : AppCompatActivity() {
                                 button3.isEnabled = false
                                 button3.setBackgroundColor(Color.GRAY)
                             }
-                            if (text.substring(0, 1) == "В") {
+                            if (text.substring(0, 1) == "О") {
                                 facultyID = 0
                                 button3.isEnabled = false
                             }
@@ -193,7 +176,7 @@ class Group_activity : AppCompatActivity() {
                                     if (scheduleIsPresent) {
                                         groupArray2 += group.groupName
                                     } else {
-                                        groupArray2 += "${group.groupName} (без расписания)"
+                                        groupArray2 += "${group.groupName} (без роскладу)"
                                     }
                                 }
                             }
@@ -264,7 +247,7 @@ class Group_activity : AppCompatActivity() {
 
                         val course: String = spinnerCourse.selectedItem.toString()
                         var courseInt: Int = 0
-                        if (course.substring(0, 1) != "В") {
+                        if (course.substring(0, 1) != "О") {
                             courseInt = course.substring(0, 1).toInt()
 
                         } else {
@@ -297,7 +280,7 @@ class Group_activity : AppCompatActivity() {
                                 if (scheduleIsPresent) {
                                     groupArray2 += group.groupName
                                 } else {
-                                    groupArray2 += "${group.groupName} (без расписания)"
+                                    groupArray2 += "${group.groupName} (без роскладу)"
                                 }
                             }
                         }
@@ -363,7 +346,7 @@ class Group_activity : AppCompatActivity() {
             }
             else{
                 val tv = findViewById<TextView>(R.id.textView3)
-                tv.text = "Выберите ваш факультет"
+                tv.text = "Оберіть факультет"
 
                 spinnerCourse.isEnabled = false
                 spinnerGroup.isEnabled = false
@@ -389,7 +372,7 @@ class Group_activity : AppCompatActivity() {
                     ) {
                         val text: String = spinnerFaculty.selectedItem.toString()
 
-                        if (text.substring(0, 1) == "В") {
+                        if (text.substring(0, 1) == "О") {
                             facultyID = 0
                             button3.isEnabled = false
                         }
@@ -430,9 +413,9 @@ class Group_activity : AppCompatActivity() {
 
     private fun popupMessage() {
         val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
-        alertDialogBuilder.setMessage("Отсутствует интернет-соединение или сервера не отвечают.")
+        alertDialogBuilder.setMessage("Відсутнє інтернет-з'єднання.")
         alertDialogBuilder.setIcon(R.drawable.kip_logo)
-        alertDialogBuilder.setTitle("Произошла ошибка")
+        alertDialogBuilder.setTitle("Увага!")
         alertDialogBuilder.setNegativeButton("Ок", DialogInterface.OnClickListener { dialogInterface, i ->
             Log.d("internet", "Ok btn pressed")
             // add these two lines, if you wish to close the app:

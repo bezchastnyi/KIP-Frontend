@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1081958406308",
+    "project_id": "ext-khpi-in-phone",
+    "storage_bucket": "ext-khpi-in-phone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081958406308:android:1f816e78ee2253194dee31",
+        "android_client_info": {
+          "package_name": "com.example.kip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081958406308-ecbm28emu1pmlpqjl6939jiif729vvee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCH_f4ntFJo2TDPHWrif0jyV-93IbMGIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081958406308-ecbm28emu1pmlpqjl6939jiif729vvee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Расписание"
+                android:text="Розклад"
                 android:textColor="@color/white"
                 android:textSize="36sp" />
         </LinearLayout>
@@ -55,10 +55,13 @@
             android:layout_weight="1"
             android:background="#000051"
             android:foregroundGravity="center"
+            android:paddingLeft="20sp"
             android:paddingTop="20sp"
+            android:paddingEnd="20sp"
+            android:paddingRight="20sp"
             android:paddingBottom="20sp"
             android:scaleType="fitCenter"
-            android:src="@drawable/swipebutton211" />
+            android:src="@drawable/studentbutton" />
 
         <ImageButton
             android:id="@+id/swipe"
@@ -67,10 +70,13 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="#00FFFFFF"
+            android:paddingLeft="20sp"
             android:paddingTop="20sp"
+            android:paddingEnd="20sp"
+            android:paddingRight="20sp"
             android:paddingBottom="20sp"
             android:scaleType="fitCenter"
-            android:src="@drawable/swipebutton21" />
+            android:src="@drawable/prepodbutton" />
 
         <ImageButton
             android:id="@+id/swipe3"
@@ -82,7 +88,7 @@
             android:paddingTop="20sp"
             android:paddingBottom="20sp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/swipebutton32" />
+            app:srcCompat="@drawable/buidlingbutton" />
 
     </LinearLayout>
 

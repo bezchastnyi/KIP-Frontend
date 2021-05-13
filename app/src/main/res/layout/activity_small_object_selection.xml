@@ -21,7 +21,7 @@
             tools:layout_editor_absoluteY="267dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -30,16 +30,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:background="#000051"
                     app:srcCompat="@drawable/backbutton" />
 
                 <TextView
                     android:id="@+id/textView4"
-                    android:layout_width="325dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Расписание"
+                    android:text="Розклад"
                     android:textColor="@color/white"
                     android:textSize="36sp" />
             </LinearLayout>

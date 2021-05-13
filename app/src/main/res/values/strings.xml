@@ -10,9 +10,9 @@
     <string name="login_failed">"Login failed"</string>
     <string name="action_sign_in">Войти</string>
     <string name="action_sign">TODO</string>
-    <string name="greeting">Добро пожаловать!</string>
+    <string name="greeting">Ласкаво просимо!</string>
     <string name="enter_password">Введите логин и пароль, чтобы войти</string>
-    <string name="enter_group">Выберете вашу группу</string>
+    <string name="enter_group">Оберіть вашу групу</string>
     <string name="title_activity_group_activity">Group_activity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

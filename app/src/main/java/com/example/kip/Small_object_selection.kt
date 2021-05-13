@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import com.google.android.material.chip.Chip
@@ -62,6 +64,7 @@ class Small_object_selection : AppCompatActivity() {
             popupMessage()
         }
         else {
+            var chipsArray: Array<Chip> = emptyArray()
             if(selectedScheduleType==1) {
                 val comparator = profCompare()
                 println(profs)
@@ -83,7 +86,7 @@ class Small_object_selection : AppCompatActivity() {
                         chip2.text = "${prof.profSurname} ${prof.profName} ${prof.profPatronymic}"
                     } else {
                         chip2.text =
-                            "${prof.profSurname} ${prof.profName} ${prof.profPatronymic} (без расписания)"
+                            "${prof.profSurname} ${prof.profName} ${prof.profPatronymic} (без роскладу)"
                         chip2.isEnabled = false
                     }
                     chip2.isClickable = true
@@ -106,6 +109,8 @@ class Small_object_selection : AppCompatActivity() {
                     }
 
                     findViewById<ChipGroup>(R.id.ChipProfGroup).addView(chip2)
+                    chipsArray+=chip2
+
                 }
 
             }
@@ -126,7 +131,7 @@ class Small_object_selection : AppCompatActivity() {
                         chip2.text = "${audiory.audienceName}"
                     }
                     else{
-                        chip2.text = "${audiory.audienceName} (без расписания)"
+                        chip2.text = "${audiory.audienceName} (без роскладу)"
                         chip2.isEnabled=false
                     }
                     chip2.isClickable = true
@@ -144,16 +149,33 @@ class Small_object_selection : AppCompatActivity() {
                     }
 
                     findViewById<ChipGroup>(R.id.ChipProfGroup).addView(chip2)
+                    chipsArray+=chip2
                 }
+            }
+
+            var AnimationDay: Array<Animation> = emptyArray()
+
+            var i:Long=0
+            for(chip in chipsArray){
+                val animation = AnimationUtils.loadAnimation(this,R.anim.kip_button_left)
+                animation.duration=250
+                animation.startOffset=100+i*50
+                i+=1
+                AnimationDay+=animation
+            }
+            var k=0
+            for(chip in chipsArray){
+                chip.startAnimation(AnimationDay[k])
+                k+=1
             }
 
         }
     }
     fun popupMessage() {
         val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
-        alertDialogBuilder.setMessage("Отсутствует интернет-соединение или сервера не отвечают.")
+        alertDialogBuilder.setMessage("Відсутнє інтернет-з'єднання.")
         alertDialogBuilder.setIcon(R.drawable.kip_logo)
-        alertDialogBuilder.setTitle("Произошла ошибка")
+        alertDialogBuilder.setTitle("Увага!")
         alertDialogBuilder.setNegativeButton("Ок", DialogInterface.OnClickListener { dialogInterface, i ->
             Log.d("internet", "Ok btn pressed")
             // add these two lines, if you wish to close the app:

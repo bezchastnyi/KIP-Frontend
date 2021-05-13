@@ -5,9 +5,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.Switch
 import android.widget.TextView
+import com.google.android.material.chip.Chip
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import khttp.get
@@ -24,6 +28,30 @@ class Day_schedule : AppCompatActivity() {
         val day = findViewById<TextView>(R.id.textViewDay)
 
         day.text = DayOfWeekName
+
+        var LayDay: Array<LinearLayout> = emptyArray()
+        var AnimationDay: Array<Animation> = emptyArray()
+
+        LayDay+=findViewById<LinearLayout>(R.id.Lay1)
+        LayDay+=findViewById<LinearLayout>(R.id.Lay2)
+        LayDay+=findViewById<LinearLayout>(R.id.Lay3)
+        LayDay+=findViewById<LinearLayout>(R.id.Lay4)
+        LayDay+=findViewById<LinearLayout>(R.id.Lay5)
+
+
+        var i:Long=0
+        for(lay in LayDay){
+            val animation = AnimationUtils.loadAnimation(this,R.anim.kip_button_left)
+            animation.duration=300
+            animation.startOffset=100+i*100
+            i+=1
+            AnimationDay+=animation
+        }
+        var k=0
+        for(lay in LayDay){
+            lay.startAnimation(AnimationDay[k])
+            k+=1
+        }
 
 
         val gson2 = Gson()
@@ -216,9 +244,9 @@ class Day_schedule : AppCompatActivity() {
 
     fun popupMessage() {
         val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
-        alertDialogBuilder.setMessage("Отсутствует интернет-соединение или сервера не отвечают.")
+        alertDialogBuilder.setMessage("Відсутнє інтернет-з'єднання.")
         alertDialogBuilder.setIcon(R.drawable.kip_logo)
-        alertDialogBuilder.setTitle("Произошла ошибка")
+        alertDialogBuilder.setTitle("Увага!")
         alertDialogBuilder.setNegativeButton("Ок", DialogInterface.OnClickListener { dialogInterface, i ->
             Log.d("internet", "Ok btn pressed")
             // add these two lines, if you wish to close the app:
