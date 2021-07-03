@@ -11,20 +11,16 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.Switch
 import android.widget.TextView
-import com.google.android.material.chip.Chip
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import khttp.get
 import org.jetbrains.anko.doAsync
 import java.util.concurrent.CountDownLatch
 
-class Day_schedule : AppCompatActivity() {
-
-
+class schedule_by_day_page : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_day_schedule)
-
+        setContentView(R.layout.activity_schedule_by_day_page)
         val day = findViewById<TextView>(R.id.textViewDay)
 
         day.text = DayOfWeekName
@@ -32,11 +28,11 @@ class Day_schedule : AppCompatActivity() {
         var LayDay: Array<LinearLayout> = emptyArray()
         var AnimationDay: Array<Animation> = emptyArray()
 
-        LayDay+=findViewById<LinearLayout>(R.id.Lay1)
-        LayDay+=findViewById<LinearLayout>(R.id.Lay2)
-        LayDay+=findViewById<LinearLayout>(R.id.Lay3)
-        LayDay+=findViewById<LinearLayout>(R.id.Lay4)
-        LayDay+=findViewById<LinearLayout>(R.id.Lay5)
+        LayDay+=findViewById<LinearLayout>(R.id.lin1)
+        LayDay+=findViewById<LinearLayout>(R.id.lin2)
+        LayDay+=findViewById<LinearLayout>(R.id.lin3)
+        LayDay+=findViewById<LinearLayout>(R.id.lin4)
+        LayDay+=findViewById<LinearLayout>(R.id.lin5)
 
 
         var i:Long=0
@@ -90,48 +86,48 @@ class Day_schedule : AppCompatActivity() {
 
         if (!connectionDone) {
             popupMessage()
-        }/*
+        }
         else {
-            var textview: Array<TextView> = emptyArray()
+            var TextView: Array<TextView> = emptyArray()
             var ScheduleText: Array<Array<TextView>> = emptyArray()
-            
-            textview += findViewById<TextView>(R.id.textView1A1)
-            textview += findViewById<TextView>(R.id.textViewB1)
-            textview += findViewById<TextView>(R.id.textViewC1)
-            textview += findViewById<TextView>(R.id.textViewType1)
-            ScheduleText+=textview
 
-            textview = emptyArray()
+            TextView += findViewById<TextView>(R.id.TextViewA1)
+            TextView += findViewById<TextView>(R.id.TextViewB1)
+            TextView += findViewById<TextView>(R.id.TextViewC1)
+            TextView += findViewById<TextView>(R.id.TextViewType1)
+            ScheduleText+=TextView
 
-            textview += findViewById<TextView>(R.id.textViewA2)
-            textview += findViewById<TextView>(R.id.textViewB2)
-            textview += findViewById<TextView>(R.id.textViewC2)
-            textview += findViewById<TextView>(R.id.textViewType2)
-            ScheduleText+=textview
+            TextView = emptyArray()
 
-            textview = emptyArray()
+            TextView += findViewById<TextView>(R.id.TextViewA2)
+            TextView += findViewById<TextView>(R.id.TextViewB2)
+            TextView += findViewById<TextView>(R.id.TextViewC2)
+            TextView += findViewById<TextView>(R.id.TextViewType2)
+            ScheduleText+=TextView
 
-            textview += findViewById<TextView>(R.id.textViewA3)
-            textview += findViewById<TextView>(R.id.textViewB3)
-            textview += findViewById<TextView>(R.id.textViewC3)
-            textview += findViewById<TextView>(R.id.textViewType3)
-            ScheduleText+=textview
+            TextView = emptyArray()
 
-            textview = emptyArray()
+            TextView += findViewById<TextView>(R.id.TextViewA3)
+            TextView += findViewById<TextView>(R.id.TextViewB3)
+            TextView += findViewById<TextView>(R.id.TextViewC3)
+            TextView += findViewById<TextView>(R.id.TextViewType3)
+            ScheduleText+=TextView
 
-            textview += findViewById<TextView>(R.id.textViewA4)
-            textview += findViewById<TextView>(R.id.textViewB4)
-            textview += findViewById<TextView>(R.id.textViewC4)
-            textview += findViewById<TextView>(R.id.textViewType4)
-            ScheduleText+=textview
+            TextView = emptyArray()
 
-            textview = emptyArray()
+            TextView += findViewById<TextView>(R.id.TextViewA4)
+            TextView += findViewById<TextView>(R.id.TextViewB4)
+            TextView += findViewById<TextView>(R.id.TextViewC4)
+            TextView += findViewById<TextView>(R.id.TextViewType4)
+            ScheduleText+=TextView
 
-            textview += findViewById<TextView>(R.id.textViewA5)
-            textview += findViewById<TextView>(R.id.textViewB5)
-            textview += findViewById<TextView>(R.id.textViewC5)
-            textview += findViewById<TextView>(R.id.textViewType5)
-            ScheduleText+=textview
+            TextView = emptyArray()
+
+            TextView += findViewById<TextView>(R.id.TextViewA5)
+            TextView += findViewById<TextView>(R.id.TextViewB5)
+            TextView += findViewById<TextView>(R.id.TextViewC5)
+            TextView += findViewById<TextView>(R.id.TextViewType5)
+            ScheduleText+=TextView
 
             var currentWeek: Int = 0
             if(selectedScheduleType==0) {
@@ -181,14 +177,13 @@ class Day_schedule : AppCompatActivity() {
 
             var i: Int = 0
 
-            val button = findViewById<ImageButton>(R.id.back_button_SE)
+            val button = findViewById<ImageButton>(R.id.imageButton3)
             button.setOnClickListener {
-                val intent = Intent(this, Day_schedule_selection::class.java)
+                val intent = Intent(this, select_day_schedule_page::class.java)
                 startActivity(intent)
             }
 
         }
-        */
     }
     fun changeSchedule(schedules :List<studentScheduleDay>, currentWeek:Int, ScheduleText:Array<Array<TextView>>){
         for(schedule in ScheduleText){
@@ -197,12 +192,12 @@ class Day_schedule : AppCompatActivity() {
             }
         }
         for (schedule in schedules){
-                if(schedule.week == currentWeek){
-                    ScheduleText[schedule.number][0].text = "${schedule.subjectName}"
-                    ScheduleText[schedule.number][1].text = "${schedule.audienceName}"
-                    ScheduleText[schedule.number][2].text = "${schedule.profName}"
-                    ScheduleText[schedule.number][3].text = "${schedule.type}"
-                }
+            if(schedule.week == currentWeek){
+                ScheduleText[schedule.number][0].text = "${schedule.subjectName}"
+                ScheduleText[schedule.number][1].text = "${schedule.audienceName}"
+                ScheduleText[schedule.number][2].text = "${schedule.profName}"
+                ScheduleText[schedule.number][3].text = "${schedule.type}"
+            }
 
         }
 

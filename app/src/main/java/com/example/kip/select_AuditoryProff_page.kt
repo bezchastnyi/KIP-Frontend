@@ -19,10 +19,10 @@ import org.jetbrains.anko.doAsync
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
-class Small_object_selection : AppCompatActivity() {
+class select_AuditoryProff_page : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_small_object_selection)
+        setContentView(R.layout.activity_select__auditory_proff_page)
 
         val gson = Gson()
         val profList = object : TypeToken<List<prof>>() {}.type
@@ -30,10 +30,10 @@ class Small_object_selection : AppCompatActivity() {
         val auditoryList = object : TypeToken<List<auditory>>() {}.type
 
 
-        val button = findViewById<ImageButton>(R.id.back_button_LS)
+        val button = findViewById<ImageButton>(R.id.imageButton)
 
         button.setOnClickListener{
-            val intent = Intent(this, Big_object_selection::class.java)
+            val intent = Intent(this, MainScreen_page::class.java)
             startActivity(intent)
         }
 
@@ -104,11 +104,11 @@ class Small_object_selection : AppCompatActivity() {
                     chip2.setOnClickListener {
                         profID = prof.profID
                         profValid = scheduleIsPresent
-                        val intent = Intent(this, Day_schedule_selection::class.java)
+                        val intent = Intent(this, select_day_schedule_page::class.java)
                         startActivity(intent)
                     }
 
-                    findViewById<ChipGroup>(R.id.ChipProfGroup).addView(chip2)
+                    findViewById<ChipGroup>(R.id.ChipAPgroup).addView(chip2)
                     chipsArray+=chip2
 
                 }
@@ -144,11 +144,11 @@ class Small_object_selection : AppCompatActivity() {
                     chip2.setOnClickListener {
                         audioryID = audiory.audienceID
                         buidlingValid = scheduleIsPresent
-                        val intent = Intent(this, Day_schedule_selection::class.java)
+                        val intent = Intent(this, select_day_schedule_page::class.java)
                         startActivity(intent)
                     }
 
-                    findViewById<ChipGroup>(R.id.ChipProfGroup).addView(chip2)
+                    findViewById<ChipGroup>(R.id.ChipAPgroup).addView(chip2)
                     chipsArray+=chip2
                 }
             }
@@ -180,7 +180,7 @@ class Small_object_selection : AppCompatActivity() {
             Log.d("internet", "Ok btn pressed")
             // add these two lines, if you wish to close the app:
             //finishAffinity()
-            val intent = Intent(this, Big_object_selection::class.java)
+            val intent = Intent(this, MainScreen_page::class.java)
             startActivity(intent)
             //System.exit(0)
         })

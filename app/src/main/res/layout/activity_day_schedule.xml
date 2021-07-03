@@ -24,7 +24,7 @@
             app:srcCompat="@drawable/backbutton" />
 
         <TextView
-            android:id="@+id/textViewDay"
+            android:id="@+id/TextView1Day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -70,7 +70,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewDate1"
+                    android:id="@+id/TextView1Date1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
@@ -82,7 +82,7 @@
                     android:textSize="36sp" />
 
                 <TextView
-                    android:id="@+id/textViewType1"
+                    android:id="@+id/TextView1Type1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="7"
@@ -94,7 +94,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/TextView116"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2.9"
@@ -107,7 +107,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewA1"
+                    android:id="@+id/TextView1A1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -118,7 +118,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textViewB1"
+                    android:id="@+id/TextView1B1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -127,7 +127,7 @@
                     android:textColor="#FFFFFF" />
 
                 <TextView
-                    android:id="@+id/textViewC1"
+                    android:id="@+id/TextView1C1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -159,7 +159,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewDate2"
+                    android:id="@+id/TextView1Date2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
@@ -171,7 +171,7 @@
                     android:textSize="36sp" />
 
                 <TextView
-                    android:id="@+id/textViewType2"
+                    android:id="@+id/TextView1Type2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="7"
@@ -183,7 +183,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/TextView117"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2.9"
@@ -196,7 +196,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewA2"
+                    android:id="@+id/TextView1A2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -207,7 +207,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textViewB2"
+                    android:id="@+id/TextView1B2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -216,7 +216,7 @@
                     android:textColor="#FFFFFF" />
 
                 <TextView
-                    android:id="@+id/textViewC2"
+                    android:id="@+id/TextView1C2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -248,7 +248,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewDate3"
+                    android:id="@+id/TextView1Date3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
@@ -260,7 +260,7 @@
                     android:textSize="36sp" />
 
                 <TextView
-                    android:id="@+id/textViewType3"
+                    android:id="@+id/TextView1Type3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="7"
@@ -272,7 +272,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView18"
+                android:id="@+id/TextView118"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2.9"
@@ -285,7 +285,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewA3"
+                    android:id="@+id/TextView1A3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -296,7 +296,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textViewB3"
+                    android:id="@+id/TextView1B3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -305,7 +305,7 @@
                     android:textColor="#FFFFFF" />
 
                 <TextView
-                    android:id="@+id/textViewC3"
+                    android:id="@+id/TextView1C3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -337,7 +337,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewDate4"
+                    android:id="@+id/TextView1Date4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
@@ -349,7 +349,7 @@
                     android:textSize="36sp" />
 
                 <TextView
-                    android:id="@+id/textViewType4"
+                    android:id="@+id/TextView1Type4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="7"
@@ -361,7 +361,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView19"
+                android:id="@+id/TextView119"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2.9"
@@ -374,7 +374,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewA4"
+                    android:id="@+id/TextView1A4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -385,7 +385,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textViewB4"
+                    android:id="@+id/TextView1B4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -394,7 +394,7 @@
                     android:textColor="#FFFFFF" />
 
                 <TextView
-                    android:id="@+id/textViewC4"
+                    android:id="@+id/TextView1C4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -426,7 +426,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewDate5"
+                    android:id="@+id/TextView1Date5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
@@ -438,7 +438,7 @@
                     android:textSize="36sp" />
 
                 <TextView
-                    android:id="@+id/textViewType5"
+                    android:id="@+id/TextView1Type5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="7"
@@ -450,7 +450,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/TextView120"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2.9"
@@ -463,7 +463,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewA5"
+                    android:id="@+id/TextView1A5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -474,7 +474,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textViewB5"
+                    android:id="@+id/TextView1B5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -483,7 +483,7 @@
                     android:textColor="#FFFFFF" />
 
                 <TextView
-                    android:id="@+id/textViewC5"
+                    android:id="@+id/TextView1C5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -506,7 +506,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/TextView19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -517,7 +517,7 @@
                 android:textSize="30sp" />
 
             <Switch
-                android:id="@+id/switchWeek"
+                android:id="@+id/switchWeek2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -531,7 +531,7 @@
                 tools:checked="false" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/TextView111"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

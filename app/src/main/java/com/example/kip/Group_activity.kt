@@ -87,7 +87,7 @@ class Group_activity : AppCompatActivity() {
                         if (scheduleIsPresent) {
                             groupArray += group.groupName
                         } else {
-                            groupArray += "${group.groupName} (без роскладу)"
+                            groupArray += "${group.groupName} (без розкладу)"
                         }
                         groupIDArray += group.groupID
                     }
@@ -176,7 +176,7 @@ class Group_activity : AppCompatActivity() {
                                     if (scheduleIsPresent) {
                                         groupArray2 += group.groupName
                                     } else {
-                                        groupArray2 += "${group.groupName} (без роскладу)"
+                                        groupArray2 += "${group.groupName} (без розкладу)"
                                     }
                                 }
                             }
@@ -280,7 +280,7 @@ class Group_activity : AppCompatActivity() {
                                 if (scheduleIsPresent) {
                                     groupArray2 += group.groupName
                                 } else {
-                                    groupArray2 += "${group.groupName} (без роскладу)"
+                                    groupArray2 += "${group.groupName} (без розкладу)"
                                 }
                             }
                         }

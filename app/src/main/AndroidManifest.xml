@@ -14,7 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KHPI_in_phone"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Auditory_schedule_extended"></activity>
+        <activity android:name=".record_book_page"></activity>
+        <activity android:name=".select_AuditoryProff_page" />
+        <activity android:name=".select_BuidlingFaculty_page" />
+        <activity android:name=".schedule_by_day_page" />
+        <activity android:name=".select_day_schedule_page" />
+        <activity android:name=".MainScreen_page" />
+        <activity android:name=".log_in_page" />
+        <activity android:name=".Enter_page">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Auditory_schedule_extended" />
         <activity android:name=".Auditory_schedule" />
         <activity android:name=".Aduitory_schedule_selection" />
         <activity android:name=".Building_shedule_selection" />

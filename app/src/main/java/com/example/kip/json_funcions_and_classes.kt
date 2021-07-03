@@ -17,6 +17,8 @@ var auditorys: List<auditory> = emptyList()
 var Facultys: List<faculty> = emptyList()
 var Groups: List<group> = emptyList()
 
+var studentList: List<student> = emptyList()
+
 
 data class group(val facultyID: Int, val faculty: String, val groupID: Int, val course: Int,val scheduleIsPresent:List<Boolean>, val groupName: String) {
 }
@@ -49,6 +51,8 @@ data class profscheduleDay(val subjectName:String, val type:String,val number:In
 }
 
 data class auditoryscheduleDay(val subjectName:String, val type:String,val number:Int,val week:Int,val audienceName:String,val groupNames:String,val profName:String) {
+}
+data class student(val studentId: Int,val firstName: String,val lastName: String,val patronymic: String,val course: Int,val groupId: Int,val group: String,val facultyId:Int,val faculty:String,val cathedraId:Int,val cathedra:String,val specialization:String,val specialty:String,val studyingProgram:String,val studyingLevel:String,val studyingForm:String,val budgetForm:String) {
 }
 
 class profCompare: Comparator<prof>{

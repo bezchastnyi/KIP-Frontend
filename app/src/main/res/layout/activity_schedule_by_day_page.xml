@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".schedule_by_day_page">
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        app:srcCompat="@android:drawable/btn_dialog" />
+
+    <TextView
+        android:id="@+id/textViewDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="ДЕНЬ НЕДЕЛИ"
+        android:textColor="#1C2C84"
+        android:textSize="36sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Switch
+            android:id="@+id/switchWeek"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:text="Парна" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="40sp">
+
+        <LinearLayout
+            android:id="@+id/lin1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:paddingLeft="10sp"
+            android:paddingTop="10sp"
+            android:paddingRight="40sp">
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:paddingLeft="10sp"
+                android:paddingRight="10sp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:id="@+id/view2N"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@xml/forms" />
+
+                    <TextView
+                        android:id="@+id/TextView14N"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="50sp"
+                        android:gravity="center"
+                        android:text="8:30-10:10"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/TextViewType1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="30sp"
+                        android:gravity="center"
+                        android:text="Лекцiя"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp" />
+
+                </RelativeLayout>
+
+            </FrameLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2">
+
+                <View
+                    android:id="@+id/view21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@xml/forms_grey" />
+
+                <TextView
+                    android:id="@+id/TextViewA1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="70sp"
+                    android:gravity="center"
+                    android:text="ТЕКСТ"
+                    android:textColor="#1C2C84" />
+
+                <TextView
+                    android:id="@+id/TextViewB1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5sp"
+                    android:gravity="center"
+                    android:text="АУДИТОРИЯ"
+                    android:textColor="#1C2C84" />
+
+                <TextView
+                    android:id="@+id/TextViewC1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="70sp"
+                    android:gravity="center"
+                    android:text="ПРЕРОД"
+                    android:textColor="#1C2C84" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:paddingLeft="10sp"
+            android:paddingTop="10sp"
+            android:paddingRight="40sp">
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:paddingLeft="10sp"
+                android:paddingRight="10sp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:id="@+id/a1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@xml/forms" />
+
+                    <TextView
+                        android:id="@+id/TextView14Na"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="50sp"
+                        android:gravity="center"
+                        android:text="10:25-12:00"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/TextViewType2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="30sp"
+                        android:gravity="center"
+                        android:text="Лекцiя"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp" />
+
+                </RelativeLayout>
+
+            </FrameLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2">
+
+                <View
+                    android:id="@+id/view22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@xml/forms_grey" />
+
+                <TextView
+                    android:id="@+id/TextViewA2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="70sp"
+                    android:gravity="center"
+                    android:text="ТЕКСТ"
+                    android:textColor="#1C2C84" />
+
+                <TextView
+                    android:id="@+id/TextViewB2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5sp"
+                    android:gravity="center"
+                    android:text="АУДИТОРИЯ"
+                    android:textColor="#1C2C84" />
+
+                <TextView
+                    android:id="@+id/TextViewC2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="65sp"
+                    android:gravity="center"
+                    android:text="ПРЕРОД"
+                    android:textColor="#1C2C84" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:paddingLeft="10sp"
+            android:paddingTop="10sp"
+            android:paddingRight="40sp">
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:paddingLeft="10sp"
+                android:paddingRight="10sp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:id="@+id/view3N"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@xml/forms" />
+
+                    <TextView
+                        android:id="@+id/TextView143"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="50sp"
+                        android:gravity="center"
+                        android:text="12:35-14:10"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/TextViewType3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="30sp"
+                        android:gravity="center"
+                        android:text="Лекцiя"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp" />
+
+                </RelativeLayout>
+
+            </FrameLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2">
+
+                <View
+                    android:id="@+id/view24N"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@xml/forms_grey" />
+
+                <TextView
+                    android:id="@+id/TextViewA3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="70sp"
+                    android:gravity="center"
+                    android:text="ТЕКСТ"
+                    android:textColor="#1C2C84" />
+
+                <TextView
+                    android:id="@+id/TextViewB3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5sp"
+                    android:gravity="center"
+                    android:text="АУДИТОРИЯ"
+                    android:textColor="#1C2C84" />
+
+                <TextView
+                    android:id="@+id/TextViewC3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="70sp"
+                    android:gravity="center"
+                    android:text="ПРЕРОД"
+                    android:textColor="#1C2C84" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:paddingLeft="10sp"
+            android:paddingTop="10sp"
+            android:paddingRight="40sp">
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:paddingLeft="10sp"
+                android:paddingRight="10sp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:id="@+id/view25N"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@xml/forms" />
+
+                    <TextView
+                        android:id="@+id/TextView142"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="50sp"
+                        android:gravity="center"
+                        android:text="14:30-16:00"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/TextViewType4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="30sp"
+                        android:gravity="center"
+                        android:text="Лекцiя"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp" />
+
+                </RelativeLayout>
+
+            </FrameLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2">
+
+                <View
+                    android:id="@+id/view26N"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@xml/forms_grey" />
+
+                <TextView
+                    android:id="@+id/TextViewA4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="70sp"
+                    android:gravity="center"
+                    android:text="ТЕКСТ"
+                    android:textColor="#1C2C84" />
+
+                <TextView
+                    android:id="@+id/TextViewB4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5sp"
+                    android:gravity="center"
+                    android:text="АУДИТОРИЯ"
+                    android:textColor="#1C2C84" />
+
+                <TextView
+                    android:id="@+id/TextViewC4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="70sp"
+                    android:gravity="center"
+                    android:text="ПРЕРОД"
+                    android:textColor="#1C2C84" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:paddingLeft="10sp"
+            android:paddingTop="10sp"
+            android:paddingRight="40sp">
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:paddingLeft="10sp"
+                android:paddingRight="10sp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:id="@+id/view27N"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@xml/forms" />
+
+                    <TextView
+                        android:id="@+id/TextView14"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="50sp"
+                        android:gravity="center"
+                        android:text="16:25-18:05"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/TextViewType5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="30sp"
+                        android:gravity="center"
+                        android:text="Лекцiя"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp" />
+
+                </RelativeLayout>
+
+            </FrameLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2">
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@xml/forms_grey" />
+
+                <TextView
+                    android:id="@+id/TextViewA5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="70sp"
+                    android:gravity="center"
+                    android:text="ТЕКСТ"
+                    android:textColor="#1C2C84" />
+
+                <TextView
+                    android:id="@+id/TextViewB5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5sp"
+                    android:gravity="center"
+                    android:text="АУДИТОРИЯ"
+                    android:textColor="#1C2C84" />
+
+                <TextView
+                    android:id="@+id/TextViewC5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="70sp"
+                    android:gravity="center"
+                    android:text="ПРЕРОД"
+                    android:textColor="#1C2C84" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
