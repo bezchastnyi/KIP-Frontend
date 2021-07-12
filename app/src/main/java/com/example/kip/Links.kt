@@ -2,8 +2,24 @@ package com.example.kip
 
 const val token:Int=3012
 const val baseLink:String = "https://kip-server-get-b5ntqidyva-nw.a.run.app/v1"
-const val mail:String = "Oleksii.Bezchastnyi@cs.khpi.edu.ua"
-const val pass:String = "mQT2vL"
+
+
+var mail:String = "Oleksii.Bezchastnyi@cs.khpi.edu.ua"
+    set(value) {
+        field = value
+        semesterMarksListLink = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/SemesterMarksList/${mail}/${pass}/${semester}"
+        semesterStudyingPlanLink = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/SemesterStudyingPlan/${mail}/${pass}/${semester}"
+        personalInfoLink = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/PersonalInformation/${mail}/${pass}/"
+        studentLogIn = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/PersonalInformation/${mail}/${pass}"
+    }
+var pass:String = "mQT2vL"
+    set(value) {
+        field = value
+        semesterMarksListLink = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/SemesterMarksList/${mail}/${pass}/${semester}"
+        semesterStudyingPlanLink = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/SemesterStudyingPlan/${mail}/${pass}/${semester}"
+        personalInfoLink = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/PersonalInformation/${mail}/${pass}/"
+        studentLogIn = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/PersonalInformation/${mail}/${pass}"
+    }
 
 var facultyID:Int=0
     set(value) {
@@ -52,6 +68,12 @@ var dayOfTheWeek:Int=0
         profscheduleByProfDayLink = "$baseLink/ProfSchedule/Prof/$profID/Day/$dayOfTheWeek"
         audienceScheduleByAudienceDayLink = "$baseLink/AudienceSchedule/Audience/${audioryID}/Day/$dayOfTheWeek"
     }
+var semester:Int=5
+    set(value) {
+        field = value
+        semesterMarksListLink = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/SemesterMarksList/${mail}/${pass}/${semester}"
+        semesterStudyingPlanLink = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/SemesterStudyingPlan/${mail}/${pass}/${semester}"
+    }
 
 var groupLink:String = "$baseLink/Group"
 var facultyLink:String = "$baseLink/faculty"
@@ -67,3 +89,7 @@ var profScheduleByProfLink:String = "$baseLink/profschedule/prof/$profID"
 var profscheduleByProfDayLink = "$baseLink/ProfSchedule/Prof/$profID/Day/$dayOfTheWeek"
 var profByCathedraLink:String = "$baseLink/prof/cathedra/${cathedraID}"
 var studentLogIn:String = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/PersonalInformation/${mail}/${pass}"
+var semesterMarksListLink:String = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/SemesterMarksList/${mail}/${pass}/${semester}"
+var semesterStudyingPlanLink:String = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/SemesterStudyingPlan/${mail}/${pass}/${semester}"
+var debtListLink:String = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/debtlist/${mail}/${pass}/"
+var personalInfoLink:String = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/PersonalInformation/${mail}/${pass}/"

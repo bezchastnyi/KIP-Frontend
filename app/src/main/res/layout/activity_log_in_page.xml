@@ -54,7 +54,7 @@
                 android:ems="10"
                 android:inputType="textEmailAddress"
                 android:shadowColor="#FFFFFF"
-                android:text="Електронна пошта"
+                android:text="Oleksii.Bezchastnyi@cs.khpi.edu.ua"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
 
@@ -81,7 +81,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:text="Пароль"
+                android:text="mQT2vL"
                 android:textSize="24sp" />
 
             <View

@@ -31,16 +31,29 @@
 
     </LinearLayout>
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/ChipBFgroup"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingLeft="40sp"
-        android:paddingRight="40sp"
-        android:soundEffectsEnabled="false"
-        app:singleLine="false"
-        app:singleSelection="true" />
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/ChipBFgroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="40sp"
+                android:paddingRight="40sp"
+                android:soundEffectsEnabled="false"
+                app:singleLine="false"
+                app:singleSelection="true">
+
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+    </ScrollView>
 
     <View
         android:id="@+id/divider8"

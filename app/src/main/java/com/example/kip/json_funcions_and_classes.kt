@@ -19,6 +19,10 @@ var Groups: List<group> = emptyList()
 
 var studentList: List<student> = emptyList()
 
+var semesterMarkLists: List<semesterMarkList> = emptyList()
+var semesterStudyingPlanLists: List<semesterStudyingPlan> = emptyList()
+var debtLists: List<debt> = emptyList()
+var personalinfoLists: List<debt> = emptyList()
 
 data class group(val facultyID: Int, val faculty: String, val groupID: Int, val course: Int,val scheduleIsPresent:List<Boolean>, val groupName: String) {
 }
@@ -53,6 +57,18 @@ data class profscheduleDay(val subjectName:String, val type:String,val number:In
 data class auditoryscheduleDay(val subjectName:String, val type:String,val number:Int,val week:Int,val audienceName:String,val groupNames:String,val profName:String) {
 }
 data class student(val studentId: Int,val firstName: String,val lastName: String,val patronymic: String,val course: Int,val groupId: Int,val group: String,val facultyId:Int,val faculty:String,val cathedraId:Int,val cathedra:String,val specialization:String,val specialty:String,val studyingProgram:String,val studyingLevel:String,val studyingForm:String,val budgetForm:String) {
+}
+
+data class semesterMarkList(val subjectId: Int,val subject: String,val prof: String,val shortCathedra: String,val cathedra: String,val shortMark: Int,val nationalMark: String,val fullMark: Int,val ectsMark: String,val credits: Int,val control: String,val isDebt: Boolean,val date: String) {
+}
+
+data class semesterStudyingPlan(val subjectId: Int,val subject: String,val shortCathedra: String,val cathedra: String,val course: Int,val semester: Int,val credits: Int,val audits: String,val control: String) {
+}
+
+data class debt(val subjectId: Int,val subject: String,val prof: String,val shortCathedra: String,val cathedra: String,val credits: Int,val control: String,val date: String) {
+}
+
+data class personalinfo(val studentId: Int,val firstName: String,val lastName: String,val patronymic: String,val course: Int,val groupId: Int,val group: String,val facultyId: Int,val faculty: String,val cathedraId: Int,val cathedra: String,val specialization: String,val specialty: String,val studyingProgram: String,val studyingLevel: String,val studyingForm: String,val budgetForm: String) {
 }
 
 class profCompare: Comparator<prof>{

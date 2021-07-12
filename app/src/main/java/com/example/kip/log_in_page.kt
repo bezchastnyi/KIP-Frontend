@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -17,7 +18,7 @@ class log_in_page : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in_page)
-
+        /*
         val studList = object : TypeToken<List<student>>() {}.type
         val FacultyList = object : TypeToken<List<group>>() {}.type
 
@@ -57,9 +58,13 @@ class log_in_page : AppCompatActivity() {
             popupMessage()
         }
         else {
+
+         */
             selectedScheduleType = 0
             val button = findViewById<Button>(R.id.log_in_button)
             button.setOnClickListener {
+                mail = findViewById<EditText>(R.id.editTextTextEmailAddress).text.toString()
+                pass = findViewById<EditText>(R.id.editTextTextPassword).text.toString()
                 val intent = Intent(this, MainScreen_page::class.java)
                 startActivity(intent)
             }
@@ -68,7 +73,7 @@ class log_in_page : AppCompatActivity() {
                 val intent = Intent(this, Enter_page::class.java)
                 startActivity(intent)
             }
-        }
+        //}
     }
     fun popupMessage() {
         val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
