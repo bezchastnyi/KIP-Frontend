@@ -21,9 +21,9 @@
 
         <TextView
             android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
             android:gravity="center"
             android:text="Розклад"
             android:textColor="#FFFFFF"
@@ -33,7 +33,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,7 +44,7 @@
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/ChipBFgroup"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:paddingLeft="40sp"
                 android:paddingRight="40sp"
@@ -59,13 +60,13 @@
         android:id="@+id/divider8"
         android:layout_width="match_parent"
         android:layout_height="6sp"
-        android:layout_weight="0.1"
+        android:layout_weight="0"
         android:background="?android:attr/listDivider" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80sp"
-        android:layout_weight="0.2"
+        android:layout_weight="0"
         android:background="#FFFFFF"
         android:gravity="center">
 

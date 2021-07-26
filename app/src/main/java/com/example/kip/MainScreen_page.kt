@@ -7,10 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import khttp.get
 import org.jetbrains.anko.doAsync
+import java.sql.DriverManager.println
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
@@ -33,7 +35,7 @@ class MainScreen_page : AppCompatActivity() {
             facultyID = studentList[0].facultyId
             cathedraID = studentList[0].cathedraId
 
-
+            findViewById<TextView>(R.id.Name).text = "${studentList[0].firstName} ${studentList[0].lastName}"
 
             val jsonFileStringG = get(groupLink)
             val jsonFileString2 = get(facultyLink)
@@ -96,6 +98,12 @@ class MainScreen_page : AppCompatActivity() {
             val button4 = findViewById<Button>(R.id.button4)
             button4.setOnClickListener {
                 selectedScheduleType = 6
+                val intent = Intent(this, record_book_page::class.java)
+                startActivity(intent)
+            }
+            val button8 = findViewById<Button>(R.id.button3)
+            button8.setOnClickListener {
+                selectedScheduleType = 7
                 val intent = Intent(this, record_book_page::class.java)
                 startActivity(intent)
             }

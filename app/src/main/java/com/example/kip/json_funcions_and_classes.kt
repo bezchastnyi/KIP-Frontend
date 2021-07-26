@@ -22,6 +22,7 @@ var studentList: List<student> = emptyList()
 var semesterMarkLists: List<semesterMarkList> = emptyList()
 var semesterStudyingPlanLists: List<semesterStudyingPlan> = emptyList()
 var debtLists: List<debt> = emptyList()
+var currentRankLists: List<currentRank> = emptyList()
 var personalinfoLists: List<debt> = emptyList()
 
 data class group(val facultyID: Int, val faculty: String, val groupID: Int, val course: Int,val scheduleIsPresent:List<Boolean>, val groupName: String) {
@@ -66,6 +67,9 @@ data class semesterStudyingPlan(val subjectId: Int,val subject: String,val short
 }
 
 data class debt(val subjectId: Int,val subject: String,val prof: String,val shortCathedra: String,val cathedra: String,val credits: Int,val control: String,val date: String) {
+}
+
+data class currentRank(val rank: Int,val studentId: Int,val fio: String,val group: String,val fullRankMark: Int,val shortRankMark: Int,val rankFormula: String) {
 }
 
 data class personalinfo(val studentId: Int,val firstName: String,val lastName: String,val patronymic: String,val course: Int,val groupId: Int,val group: String,val facultyId: Int,val faculty: String,val cathedraId: Int,val cathedra: String,val specialization: String,val specialty: String,val studyingProgram: String,val studyingLevel: String,val studyingForm: String,val budgetForm: String) {

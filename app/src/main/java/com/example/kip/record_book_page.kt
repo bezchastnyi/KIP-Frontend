@@ -1,28 +1,26 @@
 package com.example.kip
 
+import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.Typeface
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.Log
-import android.util.TypedValue
-import android.view.ContextThemeWrapper
 import android.view.Gravity
-import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import khttp.get
 import org.jetbrains.anko.doAsync
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
+
 
 class record_book_page : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +59,7 @@ class record_book_page : AppCompatActivity() {
         val semesterMarkListList = object : TypeToken<List<semesterMarkList>>() {}.type
         val semesterStudyingPlanlist = object : TypeToken<List<semesterStudyingPlan>>() {}.type
         val debtList = object : TypeToken<List<debt>>() {}.type
+        val currentRankList = object : TypeToken<List<currentRank>>() {}.type
 
         val auditoryList = object : TypeToken<List<auditory>>() {}.type
 
@@ -84,12 +83,20 @@ class record_book_page : AppCompatActivity() {
             else if(selectedScheduleType==5){
                 println(semesterStudyingPlanLink)
                 val jsonFileString2 = get(semesterStudyingPlanLink)
-                semesterStudyingPlanLists = gson.fromJson(jsonFileString2.text, semesterStudyingPlanlist)
+                semesterStudyingPlanLists = gson.fromJson(
+                        jsonFileString2.text,
+                        semesterStudyingPlanlist
+                )
             }
             else if(selectedScheduleType==6){
                 println(debtListLink)
                 val jsonFileString2 = get(debtListLink)
                 debtLists = gson.fromJson(jsonFileString2.text, debtList)
+            }
+            else if(selectedScheduleType==7){
+                println(currentRankLink)
+                val jsonFileString2 = get(currentRankLink)
+                currentRankLists = gson.fromJson(jsonFileString2.text, currentRankList)
             }
 
             connectionDone=true
@@ -104,11 +111,15 @@ class record_book_page : AppCompatActivity() {
             var chipsArray: Array<Chip> = emptyArray()
             var number:Int =1
 
+            println("selected schedule $selectedScheduleType")
+
             while(number<=12){
                 val but = Button(this) // = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 //LinearLayout.LayoutParams.MATCH_PARENT)
-                but.layoutParams  = LinearLayout.LayoutParams(50,
-                        LinearLayout.LayoutParams.WRAP_CONTENT,0.5f)
+                but.layoutParams  = LinearLayout.LayoutParams(
+                        50,
+                        LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f
+                )
                 //text.setPadding(20,20,0,10)
                 but.setTextColor(Color.parseColor("#1C2C84"))
                 but.setBackgroundColor(Color.parseColor("#46B6E1"))
@@ -116,7 +127,14 @@ class record_book_page : AppCompatActivity() {
                 number++
                 but.gravity = Gravity.CENTER
                 but.textSize = 8.0F
-                but.setBackgroundColor(R.xml.text_back)
+                val layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
+                but.layoutParams = layoutParams
+                but.background = getAngleDrawable(
+                        Color.parseColor("#FFFFFF"),
+                        floatArrayOf(0f, 0f, 10f, 10f, 10f, 10f, 0f, 0f),
+                        3,
+                        Color.parseColor("#3F51B5")
+                )
 
                 but.setOnClickListener{
                     semester = but.text.toString().toInt()
@@ -136,32 +154,46 @@ class record_book_page : AppCompatActivity() {
 
                 for (semesterMarklist in semesterMarkLists) {
                     val parent = LinearLayout(this)
-                    parent.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT)
+                    parent.layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
 
                     parent.orientation = LinearLayout.HORIZONTAL
-                    parent.setPadding(30,0,20,0)
+                    parent.setPadding(30, 0, 20, 0)
                     val frame = FrameLayout(this)
-                    frame.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT,1.0f)
+                    frame.layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT, 1.0f
+                    )
 
 
                     //children of parent linearlayout
                     val imButton = ImageButton(this)
-                    val text = TextView(ContextThemeWrapper(this, R.style.back_text), null, 0)
-                    //val text = TextView(this) // = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    //val text = TextView(ContextThemeWrapper(this, R.style.back_text), null, 0)
+                    val text = TextView(this) // = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                             //LinearLayout.LayoutParams.MATCH_PARENT)
-                    text.layoutParams  = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT,0.5f)
-                    text.setPadding(20,20,0,10)
+                    text.layoutParams  = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT, 0.5f
+                    )
+                    text.setPadding(20, 20, 0, 10)
                     text.setTextColor(Color.parseColor("#1C2C84"))
                     text.text= semesterMarklist.subject
                     text.gravity = Gravity.CENTER
                     text.textSize = 15.0F
-                    //text.setBackgroundColor(R.xml.text_back)
 
-                    val params = LinearLayout.LayoutParams(40,40)
-                    params.setMargins(5,5,5,5)
+                    text.background = getAngleDrawable(
+                            Color.parseColor("#FFFFFF"),
+                            floatArrayOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f),
+                            3,
+                            Color.parseColor("#3F51B5")
+                    )
+
+                    //gradientDrawableDefault.setColor(Color.TRANSPARENT)
+
+                    val params = LinearLayout.LayoutParams(40, 40)
+                    params.setMargins(5, 5, 5, 5)
 
                     imButton.layoutParams = params
                     imButton.setImageResource(R.drawable.raiting)
@@ -174,14 +206,21 @@ class record_book_page : AppCompatActivity() {
 
                     val text2 = TextView(this) // = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                     //LinearLayout.LayoutParams.MATCH_PARENT)
-                    text2.layoutParams  = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT,1.0f)
-                    text2.setPadding(20,20,0,10)
+                    text2.layoutParams  = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT, 1.0f
+                    )
+                    text2.setPadding(20, 20, 0, 10)
                     text2.setTextColor(Color.parseColor("#1C2C84"))
                     text2.text= semesterMarklist.fullMark.toString()
                     text2.gravity = Gravity.CENTER
                     text2.textSize = 15.0F
-                    text2.setBackgroundColor(R.xml.text_back)
+                    text2.background = getAngleDrawable(
+                            Color.parseColor("#FFFFFF"),
+                            floatArrayOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f),
+                            3,
+                            Color.parseColor("#3F51B5")
+                    )
 
                     parent.removeAllViews()
                     parent.addView(frame)
@@ -202,32 +241,43 @@ class record_book_page : AppCompatActivity() {
 
                 for (semesterMarklist in semesterMarkLists) {
                     val parent = LinearLayout(this)
-                    parent.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT)
+                    parent.layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
 
                     parent.orientation = LinearLayout.HORIZONTAL
-                    parent.setPadding(30,0,20,0)
+                    parent.setPadding(30, 0, 20, 0)
                     val frame = FrameLayout(this)
-                    frame.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT,1.0f)
+                    frame.layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT, 1.0f
+                    )
 
 
                     //children of parent linearlayout
                     val imButton = ImageButton(this)
                     val text = TextView(this) // = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                     //LinearLayout.LayoutParams.MATCH_PARENT)
-                    text.layoutParams  = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT,0.5f)
-                    text.setPadding(20,20,0,10)
+                    text.layoutParams  = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT, 0.5f
+                    )
+                    text.setPadding(20, 20, 0, 10)
                     text.setTextColor(Color.parseColor("#1C2C84"))
                     text.text= number.toString()
                     number++
                     text.gravity = Gravity.CENTER
                     text.textSize = 15.0F
-                    text.setBackgroundColor(R.xml.text_back)
+                    text.background = getAngleDrawable(
+                            Color.parseColor("#FFFFFF"),
+                            floatArrayOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f),
+                            3,
+                            Color.parseColor("#3F51B5")
+                    )
 
-                    val params = LinearLayout.LayoutParams(40,40)
-                    params.setMargins(5,5,5,5)
+                    val params = LinearLayout.LayoutParams(40, 40)
+                    params.setMargins(5, 5, 5, 5)
 
                     imButton.layoutParams = params
                     imButton.setImageResource(R.drawable.raiting)
@@ -240,25 +290,39 @@ class record_book_page : AppCompatActivity() {
 
                     val text2 = TextView(this) // = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                     //LinearLayout.LayoutParams.MATCH_PARENT)
-                    text2.layoutParams  = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT,1.0f)
-                    text2.setPadding(20,20,0,10)
+                    text2.layoutParams  = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT, 1.0f
+                    )
+                    text2.setPadding(20, 20, 0, 10)
                     text2.setTextColor(Color.parseColor("#1C2C84"))
                     text2.text= semesterMarklist.fullMark.toString()
                     text2.gravity = Gravity.CENTER
                     text2.textSize = 15.0F
-                    text2.setBackgroundColor(R.xml.text_back)
+                    text2.background = getAngleDrawable(
+                            Color.parseColor("#FFFFFF"),
+                            floatArrayOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f),
+                            3,
+                            Color.parseColor("#3F51B5")
+                    )
 
                     val text3 = TextView(this) // = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                     //LinearLayout.LayoutParams.MATCH_PARENT)
-                    text2.layoutParams  = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT,1.0f)
-                    text3.setPadding(20,20,0,10)
+                    text2.layoutParams  = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT, 1.0f
+                    )
+                    text3.setPadding(20, 20, 0, 10)
                     text3.setTextColor(Color.parseColor("#1C2C84"))
                     text3.text= semesterMarklist.fullMark.toString()
                     text3.gravity = Gravity.CENTER
                     text3.textSize = 15.0F
-                    text3.setBackgroundColor(R.xml.text_back)
+                    text3.background = getAngleDrawable(
+                            Color.parseColor("#FFFFFF"),
+                            floatArrayOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f),
+                            3,
+                            Color.parseColor("#3F51B5")
+                    )
 
                     parent.removeAllViews()
                     parent.addView(frame)
@@ -280,31 +344,42 @@ class record_book_page : AppCompatActivity() {
 
                 for (semesterStudyingPlan in semesterStudyingPlanLists) {
                     val parent = LinearLayout(this)
-                    parent.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT)
+                    parent.layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
 
                     parent.orientation = LinearLayout.HORIZONTAL
-                    parent.setPadding(30,0,20,0)
+                    parent.setPadding(30, 0, 20, 0)
                     val frame = FrameLayout(this)
-                    frame.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT,1.0f)
+                    frame.layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT, 1.0f
+                    )
 
 
                     //children of parent linearlayout
                     val imButton = ImageButton(this)
                     val text = TextView(this) // = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                     //LinearLayout.LayoutParams.MATCH_PARENT)
-                    text.layoutParams  = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT,0.5f)
-                    text.setPadding(20,20,0,10)
+                    text.layoutParams  = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT, 0.5f
+                    )
+                    text.setPadding(20, 20, 0, 10)
                     text.setTextColor(Color.parseColor("#1C2C84"))
                     text.text= semesterStudyingPlan.subject
                     text.gravity = Gravity.CENTER
                     text.textSize = 15.0F
-                    text.setBackgroundColor(R.xml.text_back)
+                    text.background = getAngleDrawable(
+                            Color.parseColor("#FFFFFF"),
+                            floatArrayOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f),
+                            3,
+                            Color.parseColor("#3F51B5")
+                    )
 
-                    val params = LinearLayout.LayoutParams(40,40)
-                    params.setMargins(5,5,5,5)
+                    val params = LinearLayout.LayoutParams(40, 40)
+                    params.setMargins(5, 5, 5, 5)
 
                     imButton.layoutParams = params
                     imButton.setImageResource(R.drawable.raiting)
@@ -333,31 +408,41 @@ class record_book_page : AppCompatActivity() {
 
                 for (debt in debtLists) {
                     val parent = LinearLayout(this)
-                    parent.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT)
+                    parent.layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
 
                     parent.orientation = LinearLayout.HORIZONTAL
-                    parent.setPadding(30,0,20,0)
+                    parent.setPadding(30, 0, 20, 0)
                     val frame = FrameLayout(this)
-                    frame.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT,1.0f)
+                    frame.layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT, 1.0f
+                    )
 
 
                     //children of parent linearlayout
                     val imButton = ImageButton(this)
                     val text = TextView(this) // = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                     //LinearLayout.LayoutParams.MATCH_PARENT)
-                    text.layoutParams  = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT,0.5f)
-                    text.setPadding(20,20,0,10)
+                    text.layoutParams  = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT, 0.5f
+                    )
+                    text.setPadding(20, 20, 0, 10)
                     text.setTextColor(Color.parseColor("#1C2C84"))
                     text.text= debt.subject
                     text.gravity = Gravity.CENTER
                     text.textSize = 15.0F
-                    text.setBackgroundColor(R.xml.text_back)
-
-                    val params = LinearLayout.LayoutParams(40,40)
-                    params.setMargins(5,5,5,5)
+                    text.background = getAngleDrawable(
+                            Color.parseColor("#FFFFFF"),
+                            floatArrayOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f),
+                            3,
+                            Color.parseColor("#3F51B5")
+                    )
+                    val params = LinearLayout.LayoutParams(40, 40)
+                    params.setMargins(5, 5, 5, 5)
 
                     imButton.layoutParams = params
                     imButton.setImageResource(R.drawable.raiting)
@@ -378,11 +463,98 @@ class record_book_page : AppCompatActivity() {
                 }
 
             }
+            else if(selectedScheduleType==7) {
+                val comparator = profCompare()
+                println(profs)
+                profs = profs.sortedWith(comparator)
+                println(profs)
+
+                for (currentrank in currentRankLists) {
+                    val parent = LinearLayout(this)
+                    parent.layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
+
+                    parent.orientation = LinearLayout.HORIZONTAL
+                    parent.setPadding(30, 0, 20, 0)
+                    val frame = FrameLayout(this)
+                    frame.layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT, 1.0f
+                    )
+
+
+                    //children of parent linearlayout
+                    val imButton = ImageButton(this)
+                    //val text = TextView(ContextThemeWrapper(this, R.style.back_text), null, 0)
+                    val text = TextView(this) // = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    //LinearLayout.LayoutParams.MATCH_PARENT)
+                    text.layoutParams  = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT, 0.5f
+                    )
+                    text.setPadding(20, 20, 0, 10)
+                    text.setTextColor(Color.parseColor("#1C2C84"))
+                    text.text= currentrank.fio.toString()
+                    text.gravity = Gravity.CENTER
+                    text.textSize = 15.0F
+
+                    text.background = getAngleDrawable(
+                            Color.parseColor("#FFFFFF"),
+                            floatArrayOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f),
+                            3,
+                            Color.parseColor("#3F51B5")
+                    )
+
+                    //gradientDrawableDefault.setColor(Color.TRANSPARENT)
+
+                    val params = LinearLayout.LayoutParams(40, 40)
+                    params.setMargins(5, 5, 5, 5)
+
+                    imButton.layoutParams = params
+                    imButton.setImageResource(R.drawable.raiting)
+                    imButton.scaleType = ImageView.ScaleType.CENTER_CROP
+                    imButton.setBackgroundColor(Color.parseColor("#000000"))
+
+                    frame.removeAllViews()
+                    frame.addView(text)
+                    frame.addView(imButton)
+
+                    val text2 = TextView(this) // = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    //LinearLayout.LayoutParams.MATCH_PARENT)
+                    text2.layoutParams  = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT, 1.0f
+                    )
+                    text2.setPadding(20, 20, 0, 10)
+                    text2.setTextColor(Color.parseColor("#1C2C84"))
+                    text2.text= currentrank.rank.toString()
+                    text2.gravity = Gravity.CENTER
+                    text2.textSize = 15.0F
+                    text2.background = getAngleDrawable(
+                            Color.parseColor("#FFFFFF"),
+                            floatArrayOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f),
+                            3,
+                            Color.parseColor("#3F51B5")
+                    )
+
+                    parent.removeAllViews()
+                    parent.addView(frame)
+                    parent.addView(text2)
+
+                    val finalParent = this.findViewById(R.id.contentLayout) as ViewGroup
+
+                    finalParent.addView(parent)
+
+                }
+
+            }
             var AnimationDay: Array<Animation> = emptyArray()
 
             var i:Long=0
             for(chip in chipsArray){
-                val animation = AnimationUtils.loadAnimation(this,R.anim.kip_button_left)
+                val animation = AnimationUtils.loadAnimation(this, R.anim.kip_button_left)
                 animation.duration=250
                 animation.startOffset=100+i*50
                 i+=1
@@ -399,20 +571,38 @@ class record_book_page : AppCompatActivity() {
     }
 
     fun popupMessage() {
-        val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
+        val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(
+                this
+        )
         alertDialogBuilder.setMessage("Відсутнє інтернет-з'єднання.")
         alertDialogBuilder.setIcon(R.drawable.kip_logo)
         alertDialogBuilder.setTitle("Увага!")
-        alertDialogBuilder.setNegativeButton("Ок", DialogInterface.OnClickListener { dialogInterface, i ->
-            Log.d("internet", "Ok btn pressed")
-            // add these two lines, if you wish to close the app:
-            //finishAffinity()
-            semester=2
-            val intent = Intent(this, MainScreen_page::class.java)
-            startActivity(intent)
-            //System.exit(0)
-        })
+        alertDialogBuilder.setNegativeButton(
+                "Ок",
+                DialogInterface.OnClickListener { dialogInterface, i ->
+                    Log.d("internet", "Ok btn pressed")
+                    // add these two lines, if you wish to close the app:
+                    //finishAffinity()
+                    semester = 2
+                    val intent = Intent(this, MainScreen_page::class.java)
+                    startActivity(intent)
+                    //System.exit(0)
+                })
         val alertDialog: android.app.AlertDialog? = alertDialogBuilder.create()
         alertDialog?.show()
+    }
+
+    fun getAngleDrawable(
+            solidColor: Int,
+            _radius: FloatArray?,
+            strokeWidth: Int,
+            strokeColor: Int
+    ): GradientDrawable? {
+        val gradientDrawable = GradientDrawable()
+        gradientDrawable.setColor(solidColor)
+        gradientDrawable.shape = GradientDrawable.RECTANGLE
+        gradientDrawable.cornerRadii = _radius
+        gradientDrawable.setStroke(strokeWidth, strokeColor)
+        return gradientDrawable
     }
 }

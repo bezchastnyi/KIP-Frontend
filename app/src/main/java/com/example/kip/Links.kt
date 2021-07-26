@@ -11,6 +11,7 @@ var mail:String = "Oleksii.Bezchastnyi@cs.khpi.edu.ua"
         semesterStudyingPlanLink = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/SemesterStudyingPlan/${mail}/${pass}/${semester}"
         personalInfoLink = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/PersonalInformation/${mail}/${pass}/"
         studentLogIn = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/PersonalInformation/${mail}/${pass}"
+        currentRankLink = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/CurrentRank/${mail}/${pass}"
     }
 var pass:String = "mQT2vL"
     set(value) {
@@ -19,6 +20,7 @@ var pass:String = "mQT2vL"
         semesterStudyingPlanLink = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/SemesterStudyingPlan/${mail}/${pass}/${semester}"
         personalInfoLink = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/PersonalInformation/${mail}/${pass}/"
         studentLogIn = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/PersonalInformation/${mail}/${pass}"
+        currentRankLink = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/CurrentRank/${mail}/${pass}"
     }
 
 var facultyID:Int=0
@@ -51,6 +53,7 @@ var buildingsID:Int=0
         field = value
         audienceByBuilingLink = "$baseLink/Audience/building/$buildingsID"
     }
+
 
 
 var audioryID:Int=0
@@ -91,5 +94,6 @@ var profByCathedraLink:String = "$baseLink/prof/cathedra/${cathedraID}"
 var studentLogIn:String = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/PersonalInformation/${mail}/${pass}"
 var semesterMarksListLink:String = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/SemesterMarksList/${mail}/${pass}/${semester}"
 var semesterStudyingPlanLink:String = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/SemesterStudyingPlan/${mail}/${pass}/${semester}"
+var currentRankLink:String = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/CurrentRank/${mail}/${pass}"
 var debtListLink:String = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/debtlist/${mail}/${pass}/"
 var personalInfoLink:String = "https://kip-server-auth-b5ntqidyva-nw.a.run.app/v1/PersonalInformation/${mail}/${pass}/"

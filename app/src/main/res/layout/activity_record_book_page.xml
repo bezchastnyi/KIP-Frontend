@@ -51,14 +51,14 @@
 
         <ScrollView
             android:id="@+id/SemesterButtons"
-            android:layout_width="wrap_content"
+            android:layout_width="40sp"
             android:layout_height="match_parent">
 
             <LinearLayout
                 android:id="@+id/SemesterButtonsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"/>
+                android:orientation="vertical" />
         </ScrollView>
 
         <ScrollView
@@ -78,13 +78,13 @@
         android:id="@+id/divider9"
         android:layout_width="match_parent"
         android:layout_height="6sp"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:background="#3F51B5" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="80sp"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:background="#FFFFFF"
         android:gravity="center">
 

@@ -2,17 +2,15 @@ package com.example.kip
 
 import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageButton
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import khttp.get
-import org.jetbrains.anko.doAsync
-import java.util.concurrent.CountDownLatch
+import androidx.appcompat.app.AppCompatActivity
+import java.io.File
+import java.io.PrintWriter
 
 class log_in_page : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,11 +58,46 @@ class log_in_page : AppCompatActivity() {
         else {
 
          */
+        val letDirectory = File(this.filesDir, "LoginData.txt")
+        //letDirectory.mkdirs()
+        val created = letDirectory.createNewFile()
+        println("created file $created")
+        val file = File(letDirectory, "")
+        file.forEachLine {
+            println(it.toString())
+            if(!mailGet){
+                mail = it.toString()
+                mailGet = true
+            }
+            else{
+                pass = it.toString()
+                mailGet = false
+            }
+        }
+
+        println(file.path)
+        // create a new file
+        val isNewFileCreated :Boolean = file.createNewFile()
+        println(isNewFileCreated)
+        findViewById<EditText>(R.id.editTextTextEmailAddress).setText(mail)
+        findViewById<EditText>(R.id.editTextTextPassword).setText(pass)
+
             selectedScheduleType = 0
             val button = findViewById<Button>(R.id.log_in_button)
             button.setOnClickListener {
                 mail = findViewById<EditText>(R.id.editTextTextEmailAddress).text.toString()
                 pass = findViewById<EditText>(R.id.editTextTextPassword).text.toString()
+
+                val check = findViewById<CheckBox>(R.id.checkBox)
+                if(check.isChecked) {
+                    val writer = PrintWriter(file)
+                    writer.print("")
+                    writer.close()
+                    file.appendText(mail)
+                    file.appendText("\n")
+                    file.appendText(pass)
+                }
+
                 val intent = Intent(this, MainScreen_page::class.java)
                 startActivity(intent)
             }
@@ -76,19 +109,25 @@ class log_in_page : AppCompatActivity() {
         //}
     }
     fun popupMessage() {
-        val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
+        val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(
+            this
+        )
         alertDialogBuilder.setMessage("Відсутнє інтернет-з'єднання.")
         alertDialogBuilder.setIcon(R.drawable.kip_logo)
         alertDialogBuilder.setTitle("Увага!")
-        alertDialogBuilder.setNegativeButton("Ок", DialogInterface.OnClickListener { dialogInterface, i ->
-            Log.d("internet", "Ok btn pressed")
-            // add these two lines, if you wish to close the app:
-            //finishAffinity()
-            val intent = Intent(this, Day_schedule_selection::class.java)
-            startActivity(intent)
-            //System.exit(0)
-        })
+        alertDialogBuilder.setNegativeButton(
+            "Ок",
+            DialogInterface.OnClickListener { dialogInterface, i ->
+                Log.d("internet", "Ok btn pressed")
+                // add these two lines, if you wish to close the app:
+                //finishAffinity()
+                val intent = Intent(this, Day_schedule_selection::class.java)
+                startActivity(intent)
+                //System.exit(0)
+            })
         val alertDialog: android.app.AlertDialog? = alertDialogBuilder.create()
         alertDialog?.show()
     }
+    var mailGet = false
+
 }
