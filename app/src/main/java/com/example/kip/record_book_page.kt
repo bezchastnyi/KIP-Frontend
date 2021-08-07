@@ -281,6 +281,7 @@ class record_book_page : AppCompatActivity() {
         }
         else if(selectedScheduleType==4) {
             findViewById<TextView>(R.id.textView10).text = "Рейтинг"
+            findViewById<ImageView>(R.id.imageView15).setImageResource(R.drawable.raiting)
             val comparator = profCompare()
             println(profs)
             profs = profs.sortedWith(comparator)
@@ -385,6 +386,7 @@ class record_book_page : AppCompatActivity() {
         }
         else if(selectedScheduleType==5) {
             findViewById<TextView>(R.id.textView10).text = "Навчальний план"
+            findViewById<ImageView>(R.id.imageView15).setImageResource(R.drawable.plan)
             val comparator = profCompare()
             println(profs)
             profs = profs.sortedWith(comparator)
@@ -450,6 +452,7 @@ class record_book_page : AppCompatActivity() {
         }
         else if(selectedScheduleType==6) {
             findViewById<TextView>(R.id.textView10).text = "Борги"
+            findViewById<ImageView>(R.id.imageView15).setImageResource(R.drawable.debts)
             val comparator = profCompare()
             println(profs)
             profs = profs.sortedWith(comparator)
@@ -623,6 +626,7 @@ class record_book_page : AppCompatActivity() {
             c.await(8, java.util.concurrent.TimeUnit.SECONDS)
             if (!connectionDone) {
                 this.activityUiThread {
+                    semester = 1
                     popupMessage()
                 }
             }

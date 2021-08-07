@@ -347,7 +347,7 @@ class noAuth_page : AppCompatActivity() {
                     startActivity(intent)
                 }
             } else {
-                val tv = findViewById<TextView>(R.id.textView3)
+                //val tv = findViewById<TextView>(R.id.textView3)
                 //tv.text = "Оберіть факультет"
 
                 spinnerCourse.isEnabled = false
@@ -404,7 +404,7 @@ class noAuth_page : AppCompatActivity() {
                     }
 
                 button.setOnClickListener {
-                    val intent = Intent(this, Day_schedule_selection::class.java)
+                    val intent = Intent(this, select_day_schedule_page::class.java)
                     startActivity(intent)
                 }
             }

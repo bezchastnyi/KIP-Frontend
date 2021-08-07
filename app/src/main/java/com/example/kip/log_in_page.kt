@@ -123,7 +123,7 @@ class log_in_page : AppCompatActivity() {
                 Log.d("internet", "Ok btn pressed")
                 // add these two lines, if you wish to close the app:
                 //finishAffinity()
-                val intent = Intent(this, Day_schedule_selection::class.java)
+                val intent = Intent(this, Enter_page::class.java)
                 startActivity(intent)
                 //System.exit(0)
             })

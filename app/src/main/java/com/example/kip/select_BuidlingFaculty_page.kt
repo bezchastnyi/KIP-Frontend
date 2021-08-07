@@ -30,7 +30,7 @@ class select_BuidlingFaculty_page : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select__buidling_faculty_page)
-        val button = findViewById<ImageButton>(R.id.back_button_LS)
+        //val button = findViewById<ImageButton>(R.id.back_button_LS)
 
         val button8 = findViewById<ImageView>(R.id.proffButtonR)
 

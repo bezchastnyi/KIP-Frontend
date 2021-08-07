@@ -180,7 +180,7 @@ class select_day_schedule_page : AppCompatActivity() {
             Log.d("internet", "Ok btn pressed")
             // add these two lines, if you wish to close the app:
             //finishAffinity()
-            val intent = Intent(this, Schedule_swipe::class.java)
+            val intent = Intent(this, MainScreen_page::class.java)
             startActivity(intent)
             //System.exit(0)
         })
