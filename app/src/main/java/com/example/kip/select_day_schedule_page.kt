@@ -5,15 +5,26 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
+import android.widget.LinearLayout
+import androidx.core.view.isVisible
 import com.google.android.material.chip.Chip
 
 class select_day_schedule_page : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_day_schedule_page)
+
+        if(students){
+            val layout = findViewById<LinearLayout>(R.id.dawnLay)
+            for (i in 0 until layout.childCount) {
+                val child: View = layout.getChildAt(i)
+                child.isVisible = false
+            }
+        }
 
         val button = findViewById<ImageButton>(R.id.imageButton)
 
@@ -58,7 +69,7 @@ class select_day_schedule_page : AppCompatActivity() {
         }
         if (selectedScheduleType==0){
             for (student in Groups) {
-                if (student.groupID == groupID) {
+                if (student.groupId == groupID) {
                     findViewById<Chip>(R.id.chipMonday).isEnabled = student.scheduleIsPresent[0]
                     findViewById<Chip>(R.id.chipThuesday).isEnabled = student.scheduleIsPresent[1]
                     findViewById<Chip>(R.id.chipWednesday).isEnabled = student.scheduleIsPresent[2]
@@ -71,7 +82,7 @@ class select_day_schedule_page : AppCompatActivity() {
         }
         else if(selectedScheduleType==1) {
             for (prof in profs) {
-                if (prof.profID == profID) {
+                if (prof.profId == profID) {
                     findViewById<Chip>(R.id.chipMonday).isEnabled = prof.scheduleIsPresent[0]
                     findViewById<Chip>(R.id.chipThuesday).isEnabled = prof.scheduleIsPresent[1]
                     findViewById<Chip>(R.id.chipWednesday).isEnabled = prof.scheduleIsPresent[2]

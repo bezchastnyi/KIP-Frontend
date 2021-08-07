@@ -14,7 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KHPI_in_phone"
         android:usesCleartextTraffic="true">
-        <activity android:name=".record_book_page"></activity>
+        <activity android:name=".self_info_page"></activity>
+        <activity android:name=".person_info_page" />
+        <activity android:name=".noAuth_page" />
+        <activity android:name=".record_book_page" />
         <activity android:name=".select_AuditoryProff_page" />
         <activity android:name=".select_BuidlingFaculty_page" />
         <activity android:name=".schedule_by_day_page" />
@@ -28,7 +31,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".Day_schedule" />
         <activity android:name=".Small_object_selection" />
 

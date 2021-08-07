@@ -82,7 +82,7 @@
             android:singleLine="false"
             android:text="Будь у курсi найсвiжiших новин разом з нами"
             android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+            android:textSize="18sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -116,8 +116,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Увiйти, як гiсть"
-            android:textSize="30sp"
-            app:backgroundTint="#717693"
+            android:textSize="18sp"
+            app:backgroundTint="#3F51B5"
             app:cornerRadius="10sp" />
 
         <Space

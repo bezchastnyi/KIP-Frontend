@@ -99,10 +99,12 @@ class log_in_page : AppCompatActivity() {
                 }
 
                 val intent = Intent(this, MainScreen_page::class.java)
+                students=false
                 startActivity(intent)
             }
             val button2 = findViewById<ImageButton>(R.id.back_button_log_in)
             button2.setOnClickListener {
+
                 val intent = Intent(this, Enter_page::class.java)
                 startActivity(intent)
             }

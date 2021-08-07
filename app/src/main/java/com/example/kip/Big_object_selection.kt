@@ -103,7 +103,7 @@ class Big_object_selection : AppCompatActivity() {
 
                     chip.textAlignment = View.TEXT_ALIGNMENT_CENTER
                     chip.setOnClickListener {
-                        cathedraID = cathedra.cathedraID
+                        cathedraID = cathedra.cathedraId
                         val intent = Intent(this, Small_object_selection::class.java)
                         startActivity(intent)
                     }
@@ -130,7 +130,7 @@ class Big_object_selection : AppCompatActivity() {
 
                     chip.textAlignment = View.TEXT_ALIGNMENT_CENTER
                     chip.setOnClickListener {
-                        buildingsID = building.buildingID
+                        buildingsID = building.buildingId
                         val intent = Intent(this, Small_object_selection::class.java)
                         startActivity(intent)
                     }

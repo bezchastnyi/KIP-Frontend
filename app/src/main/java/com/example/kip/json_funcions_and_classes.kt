@@ -5,6 +5,8 @@ import java.io.IOException
 
 var students:Boolean=false
 
+var connectionDone = false
+
 var selectedScheduleType:Int=0
 
 var schedulesStudent: List<studentScheduleDay> = emptyList()
@@ -25,13 +27,13 @@ var debtLists: List<debt> = emptyList()
 var currentRankLists: List<currentRank> = emptyList()
 var personalinfoLists: List<debt> = emptyList()
 
-data class group(val facultyID: Int, val faculty: String, val groupID: Int, val course: Int,val scheduleIsPresent:List<Boolean>, val groupName: String) {
+data class group(val groupId: Int, val groupName: String, val course: Int,val scheduleIsPresent:List<Boolean>, val facultyId: Int) {
 }
 
-data class faculty(val facultyID: Int, val facultyShortName: String, val facultyName: String) {
+data class faculty(val facultyId: Int, val facultyName: String, val facultyShortName: String) {
 }
 
-data class building(val buildingID: Int, val buildingName: String, val buildingShortName: String) {
+data class building(val buildingId: Int, val buildingName: String, val buildingShortName: String,val numberOfAudiences: Int) {
 }
 
 data class auditory(val audienceID:Int,val audienceName:String, val buildingID: Int, val numberOfSeats: Int,val scheduleIsPresent:List<Boolean>, val building: String) {
@@ -43,10 +45,10 @@ data class schedule(val studentScheduleID: Int,val subjectName: String,val week:
 data class studentScheduleDay(val subjectName:String, val type:String,val number:Int,val week:Int,val audienceName:String,val profName:String){
 }
 
-data class cathedra(val facultyID: Int,val cathedraID:Int, val cathedraShortName: String, val cathedraName: String) {
+data class cathedra(val cathedraId: Int,val cathedraName:String, val cathedraShortName: String, val facultyId: Int) {
 }
 
-data class prof(val cathedra: Int,val cathedraID:Int,val profID:Int, val profName: String, val profSurname: String,val profPatronymic: String,val scheduleIsPresent:List<Boolean>) {
+data class prof(val profId: Int,val profSurname: String,val profName:String,val profPatronymic:String,val scheduleIsPresent:List<Boolean>, val cathedraId: Int) {
 }
 
 data class profschedule(val profScheduleID: Int,val subjectName: String,val week:Int,val day:Int,val type: String,val number:Int,val output:String,val profID:Int,val prof: String, val buildingID: Int,val building: String, val audienceID: Int,val audience: String,val groupID: List<Int>,val group: String) {

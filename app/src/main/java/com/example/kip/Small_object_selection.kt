@@ -102,7 +102,7 @@ class Small_object_selection : AppCompatActivity() {
                     chip2.textAlignment = View.TEXT_ALIGNMENT_CENTER
 
                     chip2.setOnClickListener {
-                        profID = prof.profID
+                        profID = prof.profId
                         profValid = scheduleIsPresent
                         val intent = Intent(this, Day_schedule_selection::class.java)
                         startActivity(intent)

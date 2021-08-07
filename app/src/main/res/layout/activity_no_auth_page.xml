@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearGroup"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3F51B5"
+    android:orientation="vertical"
+    tools:context=".noAuth_page">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.01" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:gravity="center"
+        android:text="Гостьовий режим"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.01" />
+
+    <Spinner
+        android:id="@+id/spinnerFaculty2"
+        style="@android:style/Widget.DeviceDefault.Light.Spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginRight="30sp"
+        android:layout_weight="0.1"
+        android:background="@xml/corner_shape"
+        android:entries="@array/FacultySel"
+        android:gravity="center"
+        android:spinnerMode="dropdown"
+        android:textAlignment="center" />
+
+    <Spinner
+        android:id="@+id/spinnerCourse2"
+        style="@android:style/Widget.DeviceDefault.Light.Spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginRight="30sp"
+        android:layout_weight="0.1"
+        android:background="@xml/corner_shape"
+        android:entries="@array/Course"
+        android:gravity="center"
+        android:spinnerMode="dropdown"
+        android:textAlignment="center" />
+
+    <Spinner
+        android:id="@+id/spinnerGroup2"
+        style="@android:style/Widget.DeviceDefault.Light.Spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginRight="30sp"
+        android:layout_weight="0.1"
+        android:background="@xml/corner_shape"
+        android:dropDownWidth="wrap_content"
+        android:dropDownHeight="10sp"
+        android:entries="@array/GroupSel"
+        android:gravity="center"
+        android:spinnerMode="dropdown"
+        android:textAlignment="center" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.4" />
+
+    <Button
+        android:id="@+id/button_select_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginRight="40sp"
+        android:layout_weight="0.01"
+        android:checkable="false"
+        android:clickable="false"
+        android:gravity="center"
+        android:shadowDx="1.0"
+        android:shadowDy="1.0"
+        android:shadowRadius="5"
+        android:text="Увiйти"
+        android:textColor="#000000"
+        app:backgroundTint="#FFFFFF"
+        app:cornerRadius="10sp"
+        app:strokeWidth="1sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05" />
+
+    <ImageButton
+        android:id="@+id/back_button_log_in2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="20sp"
+        android:layout_weight="0.01"
+        android:background="#00FFFFFF"
+        android:foregroundGravity="left"
+        android:scaleType="center"
+        app:srcCompat="@drawable/abc_vector_test" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05" />
+
+</LinearLayout>

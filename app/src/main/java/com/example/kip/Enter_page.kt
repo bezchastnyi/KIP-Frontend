@@ -43,7 +43,7 @@ class Enter_page : AppCompatActivity() {
         }
         val button2 = findViewById<Button>(R.id.enter_button_guest)
         button2.setOnClickListener{
-            val intent = Intent(this, log_in_page::class.java)
+            val intent = Intent(this, noAuth_page::class.java)
             startActivity(intent)
         }
     }

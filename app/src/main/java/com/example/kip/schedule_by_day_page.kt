@@ -5,15 +5,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.ImageButton
-import android.widget.LinearLayout
-import android.widget.Switch
-import android.widget.TextView
+import android.widget.*
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import khttp.get
+import org.jetbrains.anko.activityUiThread
 import org.jetbrains.anko.doAsync
 import java.util.concurrent.CountDownLatch
 
@@ -78,112 +79,12 @@ class schedule_by_day_page : AppCompatActivity() {
                 schedulesAuditoryDay = gson2.fromJson(jsonFileString.text, auditoryList)
             }
 
-            connectionDone = true
-            c.countDown()
+            this.activityUiThread {
+                connectionDone()
+            }
             //println(jsonFileString.jsonArray)
         }
-        c.await(5, java.util.concurrent.TimeUnit.SECONDS)
-
-        if (!connectionDone) {
-            popupMessage()
-        }
-        else {
-            var TextView: Array<TextView> = emptyArray()
-            var ScheduleText: Array<Array<TextView>> = emptyArray()
-
-            TextView += findViewById<TextView>(R.id.TextViewA1)
-            TextView += findViewById<TextView>(R.id.TextViewB1)
-            TextView += findViewById<TextView>(R.id.TextViewC1)
-            TextView += findViewById<TextView>(R.id.TextViewType1)
-            ScheduleText+=TextView
-
-            TextView = emptyArray()
-
-            TextView += findViewById<TextView>(R.id.TextViewA2)
-            TextView += findViewById<TextView>(R.id.TextViewB2)
-            TextView += findViewById<TextView>(R.id.TextViewC2)
-            TextView += findViewById<TextView>(R.id.TextViewType2)
-            ScheduleText+=TextView
-
-            TextView = emptyArray()
-
-            TextView += findViewById<TextView>(R.id.TextViewA3)
-            TextView += findViewById<TextView>(R.id.TextViewB3)
-            TextView += findViewById<TextView>(R.id.TextViewC3)
-            TextView += findViewById<TextView>(R.id.TextViewType3)
-            ScheduleText+=TextView
-
-            TextView = emptyArray()
-
-            TextView += findViewById<TextView>(R.id.TextViewA4)
-            TextView += findViewById<TextView>(R.id.TextViewB4)
-            TextView += findViewById<TextView>(R.id.TextViewC4)
-            TextView += findViewById<TextView>(R.id.TextViewType4)
-            ScheduleText+=TextView
-
-            TextView = emptyArray()
-
-            TextView += findViewById<TextView>(R.id.TextViewA5)
-            TextView += findViewById<TextView>(R.id.TextViewB5)
-            TextView += findViewById<TextView>(R.id.TextViewC5)
-            TextView += findViewById<TextView>(R.id.TextViewType5)
-            ScheduleText+=TextView
-
-            var currentWeek: Int = 0
-            if(selectedScheduleType==0) {
-                changeSchedule(schedulesStudent, currentWeek, ScheduleText)
-
-                findViewById<Switch>(R.id.switchWeek).setOnCheckedChangeListener { buttonView, isChecked ->
-                    if (isChecked) {
-                        currentWeek = 0
-                        changeSchedule(schedulesStudent, currentWeek, ScheduleText)
-                    } else {
-                        currentWeek = 1
-                        changeSchedule(schedulesStudent, currentWeek, ScheduleText)
-                    }
-                }
-                findViewById<Switch>(R.id.switchWeek).isChecked=true
-            }
-
-            else if(selectedScheduleType==1) {
-                changeSchedule2(schedulesProfs, currentWeek, ScheduleText)
-
-                findViewById<Switch>(R.id.switchWeek).setOnCheckedChangeListener { buttonView, isChecked ->
-                    if (isChecked) {
-                        currentWeek = 0
-                        changeSchedule2(schedulesProfs, currentWeek, ScheduleText)
-                    } else {
-                        currentWeek = 1
-                        changeSchedule2(schedulesProfs, currentWeek, ScheduleText)
-                    }
-                }
-                findViewById<Switch>(R.id.switchWeek).isChecked=true
-            }
-            else if(selectedScheduleType==2) {
-                changeSchedule3(schedulesAuditoryDay, currentWeek, ScheduleText)
-
-                findViewById<Switch>(R.id.switchWeek).setOnCheckedChangeListener { buttonView, isChecked ->
-                    if (isChecked) {
-                        currentWeek = 0
-                        changeSchedule3(schedulesAuditoryDay, currentWeek, ScheduleText)
-                    } else {
-                        currentWeek = 1
-                        changeSchedule3(schedulesAuditoryDay, currentWeek, ScheduleText)
-                    }
-                }
-                findViewById<Switch>(R.id.switchWeek).isChecked=true
-            }
-
-
-            var i: Int = 0
-
-            val button = findViewById<ImageButton>(R.id.imageButton3)
-            button.setOnClickListener {
-                val intent = Intent(this, select_day_schedule_page::class.java)
-                startActivity(intent)
-            }
-
-        }
+        checkSatus()
     }
     fun changeSchedule(schedules :List<studentScheduleDay>, currentWeek:Int, ScheduleText:Array<Array<TextView>>){
         for(schedule in ScheduleText){
@@ -253,5 +154,116 @@ class schedule_by_day_page : AppCompatActivity() {
         })
         val alertDialog: android.app.AlertDialog? = alertDialogBuilder.create()
         alertDialog?.show()
+    }
+
+    fun connectionDone() {
+        connectionDone = true
+        var TextView: Array<TextView> = emptyArray()
+        var ScheduleText: Array<Array<TextView>> = emptyArray()
+
+        TextView += findViewById<TextView>(R.id.TextViewA1)
+        TextView += findViewById<TextView>(R.id.TextViewB1)
+        TextView += findViewById<TextView>(R.id.TextViewC1)
+        TextView += findViewById<TextView>(R.id.TextViewType1)
+        ScheduleText+=TextView
+
+        TextView = emptyArray()
+
+        TextView += findViewById<TextView>(R.id.TextViewA2)
+        TextView += findViewById<TextView>(R.id.TextViewB2)
+        TextView += findViewById<TextView>(R.id.TextViewC2)
+        TextView += findViewById<TextView>(R.id.TextViewType2)
+        ScheduleText+=TextView
+
+        TextView = emptyArray()
+
+        TextView += findViewById<TextView>(R.id.TextViewA3)
+        TextView += findViewById<TextView>(R.id.TextViewB3)
+        TextView += findViewById<TextView>(R.id.TextViewC3)
+        TextView += findViewById<TextView>(R.id.TextViewType3)
+        ScheduleText+=TextView
+
+        TextView = emptyArray()
+
+        TextView += findViewById<TextView>(R.id.TextViewA4)
+        TextView += findViewById<TextView>(R.id.TextViewB4)
+        TextView += findViewById<TextView>(R.id.TextViewC4)
+        TextView += findViewById<TextView>(R.id.TextViewType4)
+        ScheduleText+=TextView
+
+        TextView = emptyArray()
+
+        TextView += findViewById<TextView>(R.id.TextViewA5)
+        TextView += findViewById<TextView>(R.id.TextViewB5)
+        TextView += findViewById<TextView>(R.id.TextViewC5)
+        TextView += findViewById<TextView>(R.id.TextViewType5)
+        ScheduleText+=TextView
+
+        var currentWeek: Int = 0
+        if(selectedScheduleType==0) {
+            changeSchedule(schedulesStudent, currentWeek, ScheduleText)
+
+            findViewById<Switch>(R.id.switchWeek).setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    currentWeek = 0
+                    changeSchedule(schedulesStudent, currentWeek, ScheduleText)
+                } else {
+                    currentWeek = 1
+                    changeSchedule(schedulesStudent, currentWeek, ScheduleText)
+                }
+            }
+            findViewById<Switch>(R.id.switchWeek).isChecked=true
+        }
+
+        else if(selectedScheduleType==1) {
+            changeSchedule2(schedulesProfs, currentWeek, ScheduleText)
+
+            findViewById<Switch>(R.id.switchWeek).setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    currentWeek = 0
+                    changeSchedule2(schedulesProfs, currentWeek, ScheduleText)
+                } else {
+                    currentWeek = 1
+                    changeSchedule2(schedulesProfs, currentWeek, ScheduleText)
+                }
+            }
+            findViewById<Switch>(R.id.switchWeek).isChecked=true
+        }
+        else if(selectedScheduleType==2) {
+            changeSchedule3(schedulesAuditoryDay, currentWeek, ScheduleText)
+
+            findViewById<Switch>(R.id.switchWeek).setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    currentWeek = 0
+                    changeSchedule3(schedulesAuditoryDay, currentWeek, ScheduleText)
+                } else {
+                    currentWeek = 1
+                    changeSchedule3(schedulesAuditoryDay, currentWeek, ScheduleText)
+                }
+            }
+            findViewById<Switch>(R.id.switchWeek).isChecked=true
+        }
+
+
+        var i: Int = 0
+
+        val button = findViewById<ImageButton>(R.id.imageButton3)
+        button.setOnClickListener {
+            val intent = Intent(this, select_day_schedule_page::class.java)
+            startActivity(intent)
+        }
+
+    }
+
+    fun checkSatus(){
+        var task= doAsync() {
+            val c = CountDownLatch(1)
+            c.await(8, java.util.concurrent.TimeUnit.SECONDS)
+            if (!connectionDone) {
+                this.activityUiThread {
+                    popupMessage()
+                }
+            }
+        }
     }
 }

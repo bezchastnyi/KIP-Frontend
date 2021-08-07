@@ -6,9 +6,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.google.android.material.chip.Chip
 
@@ -25,6 +27,7 @@ class Day_schedule_selection : AppCompatActivity() {
         val animation = AnimationUtils.loadAnimation(this,R.anim.kip_button_left)
         var ChipDay: Array<Chip> = emptyArray()
         var AnimationDay: Array<Animation> = emptyArray()
+
 
         ChipDay += findViewById<Chip>(R.id.chipMonday)
         ChipDay += findViewById<Chip>(R.id.chipThuesday)
@@ -63,7 +66,7 @@ class Day_schedule_selection : AppCompatActivity() {
         }
         if (selectedScheduleType==0){
             for (student in Groups) {
-                if (student.groupID == groupID) {
+                if (student.groupId == groupID) {
                     findViewById<Chip>(R.id.chipMonday).isEnabled = student.scheduleIsPresent[0]
                     findViewById<Chip>(R.id.chipThuesday).isEnabled = student.scheduleIsPresent[1]
                     findViewById<Chip>(R.id.chipWednesday).isEnabled = student.scheduleIsPresent[2]
@@ -76,7 +79,7 @@ class Day_schedule_selection : AppCompatActivity() {
         }
         else if(selectedScheduleType==1) {
             for (prof in profs) {
-                if (prof.profID == profID) {
+                if (prof.profId == profID) {
                     findViewById<Chip>(R.id.chipMonday).isEnabled = prof.scheduleIsPresent[0]
                     findViewById<Chip>(R.id.chipThuesday).isEnabled = prof.scheduleIsPresent[1]
                     findViewById<Chip>(R.id.chipWednesday).isEnabled = prof.scheduleIsPresent[2]

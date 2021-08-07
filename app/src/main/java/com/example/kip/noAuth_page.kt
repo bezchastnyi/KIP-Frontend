@@ -3,12 +3,11 @@ package com.example.kip
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import khttp.get
@@ -16,18 +15,20 @@ import org.jetbrains.anko.doAsync
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
-
-
-class Group_activity : AppCompatActivity() {
-
-
-
-
+class noAuth_page : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_group_activity)
+        setContentView(R.layout.activity_no_auth_page)
 
-        val button = findViewById<Button>(R.id.button_select)
+        students = true
+
+        val button = findViewById<Button>(R.id.button_select_2)
+
+        val button2 = findViewById<ImageButton>(R.id.back_button_log_in2)
+        button2.setOnClickListener {
+            val intent = Intent(this, Enter_page::class.java)
+            startActivity(intent)
+        }
 
 
         val gson = Gson()
@@ -37,7 +38,7 @@ class Group_activity : AppCompatActivity() {
         var groupIDArray: Array<Int> = emptyArray()
         var facultyArray: Array<String> = emptyArray()
         var courseArray: Array<String> = emptyArray()
-        val button3 = findViewById<Button>(R.id.button_select)
+        val button3 = findViewById<Button>(R.id.button_select_2)
         button3.isEnabled=false
         courseArray += resources.getStringArray(R.array.Course)
 
@@ -55,62 +56,63 @@ class Group_activity : AppCompatActivity() {
         val c = CountDownLatch(1)
 
         val task = doAsync() {
-                println(groupLink)
+            println(groupLink)
+            println(facultyLink)
 
 
-                    val jsonFileString = get(groupLink)
-                    val jsonFileString2 = get(facultyLink)
+            val jsonFileString = get(groupLink)
+            val jsonFileString2 = get(facultyLink)
 
 
-                    Facultys = gson2.fromJson(jsonFileString2.text, FacultyList)
+            Facultys = gson2.fromJson(jsonFileString2.text, FacultyList)
 
-                    for (faculty in Facultys) {
-                        facultyArray += faculty.facultyShortName
-                    }
-
-                    val GroupList = object : TypeToken<List<group>>() {}.type
-                    println(jsonFileString.content.toString())
-
-                    Groups = gson.fromJson(jsonFileString.text, GroupList)
-
-
-
-                    for (group in Groups) {
-                        var scheduleIsPresent=false
-                        for(day in group.scheduleIsPresent){
-                            if(day){
-                                scheduleIsPresent=true
-                                break
-                            }
-                        }
-                        if (scheduleIsPresent) {
-                            groupArray += group.groupName
-                        } else {
-                            groupArray += "${group.groupName} (без розкладу)"
-                        }
-                        groupIDArray += group.groupId
-                    }
-
-                connectionDone = true
-                c.countDown()
-
-                //println(jsonFileString.jsonArray)
+            for (faculty in Facultys) {
+                facultyArray += faculty.facultyShortName
             }
 
+            val GroupList = object : TypeToken<List<group>>() {}.type
+            println(jsonFileString.content.toString())
+
+            Groups = gson.fromJson(jsonFileString.text, GroupList)
 
 
-        c.await(5,TimeUnit.SECONDS)
+
+            for (group in Groups) {
+                var scheduleIsPresent=false
+                for(day in group.scheduleIsPresent){
+                    if(day){
+                        scheduleIsPresent=true
+                        break
+                    }
+                }
+                if (scheduleIsPresent) {
+                    groupArray += group.groupName
+                } else {
+                    groupArray += "${group.groupName} (без розкладу)"
+                }
+                groupIDArray += group.groupId
+            }
+
+            connectionDone = true
+            c.countDown()
+
+            //println(jsonFileString.jsonArray)
+        }
+
+
+
+        c.await(5, TimeUnit.SECONDS)
         if(!connectionDone){
             popupMessage()
         }
         else {
 
 
-            val spinnerFaculty: Spinner = findViewById(R.id.spinnerFaculty)
-            val spinnerCourse: Spinner = findViewById(R.id.spinnerCourse)
-            val spinnerGroup: Spinner = findViewById(R.id.spinnerGroup)
+            val spinnerFaculty: Spinner = findViewById(R.id.spinnerFaculty2)
+            val spinnerCourse: Spinner = findViewById(R.id.spinnerCourse2)
+            val spinnerGroup: Spinner = findViewById(R.id.spinnerGroup2)
 
-            if(students) {
+            if (students) {
 
 
                 val spinnerArrayAdapter2: ArrayAdapter<String> = ArrayAdapter<String>(
@@ -125,7 +127,8 @@ class Group_activity : AppCompatActivity() {
                 spinnerCourse.adapter = courseArrayAdapter
                 spinnerFaculty.adapter = spinnerArrayAdapter2
 
-                spinnerFaculty.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                spinnerFaculty.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
                         override fun onItemSelected(
                             parent: AdapterView<*>,
                             view: View,
@@ -165,10 +168,10 @@ class Group_activity : AppCompatActivity() {
                             println(courseInt)
                             for (group in Groups) {
                                 if (group.facultyId == facultyID && group.course == courseInt) {
-                                    var scheduleIsPresent=false
-                                    for(day in group.scheduleIsPresent){
-                                        if(day){
-                                            scheduleIsPresent=true
+                                    var scheduleIsPresent = false
+                                    for (day in group.scheduleIsPresent) {
+                                        if (day) {
+                                            scheduleIsPresent = true
                                             break
                                         }
                                     }
@@ -200,17 +203,17 @@ class Group_activity : AppCompatActivity() {
 
                                         for (group in Groups) {
                                             if (group.groupName == text) {
-                                                var scheduleIsPresent=false
-                                                for(day in group.scheduleIsPresent){
-                                                    if(day){
-                                                        scheduleIsPresent=true
+                                                var scheduleIsPresent = false
+                                                for (day in group.scheduleIsPresent) {
+                                                    if (day) {
+                                                        scheduleIsPresent = true
                                                         break
                                                     }
                                                 }
                                                 groupID = group.groupId
                                                 groupValid = scheduleIsPresent
                                                 button3.isEnabled = true
-                                                button3.setBackgroundColor(Color.parseColor("#3700B3"))
+                                                button3.setBackgroundColor(Color.parseColor("#FFFFFF"))
                                             }
                                         }
                                         println("$groupID $text")
@@ -269,10 +272,10 @@ class Group_activity : AppCompatActivity() {
                         println(courseInt)
                         for (group in Groups) {
                             if (group.facultyId == facultyID && group.course == courseInt) {
-                                var scheduleIsPresent=false
-                                for(day in group.scheduleIsPresent){
-                                    if(day){
-                                        scheduleIsPresent=true
+                                var scheduleIsPresent = false
+                                for (day in group.scheduleIsPresent) {
+                                    if (day) {
+                                        scheduleIsPresent = true
                                         break
                                     }
                                 }
@@ -302,17 +305,17 @@ class Group_activity : AppCompatActivity() {
 
                                     for (group in Groups) {
                                         if (group.groupName == text) {
-                                            var scheduleIsPresent=false
-                                            for(day in group.scheduleIsPresent){
-                                                if(day){
-                                                    scheduleIsPresent=true
+                                            var scheduleIsPresent = false
+                                            for (day in group.scheduleIsPresent) {
+                                                if (day) {
+                                                    scheduleIsPresent = true
                                                     break
                                                 }
                                             }
                                             groupID = group.groupId
                                             groupValid = scheduleIsPresent
                                             button3.isEnabled = true
-                                            button3.setBackgroundColor(Color.parseColor("#3700B3"))
+                                            button3.setBackgroundColor(Color.parseColor("#FFFFFF"))
                                         }
                                     }
                                     println("$groupID $text")
@@ -339,13 +342,13 @@ class Group_activity : AppCompatActivity() {
 
 
                 button.setOnClickListener {
-                    val intent = Intent(this, Schedule_swipe::class.java)
+                    students = true
+                    val intent = Intent(this, select_day_schedule_page::class.java)
                     startActivity(intent)
                 }
-            }
-            else{
+            } else {
                 val tv = findViewById<TextView>(R.id.textView3)
-                tv.text = "Оберіть факультет"
+                //tv.text = "Оберіть факультет"
 
                 spinnerCourse.isEnabled = false
                 spinnerGroup.isEnabled = false
@@ -356,76 +359,72 @@ class Group_activity : AppCompatActivity() {
                 layout.removeView(spinnerGroup)
 
 
-
                 val spinnerArrayAdapter2: ArrayAdapter<String> = ArrayAdapter<String>(
                     this, android.R.layout.simple_spinner_item, facultyArray
                 )
                 spinnerFaculty.adapter = spinnerArrayAdapter2
                 button3.isEnabled = false
-                spinnerFaculty.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(
-                        parent: AdapterView<*>,
-                        view: View,
-                        position: Int,
-                        id: Long
-                    ) {
-                        val text: String = spinnerFaculty.selectedItem.toString()
+                spinnerFaculty.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(
+                            parent: AdapterView<*>,
+                            view: View,
+                            position: Int,
+                            id: Long
+                        ) {
+                            val text: String = spinnerFaculty.selectedItem.toString()
 
-                        if (text.substring(0, 1) == "О") {
+                            if (text.substring(0, 1) == "О") {
+                                facultyID = 0
+                                button3.isEnabled = false
+                            } else {
+                                button3.setBackgroundColor(Color.parseColor("#FFFFFF"))
+                                button3.isEnabled = true
+                            }
+
+                            println(text)
+                            println(Facultys)
+
+                            for (faculty in Facultys) {
+                                if (faculty.facultyShortName == text) {
+                                    facultyID = faculty.facultyId;
+                                }
+                            }
+
+                            println(facultyID)
+
+
+                        }
+
+                        override fun onNothingSelected(parent: AdapterView<*>) {
                             facultyID = 0
                             button3.isEnabled = false
+                            button3.setBackgroundColor(Color.GRAY)
                         }
-                        else{
-                            button3.setBackgroundColor(Color.parseColor("#3700B3"))
-                            button3.isEnabled = true
-                        }
-
-                        println(text)
-                        println(Facultys)
-
-                        for (faculty in Facultys) {
-                            if (faculty.facultyShortName == text) {
-                                facultyID = faculty.facultyId;
-                            }
-                        }
-
-                        println(facultyID)
-
-
                     }
-
-                    override fun onNothingSelected(parent: AdapterView<*>) {
-                        facultyID = 0
-                        button3.isEnabled = false
-                        button3.setBackgroundColor(Color.GRAY)
-                    }
-                }
 
                 button.setOnClickListener {
-                    val intent = Intent(this, Schedule_swipe::class.java)
+                    val intent = Intent(this, Day_schedule_selection::class.java)
                     startActivity(intent)
                 }
             }
         }
 
     }
-
-    private fun popupMessage() {
-        val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
-        alertDialogBuilder.setMessage("Відсутнє інтернет-з'єднання.")
-        alertDialogBuilder.setIcon(R.drawable.kip_logo)
-        alertDialogBuilder.setTitle("Увага!")
-        alertDialogBuilder.setNegativeButton("Ок", DialogInterface.OnClickListener { dialogInterface, i ->
-            Log.d("internet", "Ok btn pressed")
-            // add these two lines, if you wish to close the app:
-            //finishAffinity()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            //System.exit(0)
-        })
-        val alertDialog: android.app.AlertDialog? = alertDialogBuilder.create()
-        alertDialog?.show()
-    }
-
-
+        private fun popupMessage() {
+            val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
+            alertDialogBuilder.setMessage("Відсутнє інтернет-з'єднання.")
+            alertDialogBuilder.setIcon(R.drawable.kip_logo)
+            alertDialogBuilder.setTitle("Увага!")
+            alertDialogBuilder.setNegativeButton("Ок", DialogInterface.OnClickListener { dialogInterface, i ->
+                Log.d("internet", "Ok btn pressed")
+                // add these two lines, if you wish to close the app:
+                //finishAffinity()
+                val intent = Intent(this, Enter_page::class.java)
+                startActivity(intent)
+                //System.exit(0)
+            })
+            val alertDialog: android.app.AlertDialog? = alertDialogBuilder.create()
+            alertDialog?.show()
+        }
 }

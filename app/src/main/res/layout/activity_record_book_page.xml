@@ -39,7 +39,7 @@
             android:gravity="center"
             android:text="Залiкова книжка"
             android:textColor="#1C2C84"
-            android:textSize="36sp" />
+            android:textSize="30sp" />
 
     </LinearLayout>
 
