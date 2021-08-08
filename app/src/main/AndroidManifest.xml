@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kip">
+    package="com.KIP.kip">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -14,46 +13,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KHPI_in_phone"
         android:usesCleartextTraffic="true">
-        <activity android:name=".self_info_page"></activity>
-        <activity android:name=".person_info_page" />
-        <activity android:name=".noAuth_page" />
-        <activity android:name=".record_book_page" />
-        <activity android:name=".select_AuditoryProff_page" />
-        <activity android:name=".select_BuidlingFaculty_page" />
-        <activity android:name=".schedule_by_day_page" />
-        <activity android:name=".select_day_schedule_page" />
-        <activity android:name=".MainScreen_page" />
-        <activity android:name=".log_in_page" />
-        <activity android:name=".Enter_page">
+        <activity android:name="com.KIP.kip.self_info_page"/>
+        <activity android:name="com.KIP.kip.person_info_page" />
+        <activity android:name="com.KIP.kip.noAuth_page" />
+        <activity android:name="com.KIP.kip.record_book_page" />
+        <activity android:name="com.KIP.kip.select_AuditoryProff_page" />
+        <activity android:name="com.KIP.kip.select_BuidlingFaculty_page" />
+        <activity android:name="com.KIP.kip.schedule_by_day_page" />
+        <activity android:name="com.KIP.kip.select_day_schedule_page" />
+        <activity android:name="com.KIP.kip.MainScreen_page" />
+        <activity android:name="com.KIP.kip.log_in_page" />
+        <activity android:name="com.KIP.kip.Enter_page">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Day_schedule" />
-        <activity android:name=".Small_object_selection" />
 
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/network_security_config" />
 
-        <activity android:name=".KIP_start" />
-        <activity android:name=".Autorization" />
-        <activity
-            android:name=".Group_activity"
-            android:label="@string/title_activity_group_activity"
-            android:theme="@style/Theme.KHPI_in_phone.NoActionBar" />
-        <activity android:name=".Big_object_selection" />
-        <activity android:name=".Day_schedule_selection" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".Schedule_swipe" />
     </application>
 
 </manifest>

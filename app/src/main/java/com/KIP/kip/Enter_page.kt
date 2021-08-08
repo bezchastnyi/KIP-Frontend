@@ -1,4 +1,4 @@
-package com.example.kip
+package com.KIP.kip
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.animation.AnimationUtils
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 
 class Enter_page : AppCompatActivity() {

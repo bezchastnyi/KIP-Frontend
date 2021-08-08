@@ -1,4 +1,4 @@
-package com.example.kip
+package com.KIP.kip
 
 const val token:Int=3012
 const val baseLink:String = "https://kip-server-no-auth-v1-0-b5ntqidyva-lm.a.run.app"

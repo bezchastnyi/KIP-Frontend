@@ -1,4 +1,4 @@
-package com.example.kip
+package com.KIP.kip
 
 import android.content.Context
 import java.io.IOException

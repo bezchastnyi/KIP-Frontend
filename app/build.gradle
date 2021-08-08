@@ -8,11 +8,10 @@ android {
     buildToolsVersion '30.0.2'
 
     defaultConfig {
-        applicationId "com.example.kip"
-        minSdkVersion 19
+        applicationId 'com.KIP.kip'
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 2
-        versionName "1.0.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

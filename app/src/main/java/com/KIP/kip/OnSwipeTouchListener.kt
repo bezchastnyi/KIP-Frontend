@@ -1,4 +1,4 @@
-package com.example.kip
+package com.KIP.kip
 
 import android.content.Context
 import android.view.GestureDetector

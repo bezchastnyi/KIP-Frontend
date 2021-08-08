@@ -1,4 +1,4 @@
-package com.example.kip
+package com.KIP.kip
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import com.google.android.material.chip.Chip
@@ -19,7 +18,6 @@ import khttp.get
 import org.jetbrains.anko.activityUiThread
 import org.jetbrains.anko.doAsync
 import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
 
 class select_AuditoryProff_page : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

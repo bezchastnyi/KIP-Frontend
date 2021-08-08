@@ -1,4 +1,4 @@
-package com.example.kip
+package com.KIP.kip
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -15,7 +15,6 @@ import org.jetbrains.anko.activityUiThread
 import org.jetbrains.anko.doAsync
 import java.sql.DriverManager.println
 import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
 
 class MainScreen_page : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,8 +35,10 @@ class MainScreen_page : AppCompatActivity() {
             facultyID = studentList[0].facultyId
             cathedraID = studentList[0].cathedraId
 
-            findViewById<TextView>(R.id.Name).text = "${studentList[0].firstName} ${studentList[0].lastName}"
-
+            this.activityUiThread {
+                findViewById<TextView>(R.id.Name).text =
+                    "${studentList[0].firstName} ${studentList[0].lastName}"
+            }
             val jsonFileStringG = get(groupLink)
             val jsonFileString2 = get(facultyLink)
 
@@ -52,8 +53,9 @@ class MainScreen_page : AppCompatActivity() {
 
 
 
-
-            connectionDone()
+            this.activityUiThread {
+                connectionDone()
+            }
             //println(jsonFileString.jsonArray)
         }
         checkSatus()
@@ -149,7 +151,7 @@ class MainScreen_page : AppCompatActivity() {
     fun checkSatus(){
         var task= doAsync() {
             val c = CountDownLatch(1)
-            c.await(8, java.util.concurrent.TimeUnit.SECONDS)
+            c.await(12, java.util.concurrent.TimeUnit.SECONDS)
             if (!connectionDone) {
                 this.activityUiThread {
                     popupMessage()

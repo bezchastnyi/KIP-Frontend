@@ -1,6 +1,5 @@
-package com.example.kip
+package com.KIP.kip
 
-import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
@@ -20,7 +19,6 @@ import khttp.get
 import org.jetbrains.anko.activityUiThread
 import org.jetbrains.anko.doAsync
 import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
 
 
 class record_book_page : AppCompatActivity() {

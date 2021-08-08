@@ -1,8 +1,7 @@
-package com.example.kip
+package com.KIP.kip
 
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.Color.parseColor
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,7 +20,6 @@ import khttp.get
 import org.jetbrains.anko.activityUiThread
 import org.jetbrains.anko.doAsync
 import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
 
 class select_BuidlingFaculty_page : AppCompatActivity() {
     var cathedras: List<cathedra> = emptyList()
